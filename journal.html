@@ -8,6 +8,7 @@
     <meta name="title" content="The Journal | Talk with Liam">
     <meta name="description" content="Reflections on Transactional Analysis, intersectionality, and the clinical path by a talking therapist in Hull.">
     
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,6 +16,7 @@
     <style>
         body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
         
+        /* Custom Selection Color for the Journal */
         ::selection { background-color: rgba(242, 141, 53, 0.3); color: #1a1a1a; }
         ::-moz-selection { background-color: rgba(242, 141, 53, 0.3); color: #1a1a1a; }
 
@@ -38,8 +40,10 @@
 </head>
 <body class="antialiased">
 
+    <!-- Bulletproof App-Like Fade Overlay -->
     <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100"></div>
 
+    <!-- LAYER 1: FIXED PARALLAX HERO -->
     <div class="parallax-hero fixed top-0 left-0 w-full h-[80vh] flex flex-col justify-center items-center text-center px-6 text-[#e8e7e7] z-0">
         <div class="max-w-3xl animate-in fade-in duration-1000 slide-in-from-bottom-10">
             <a href="index.html" class="transition-link inline-block mb-12 text-xs font-bold tracking-[0.3em] uppercase opacity-60 hover:opacity-100 hover:text-[#f28d35] transition-all border-b border-transparent hover:border-[#f28d35] pb-1 relative z-50 pointer-events-auto">
@@ -54,6 +58,7 @@
         </div>
     </div>
 
+    <!-- LAYER 2: SCROLLING GLASS CONTENT -->
     <div class="relative z-10 w-full pointer-events-none">
         <div class="h-[80vh] w-full bg-transparent"></div>
 
@@ -106,6 +111,7 @@
     </div>
 
     <script>
+        // --- FEATURE: Mindful Browser Tab ---
         const originalTitle = document.title;
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
@@ -115,6 +121,7 @@
             }
         });
 
+        // --- FEATURE: App-Like Page Transitions ---
         window.addEventListener('pageshow', () => {
             const overlay = document.getElementById('page-overlay');
             if(overlay) overlay.style.opacity = '0';
