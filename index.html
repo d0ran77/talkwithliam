@@ -221,7 +221,9 @@
                 const rect = btn.getBoundingClientRect();
                 const x = e.clientX - rect.left - (rect.width / 2);
                 const y = e.clientY - rect.top - (rect.height / 2);
-                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                
+                // Changed multiplier to 0.1 for a smooth, stable magnetic hover that won't jitter
+                btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
                 btn.style.transition = 'transform 0.1s ease-out, background-color 0.5s ease, color 0.5s ease';
             });
             btn.addEventListener('mouseleave', () => {
