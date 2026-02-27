@@ -28,11 +28,41 @@
             margin-bottom: 40vh; 
         }
 
+        /* --- GLOBAL AUTO-SCROLLING TEXT --- */
+        .marquee-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .marquee-container::before,
+        .marquee-container::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .marquee-container::before {
+            top: 0;
+            background: linear-gradient(to bottom, var(--bg-color) 10%, transparent);
+        }
+        .marquee-container::after {
+            bottom: 0;
+            background: linear-gradient(to top, var(--bg-color) 10%, transparent);
+        }
+        .marquee-inner {
+            display: flex;
+            flex-direction: column;
+        }
+        /* Pause scroll on hover (desktop) or when interacting (mobile) */
+        .marquee-inner.is-paused,
+        .marquee-container:hover .marquee-inner {
+            animation-play-state: paused !important;
+        }
+
+        /* --- MOBILE SPECIFIC STYLES --- */
         @media (max-width: 1023px) {
             .marquee-container {
                 height: 55vh;
-                overflow: hidden;
-                position: relative;
                 border: 1px solid currentColor;
                 border-radius: 1.5rem;
                 padding: 2rem 1.5rem;
@@ -40,32 +70,31 @@
             }
             .marquee-container::before,
             .marquee-container::after {
-                content: '';
-                position: absolute;
-                left: 0; right: 0;
                 height: 4rem;
-                z-index: 10;
-                pointer-events: none;
-            }
-            .marquee-container::before {
-                top: 0;
-                background: linear-gradient(to bottom, var(--bg-color) 10%, transparent);
-            }
-            .marquee-container::after {
-                bottom: 0;
-                background: linear-gradient(to top, var(--bg-color) 10%, transparent);
             }
             .marquee-inner {
-                display: flex;
-                flex-direction: column;
                 gap: 3rem;
                 animation: marquee 60s linear infinite; 
             }
-            .marquee-inner.is-paused {
-                animation-play-state: paused !important;
-            }
             #main-wrapper { margin-bottom: 35vh; } /* Slightly smaller reveal on mobile */
         }
+
+        /* --- DESKTOP SPECIFIC STYLES --- */
+        @media (min-width: 1024px) {
+            .marquee-container {
+                height: 80vh;
+                /* No border on desktop, feels free-floating */
+            }
+            .marquee-container::before,
+            .marquee-container::after {
+                height: 8rem; /* Longer fade on big screens */
+            }
+            .marquee-inner {
+                gap: 8rem;
+                animation: marquee 120s linear infinite; /* Slower scroll for easy reading */
+            }
+        }
+
         @keyframes marquee {
             0% { transform: translateY(0); }
             100% { transform: translateY(-50%); } 
@@ -104,11 +133,12 @@
             </div>
 
             <!-- RIGHT: THE SCROLL -->
-            <div class="lg:w-1/2 lg:pt-32 lg:pb-32 lg:pl-16">
-                <!-- Mobile Box Container -->
+            <!-- pb-[30vh] added to ensure enough padding at the bottom of the page so the user can easily scroll down to the parallax footer -->
+            <div class="lg:w-1/2 lg:pt-32 lg:pb-[30vh] lg:pl-16">
+                <!-- Box Container -->
                 <div id="experience-container" class="marquee-container lg:mb-0 mb-6">
                     <!-- Inner Scrolling List -->
-                    <div id="experience-list" class="marquee-inner flex flex-col gap-16 lg:gap-48">
+                    <div id="experience-list" class="marquee-inner">
                         <!-- Experiences will be injected here by JS -->
                     </div>
                 </div>
@@ -198,10 +228,11 @@
                 }
             });
 
+            // Create list items and duplicate them to create the seamless infinite scroll effect
             const itemsHtml = s.items.map(item => `<div class="scroll-item visible"><h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">"${item}"</h2></div>`).join('');
-            const cloneHtml = s.items.map(item => `<div class="scroll-item visible lg:hidden"><h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">"${item}"</h2></div>`).join('');
             
-            document.getElementById('experience-list').innerHTML = itemsHtml + cloneHtml;
+            // By putting itemsHtml + itemsHtml, it perfectly loops on all screen sizes!
+            document.getElementById('experience-list').innerHTML = itemsHtml + itemsHtml;
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
