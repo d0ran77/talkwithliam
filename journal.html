@@ -4,48 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Journal | Talk with Liam</title>
+    
+    <meta name="title" content="The Journal | Talk with Liam">
+    <meta name="description" content="Reflections on Transactional Analysis, intersectionality, and the clinical path by a talking therapist in Hull.">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
         
-        /* The Parallax Background */
+        ::selection { background-color: rgba(242, 141, 53, 0.3); color: #1a1a1a; }
+        ::-moz-selection { background-color: rgba(242, 141, 53, 0.3); color: #1a1a1a; }
+
         .parallax-hero {
             background-color: #1a1a1a;
             background-image: radial-gradient(circle at 50% 50%, #2a2a2a 0%, #1a1a1a 100%);
         }
 
-        /* Bulletproof Glassmorphism - Forces mobile Safari to blur */
         .glass-layer {
-            background-color: rgba(232, 231, 231, 0.80); /* #e8e7e7 at 80% opacity for readability */
+            background-color: rgba(232, 231, 231, 0.80);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px); /* CRITICAL for iPhones */
+            -webkit-backdrop-filter: blur(20px);
             border-top: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 -20px 50px rgba(0,0,0,0.5);
         }
 
-        /* Editorial text formatting */
         article p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.125rem; color: #1a1a1a; opacity: 0.9; }
         article h2 { font-family: 'Fraunces', serif; font-size: 2.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; margin-top: 4rem; letter-spacing: -0.02em; color: #1a1a1a; }
-        
-        /* Blockquotes now feature the Child State Orange */
-        article blockquote { 
-            border-left: 3px solid #f28d35; 
-            padding-left: 1.5rem; 
-            font-style: italic; 
-            margin: 2.5rem 0; 
-            font-family: 'Fraunces', serif; 
-            font-size: 1.5rem; 
-            color: #1a1a1a; 
-        }
+        article blockquote { border-left: 3px solid #f28d35; padding-left: 1.5rem; font-style: italic; margin: 2.5rem 0; font-family: 'Fraunces', serif; font-size: 1.5rem; color: #1a1a1a; }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- LAYER 1: FIXED PARALLAX HERO -->
+    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100"></div>
+
     <div class="parallax-hero fixed top-0 left-0 w-full h-[80vh] flex flex-col justify-center items-center text-center px-6 text-[#e8e7e7] z-0">
         <div class="max-w-3xl animate-in fade-in duration-1000 slide-in-from-bottom-10">
-            <a href="index.html" class="inline-block mb-12 text-xs font-bold tracking-[0.3em] uppercase opacity-60 hover:opacity-100 hover:text-[#f28d35] transition-all border-b border-transparent hover:border-[#f28d35] pb-1 relative z-50">
+            <a href="index.html" class="transition-link inline-block mb-12 text-xs font-bold tracking-[0.3em] uppercase opacity-60 hover:opacity-100 hover:text-[#f28d35] transition-all border-b border-transparent hover:border-[#f28d35] pb-1 relative z-50 pointer-events-auto">
                 &larr; Return to Practice
             </a>
             <h1 class="text-6xl md:text-8xl lg:text-[9rem] font-black uppercase leading-[0.85] tracking-tighter mb-8">
@@ -57,85 +54,83 @@
         </div>
     </div>
 
-    <!-- LAYER 2: SCROLLING GLASS CONTENT -->
-    <div class="relative z-10 w-full">
-        
-        <!-- Invisible spacer -->
-        <div class="h-[80vh] w-full bg-transparent pointer-events-none"></div>
+    <div class="relative z-10 w-full pointer-events-none">
+        <div class="h-[80vh] w-full bg-transparent"></div>
 
-        <!-- The Glass Layer -->
-        <div class="glass-layer w-full rounded-t-[3rem] pt-20 pb-40 px-6 md:px-12 min-h-screen">
+        <div class="glass-layer w-full rounded-t-[3rem] pt-20 pb-40 px-6 md:px-12 min-h-screen pointer-events-auto">
             <div class="max-w-screen-xl mx-auto lg:flex gap-24">
                 
-                <!-- LEFT: Table of Contents -->
                 <div class="lg:w-1/3 mb-16 lg:mb-0">
                     <div class="lg:sticky lg:top-32 text-[#1a1a1a]">
                         <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-6 opacity-40">Entries</h3>
                         <ul class="space-y-6 font-medium text-lg">
-                            <li><a href="#volcano" class="hover:text-[#f28d35] transition-colors flex items-center gap-4 group"><span class="w-4 h-px bg-current opacity-30 group-hover:bg-[#f28d35] group-hover:opacity-100 transition-colors"></span> The Silence of the Volcano</a></li>
+                            <li><a href="#defense" class="hover:text-[#f28d35] transition-colors flex items-center gap-4 group"><span class="w-4 h-px bg-current opacity-30 group-hover:bg-[#f28d35] group-hover:opacity-100 transition-colors"></span> The Silence of Defense</a></li>
                             <li><a href="#intersectionality" class="hover:text-[#f28d35] transition-colors flex items-center gap-4 group"><span class="w-4 h-px bg-current opacity-30 group-hover:bg-[#f28d35] group-hover:opacity-100 transition-colors"></span> Class & The Consulting Room</a></li>
                             <li><a href="#countertransference" class="hover:text-[#f28d35] transition-colors flex items-center gap-4 group"><span class="w-4 h-px bg-current opacity-30 group-hover:bg-[#f28d35] group-hover:opacity-100 transition-colors"></span> The "Don't Feel" Injunction</a></li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- RIGHT: The Essays -->
                 <div class="lg:w-2/3 max-w-3xl text-[#1a1a1a]">
-                    
-                    <!-- Entry 1 -->
-                    <article id="volcano" class="border-b border-black border-opacity-10 pb-20 pt-10 lg:pt-0">
+                    <article id="defense" class="border-b border-black border-opacity-10 pb-20 pt-10 lg:pt-0">
                         <div class="text-xs font-bold uppercase tracking-[0.2em] text-[#f28d35] mb-4">Foundation Reflection</div>
-                        <h2 class="mt-0">The Silence of the Volcano: From Rage to Clarity</h2>
-                        
-                        <p>As I think about my own process, I wonder why I am so impatient, how frustrated I get, and more historically, how angry I used to get. I think the frustration is often suppressed anger; it really is not healthy for an adult to walk around with the rage I used to feel – how confusing this must have been for little Liam.</p>
-                        
-                        <p>I use the analogy of a volcano: a burning rage that comes from deep within, suddenly erupting into action. I would feel the rising through my body and what seemed to me like an explosion in the top of my head. There was no flight response for little Liam; it was all fight—after all, the unconscious decision had been made to protect.</p>
-
-                        <blockquote>
-                            "The volcano was created in early childhood as a superpower—a necessary script decision to survive a turbulent environment."
-                        </blockquote>
-
-                        <p>Clarkson (1991) notes that a child may take the blame in a chaotic or abusive dynamic, absorbing the turbulence within themselves. The analogy was created here: the volcano was formed as a superpower to protect against an unpredictable and hostile early environment.</p>
-
-                        <p>But what of me being so impatient and getting frustrated easily today? Clarkson suggests that the child may internalise these chaotic emotions, carrying them into adulthood. However, I have noticed a new sensation of late; it’s hard to put a word to it, but it feels like freedom. Where once there was noise, there is now a space for the present – no thought, no noise, just being in the moment. It feels relaxing, exciting, and makes me deeply curious about the therapeutic process. It is the movement from internal noise to moments of profound clarity.</p>
+                        <h2 class="mt-0">The Silence of Defense: From Rage to Clarity</h2>
+                        <p>As I think about my own process, I wonder why I have sometimes been so impatient, how easily frustrated I could become, and more historically, the deep anger I used to carry. I think that intense frustration is often suppressed anger; it really is not healthy for an adult to walk around with the tension I used to feel—how confusing this must have been for my younger self.</p>
+                        <p>I view this protective layer as a heavy armor: a necessary defense mechanism that was built deep within, suddenly erupting into action when threatened. I would feel a rising heat through my body and a sudden overwhelm. There was no 'flight' response available to me as a child; it was entirely 'fight'—the unconscious script decision had been made simply to protect.</p>
+                        <blockquote>"The armor was created in early childhood as a superpower—a necessary script decision to survive a turbulent environment."</blockquote>
+                        <p>Clarkson (1991) notes that a child may take the blame in a chaotic or abusive dynamic, absorbing the turbulence within themselves. The psychological defenses were formed here: they were created as a superpower to insulate against an unpredictable and hostile early environment.</p>
+                        <p>But what of the impatience and frustration that can still occasionally flare up today? Clarkson suggests that the child internalizes these chaotic emotions, carrying them into adulthood. However, I have noticed a new sensation of late; it’s hard to put a single word to it, but it feels like freedom. Where once there was a constant hum of defensive noise, there is now a space for the present. No immediate reaction, no heavy armor, just being in the moment. It feels relaxing, exciting, and makes me deeply curious about the therapeutic process. It is the movement from internal noise to moments of profound clarity.</p>
                     </article>
 
-                    <!-- Entry 2 -->
                     <article id="intersectionality" class="border-b border-black border-opacity-10 pb-20 pt-10">
-                        <div class="text-xs font-bold uppercase tracking-[0.2em] text-[#f28d35] mb-4">Essay 2 Foundation</div>
+                        <div class="text-xs font-bold uppercase tracking-[0.2em] text-[#f28d35] mb-4">Intersectional Reflection</div>
                         <h2 class="mt-0">Working-Class Man, Middle-Class Industry</h2>
-                        
-                        <p>During my studies, it has become increasingly apparent that I need to consciously consider intersectionality; it is something that, in my everyday life, often remains completely in my unconscious.</p>
-
-                        <p>Entering the TA 101 for the first time, my nervous system felt as though it was in meltdown; I was not okay. I made a beeline for the corner—unfortunately for me, that corner was at the front where the tutors presented. 'Great,' I thought, 'no hiding place here.'</p>
-
-                        <p>I was not okay, but I perceived that everyone else was. My thoughts that morning were: there are going to be trained therapists, counsellors, healthcare professionals here. What am I doing here, a factory worker from Rotherham? 'I am never going to succeed at this,' I told myself. A working-class man from a working-class town—what a massive discount to my own worth.</p>
-                        
-                        <p>As a working-class male entering a middle-class industry predominantly populated by females, I must navigate my own intersectional challenges, not only for my own process but to deeply understand my client’s experience. In clinical case studies, I have had to critically examine gender roles and societal expectations. I do not believe that women should be solely responsible for caregiving roles, but acknowledging my own cultural framing is essential so I do not unconsciously project it onto the next client who walks through my door.</p>
-
-                        <blockquote>
-                            "The privilege of a lifetime is to become who you truly are." — Carl Gustav Jung
-                        </blockquote>
+                        <p>During my clinical studies, it has become increasingly apparent that I need to consciously consider intersectionality; it is something that, in my everyday life, had often remained completely in my unconscious.</p>
+                        <p>Entering my first major training seminar, my nervous system felt as though it was in meltdown; I was highly dysregulated. I made a beeline for the corner—unfortunately for me, that corner was at the front where the tutors presented. 'Great,' I thought, 'no hiding place here.'</p>
+                        <p>I felt entirely out of place, yet I perceived that everyone else in the room was entirely comfortable. My thoughts that morning were racing: there are going to be trained therapists, counsellors, and healthcare professionals here. What am I doing here, a former factory worker? 'I am never going to succeed at this,' I told myself. A working-class man entering an academic space—what a massive discount to my own worth and capability.</p>
+                        <p>As a working-class male entering a middle-class industry predominantly populated by females, I must navigate my own intersectional challenges, not only for my own ongoing process but to deeply understand my client’s experience. In clinical case studies, I have had to critically examine gender roles, class structures, and societal expectations. Acknowledging my own cultural framing is absolutely essential so I do not unconsciously project it onto the next client who walks through my door.</p>
+                        <blockquote>"The privilege of a lifetime is to become who you truly are." — Carl Gustav Jung</blockquote>
                     </article>
 
-                    <!-- Entry 3 -->
                     <article id="countertransference" class="pb-10 pt-10">
                         <div class="text-xs font-bold uppercase tracking-[0.2em] text-[#f28d35] mb-4">Clinical Reflection</div>
                         <h2 class="mt-0">Countertransference and the "Don't Feel" Injunction</h2>
-                        
                         <p>During clinical work, a practitioner will inevitably encounter profound sadness or heaviness in the therapeutic space. When this happens, a vital reflective process begins: determining whether this emotional resonance belongs to the therapist, the client, or the shared relational field.</p>
-                        
                         <p>Understanding this through the lens of countertransference is essential. Sitting with this question—rather than rushing to an intellectual answer—allows the therapist to gather information about how emotionally charged the client's material may be, and how deeply it is landing in the room.</p>
-
-                        <p>For a practitioner who may have historically adapted to early environments with a “don’t feel” injunction, recognizing and sitting safely with this shared sadness is a significant marker of intrapsychic change. It bypasses old emotional defences, not by overwhelming the therapist, but by inviting a direct, embodied connection to the work.</p>
-
+                        <p>For a practitioner who may have historically adapted to early environments with a “don’t feel” injunction, recognizing and sitting safely with this shared sadness is a significant marker of intrapsychic change. It bypasses old emotional defenses, not by overwhelming the therapist, but by inviting a direct, embodied connection to the work.</p>
                         <p>This reinforces the absolute importance of ongoing self-awareness. It highlights how therapy can bring aspects of the therapist’s own script into awareness, and how these moments—when held thoughtfully and ethically in supervision—serve to deepen, rather than compromise, the clinical relationship. It reminds me that our own injunctions continue to be shaped and softened through both personal relationships and grounded therapeutic practice.</p>
                     </article>
-
                 </div>
             </div>
         </div>
     </div>
 
+    <script>
+        const originalTitle = document.title;
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                document.title = "Take a breath...";
+            } else {
+                document.title = originalTitle;
+            }
+        });
+
+        window.addEventListener('pageshow', () => {
+            const overlay = document.getElementById('page-overlay');
+            if(overlay) overlay.style.opacity = '0';
+        });
+
+        const transitionLinks = document.querySelectorAll('.transition-link');
+        transitionLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                const overlay = document.getElementById('page-overlay');
+                if(overlay) overlay.style.opacity = '1'; 
+                setTimeout(() => {
+                    window.location.href = link.href; 
+                }, 500); 
+            });
+        });
+    </script>
 </body>
 </html>

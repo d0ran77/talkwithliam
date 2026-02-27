@@ -3,16 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talk with Liam | Transactional Analysis</title>
+    
+    <!-- Primary Meta Tags & NHS "Talking Therapies" SEO -->
+    <title>Talk with Liam | Transactional Analysis & Talking Therapies</title>
+    <meta name="title" content="Talk with Liam | Transactional Analysis & Talking Therapies">
+    <meta name="description" content="A quiet clarity and presence where there used to be noise. Private talking therapies and Transactional Analysis psychotherapy practice based in Hull.">
+    <meta name="keywords" content="Talking Therapies, Transactional Analysis, Psychotherapy, Therapist, Hull, East Yorkshire, Mental Health, Therapy, Counselling, NHS alternative">
+    <meta name="author" content="Liam">
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://talkwithliam.co.uk/"> 
+    <meta property="og:title" content="Talk with Liam | Talking Therapies">
+    <meta property="og:description" content="A quiet clarity and presence where there used to be noise. Professional psychotherapy practice based in Hull.">
+    <meta property="og:image" content="https://talkwithliam.co.uk/preview-image.jpg"> 
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #e8e7e7;
+            --sel-bg: rgba(150, 150, 150, 0.3);
+            --sel-text: #1a1a1a;
         }
-        /* The body is now fixed dark to serve as the base for the parallax reveal */
         body { background-color: #1a1a1a; }
         
+        /* 1. Dynamic Ego-State Text Highlighting */
+        ::selection { background-color: var(--sel-bg); color: var(--sel-text); }
+        ::-moz-selection { background-color: var(--sel-bg); color: var(--sel-text); }
+
         .font-sans { font-family: 'Inter', sans-serif; }
         .font-serif { font-family: 'Fraunces', serif; }
         .transition-all { transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -24,196 +45,151 @@
             background-color: var(--bg-color);
             transition: background-color 0.8s ease;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            /* Margin bottom equals the height of the parallax footer to reveal it */
             margin-bottom: 40vh; 
         }
+        
+        #parallax-footer { height: 40vh; }
 
-        /* --- GLOBAL AUTO-SCROLLING TEXT --- */
-        .marquee-container {
-            overflow: hidden;
-            position: relative;
+        .marquee-container { overflow: hidden; position: relative; }
+        .marquee-container::before, .marquee-container::after {
+            content: ''; position: absolute; left: 0; right: 0; z-index: 10; pointer-events: none;
         }
-        .marquee-container::before,
-        .marquee-container::after {
-            content: '';
-            position: absolute;
-            left: 0; right: 0;
-            z-index: 10;
-            pointer-events: none;
-        }
-        .marquee-container::before {
-            top: 0;
-            background: linear-gradient(to bottom, var(--bg-color) 10%, transparent);
-        }
-        .marquee-container::after {
-            bottom: 0;
-            background: linear-gradient(to top, var(--bg-color) 10%, transparent);
-        }
-        .marquee-inner {
-            display: flex;
-            flex-direction: column;
-        }
-        /* Pause scroll on hover (desktop) or when interacting (mobile) */
-        .marquee-inner.is-paused,
-        .marquee-container:hover .marquee-inner {
-            animation-play-state: paused !important;
+        .marquee-container::before { top: 0; background: linear-gradient(to bottom, var(--bg-color) 10%, transparent); }
+        .marquee-container::after { bottom: 0; background: linear-gradient(to top, var(--bg-color) 10%, transparent); }
+        .marquee-inner { display: flex; flex-direction: column; }
+        .marquee-inner.is-paused, .marquee-container:hover .marquee-inner { animation-play-state: paused !important; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .marquee-inner { animation: none !important; overflow-y: auto; padding-bottom: 50vh; }
         }
 
-        /* --- MOBILE SPECIFIC STYLES --- */
         @media (max-width: 1023px) {
-            .marquee-container {
-                height: 55vh;
-                border: 1px solid currentColor;
-                border-radius: 1.5rem;
-                padding: 2rem 1.5rem;
-                margin-bottom: 2rem;
-            }
-            .marquee-container::before,
-            .marquee-container::after {
-                height: 4rem;
-            }
-            .marquee-inner {
-                gap: 3rem;
-                animation: marquee 60s linear infinite; 
-            }
-            #main-wrapper { margin-bottom: 35vh; } /* Slightly smaller reveal on mobile */
+            .marquee-container { height: 65vh; border: 1px solid currentColor; border-radius: 1.5rem; padding: 2rem 1.5rem; margin-bottom: 0; }
+            .marquee-container::before, .marquee-container::after { height: 4rem; }
+            .marquee-inner { gap: 4rem; animation: marquee 60s linear infinite; }
+            #main-wrapper { margin-bottom: 45vh; }
+            #parallax-footer { height: 45vh; }
         }
 
-        /* --- DESKTOP SPECIFIC STYLES --- */
+        @media (max-width: 1023px) and (orientation: landscape) {
+            #main-wrapper { margin-bottom: 85vh; } 
+            #parallax-footer { height: 85vh; }
+            .marquee-container { height: 75vh; padding: 1rem 1rem; }
+            .marquee-container::before, .marquee-container::after { height: 1.5rem; }
+        }
+
         @media (min-width: 1024px) {
-            .marquee-container {
-                height: 80vh;
-                /* No border on desktop, feels free-floating */
-            }
-            .marquee-container::before,
-            .marquee-container::after {
-                height: 8rem; /* Longer fade on big screens */
-            }
-            .marquee-inner {
-                gap: 8rem;
-                animation: marquee 120s linear infinite; /* Slower scroll for easy reading */
-            }
+            .marquee-container { height: 80vh; }
+            .marquee-container::before, .marquee-container::after { height: 8rem; }
+            .marquee-inner { gap: 10rem; animation: marquee 120s linear infinite; }
         }
 
-        @keyframes marquee {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); } 
-        }
+        @keyframes marquee { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
     </style>
 </head>
 <body class="font-sans antialiased text-[#1a1a1a]">
 
-    <!-- MAIN CONTENT WRAPPER (Slides over the footer) -->
-    <div id="main-wrapper" class="relative z-10 w-full min-h-screen">
+    <!-- Bulletproof App-Like Fade Overlay -->
+    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100"></div>
+
+    <main id="main-wrapper" class="relative z-10 w-full min-h-screen rounded-b-[3rem] lg:rounded-b-[4rem]" role="main">
         <div class="max-w-screen-2xl mx-auto px-6 md:px-12 lg:flex relative">
             
-            <!-- LEFT: THE ANCHOR -->
             <div class="lg:w-1/2 lg:h-screen lg:sticky lg:top-0 pt-16 pb-6 lg:py-32 flex flex-col justify-between z-10">
-                <div>
-                    <div id="banner" class="inline-block mb-8 px-4 py-1.5 border border-[#1a1a1a] rounded-full text-[10px] font-bold tracking-[0.2em] uppercase opacity-60">
+                <header>
+                    <div id="banner" class="inline-block mb-8 px-4 py-1.5 border border-[#1a1a1a] rounded-full text-[10px] font-bold tracking-[0.2em] uppercase opacity-60" role="status">
                         Placement Year • Not Accepting Private Clients
                     </div>
                     <h1 id="brand" class="text-[14vw] lg:text-[8rem] font-black uppercase leading-[0.85] tracking-tighter mb-8 transition-all">
                         Talk<br><span id="brand-with" class="transition-colors duration-500">With</span><br>Liam.
                     </h1>
-                    <p id="description" class="text-xl md:text-2xl font-medium tracking-tight opacity-80 mb-8 max-w-md transition-all">
+                    <p id="description" class="text-xl md:text-2xl font-medium tracking-tight opacity-80 mb-8 max-w-md transition-all" aria-live="polite">
                         A quiet clarity and presence where there used to be noise.
                     </p>
-                </div>
+                </header>
                 <div id="about-container" class="max-w-md hidden lg:block">
                     <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-4 opacity-40">About Liam</h3>
-                    <p id="about-text" class="text-xl leading-relaxed font-medium transition-all mb-6">
-                        I'm a working-class man, a former factory worker from Rotherham, who retrained because I believe in the power of choice over compulsion. My approach is safe, grounded, and non-judgmental.
+                    <p id="about-text" class="text-xl leading-relaxed font-medium transition-all mb-8" aria-live="polite">
+                        My journey into psychotherapy wasn't a traditional one. I spent years in heavy industry before retraining because I believe in the power of intrapsychic change. My approach is safe, grounded, and non-judgmental.
                     </p>
-                    <!-- Visible Desktop Link to Journal -->
-                    <a href="journal.html" class="inline-block text-sm font-bold tracking-[0.2em] uppercase border-b border-current pb-1 hover:opacity-50 transition-opacity">
-                        Read the Journal &rarr;
+                    <a href="about.html" class="transition-link inline-block text-sm font-bold tracking-[0.2em] uppercase border-b border-current pb-1 hover:opacity-50 transition-opacity" aria-label="Read Liam's full story">
+                        Read My Story
                     </a>
                 </div>
             </div>
 
-            <!-- RIGHT: THE SCROLL -->
-            <!-- pb-[30vh] added to ensure enough padding at the bottom of the page so the user can easily scroll down to the parallax footer -->
-            <div class="lg:w-1/2 lg:pt-32 lg:pb-[30vh] lg:pl-16">
-                <!-- Box Container -->
-                <div id="experience-container" class="marquee-container lg:mb-0 mb-6">
-                    <!-- Inner Scrolling List -->
+            <div class="lg:w-1/2 lg:pt-32 pb-6 md:pb-12 lg:pb-[30vh] lg:pl-16">
+                <div id="experience-container" class="marquee-container" aria-label="Reflective clinical thoughts">
                     <div id="experience-list" class="marquee-inner">
-                        <!-- Experiences will be injected here by JS -->
+                        <!-- Experiences injected here -->
                     </div>
                 </div>
-                
-                <!-- Visible Mobile Link to Journal -->
-                <div class="lg:hidden mb-12 text-center relative z-20">
-                     <a href="journal.html" class="inline-block text-sm font-bold tracking-[0.2em] uppercase border-b border-current pb-1 hover:opacity-50 transition-opacity">
-                        Read the Journal &rarr;
-                    </a>
-                </div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- PARALLAX REVEAL FOOTER -->
-    <!-- This sits underneath the main wrapper and is revealed at the bottom of the scroll -->
-    <div class="fixed bottom-0 left-0 w-full h-[35vh] lg:h-[40vh] z-0 flex flex-col items-center justify-center bg-[#1a1a1a] text-[#e8e7e7] pb-24">
-        <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-4 opacity-50">Reflective Practice</h3>
-        <a href="journal.html" class="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter hover:opacity-50 transition-opacity flex items-center gap-4">
-            The Journal <span class="text-4xl lg:text-7xl">&rarr;</span>
+    <footer id="parallax-footer" class="fixed bottom-0 left-0 w-full z-0 flex flex-col items-center justify-center bg-[#1a1a1a] text-[#e8e7e7] pb-12" role="contentinfo">
+        <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-6 opacity-50">Reflective Practice</h3>
+        <a href="journal.html" class="transition-link text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter hover:opacity-50 transition-opacity" aria-label="Open The Journal Page">
+            The Journal
         </a>
-    </div>
+    </footer>
 
-    <!-- TOGGLE BAR -->
-    <div class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4">
-        <div id="toggle-bg" class="backdrop-blur-xl bg-white bg-opacity-20 p-2 rounded-full border border-[#1a1a1a] shadow-2xl flex gap-1 transition-all">
-            <button onclick="setState('parent')" id="btn-parent" class="px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5">Parent</button>
-            <button onclick="setState('adult')" id="btn-adult" class="px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all bg-[#1a1a1a] text-[#e8e7e7]">Adult</button>
-            <button onclick="setState('child')" id="btn-child" class="px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5">Child</button>
+    <nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4" aria-label="Ego State Selection">
+        <div id="toggle-bg" class="backdrop-blur-xl bg-white bg-opacity-20 p-2 rounded-full border border-[#1a1a1a] shadow-2xl flex gap-1 transition-all" role="group" aria-label="Choose perspective">
+            <button onclick="setState('parent')" id="btn-parent" class="magnetic-btn px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5" aria-pressed="false">Parent</button>
+            <button onclick="setState('adult')" id="btn-adult" class="magnetic-btn px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all bg-[#1a1a1a] text-[#e8e7e7]" aria-pressed="true">Adult</button>
+            <button onclick="setState('child')" id="btn-child" class="magnetic-btn px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5" aria-pressed="false">Child</button>
         </div>
-    </div>
+    </nav>
 
     <script>
         const data = {
             adult: {
                 bg: '#e8e7e7', text: '#1a1a1a', font: 'font-sans',
                 btnBg: '#1a1a1a', btnText: '#e8e7e7', highlight: '',
+                selBg: 'rgba(150, 150, 150, 0.3)', selText: '#1a1a1a',
                 desc: 'Clear, objective, and grounded. Moving from internal noise to presence.',
-                about: "I didn't take a traditional path into psychotherapy. I'm a working-class man, a former factory worker from Rotherham, and I know what it’s like to feel out of place in a middle-class world. I’ve retrained because I believe in the power of intrapsychic change. My approach is safe, grounded, and non-judgmental. I’m here to offer a space where we can look at your life honestly, Adult-to-Adult, and find clarity where there used to be noise.",
+                about: "My journey into psychotherapy wasn't a traditional one. I spent years working in heavy industry before retraining because I believe deeply in the power of intrapsychic change and accessible talking therapies. My approach is safe, grounded, and non-judgmental. I’m here to offer a space where we can look at your life honestly, Adult-to-Adult, and find clarity where there used to be noise.",
                 items: ["The realization that your background shapes you, but it doesn't have to write your script.", "Noticing the resonance of old patterns playing out in your present relationships.", "Finding a quiet clarity and presence where there used to be just internal noise.", "Catching yourself in the act of 'discounting' your own worth based on where you came from.", "Understanding that the intense frustration you feel might actually be years of suppressed anger.", "Moving from a place of 'reacting' out of survival, to 'responding' from the here and now.", "Realising that the labels we carry matter less than the meaning we make of who we are.", "Developing the patience to hold your story without needing to fix it immediately.", "Learning to trust the '360 degree' view of your own journey into self-awareness.", "Holding your intersectional identity—class, gender, and history—with empathy.", "Accepting the 'quirks, sensitivities, and triggers' as part of your unique structure.", "Choosing choice over compulsion."]
             },
             child: {
                 bg: '#e8e7e7', text: '#1a1a1a', font: 'font-sans',
                 btnBg: '#f28d35', btnText: '#1a1a1a', highlight: '#f28d35',
+                selBg: 'rgba(242, 141, 53, 0.4)', selText: '#1a1a1a',
                 desc: 'Curious, vulnerable, and focusing on the raw feelings of the script.',
-                about: "Sometimes we just need a place to drop the armor. Growing up, I developed a 'volcano' of protective rage and carried heavy injunctions like 'don't trust' and 'don't feel' just to survive my environment. I know the overwhelming surge of emotion that comes when you try to speak up and be seen. This is a safe place to figure out what that younger part of you actually needs, without the fear of judgment.",
-                items: ["Why does my frustration sometimes feel like a volcano waiting to erupt?", "That overwhelming surge of panic when you even think about being truly vulnerable.", "The physical sensation of your nervous system going into meltdown in an unfamiliar room.", "Wanting to make a beeline for the corner to hide, hoping nobody notices you're there.", "Carrying the deep, unsaid belief: 'I am never going to succeed at this.'", "The heavy guilt you place on yourself for staying silent when you really wanted to speak.", "Wondering if you even make sense to yourself, let alone to anyone else.", "Feeling like an imposter—a factory worker in a room full of 'professionals'.", "The 'Don't be close' and 'Don't trust' rules that kept you safe but left you lonely.", "The 'Something in the Water' feeling—the unconscious process flowing from childhood to now.", "The 'Don't Feel' injunction that made numbness feel like safety.", "The internal struggle of being a working-class man in a middle-class industry."]
+                about: "Sometimes we just need a place to drop the armor. Growing up in a demanding environment, I developed protective walls and carried heavy injunctions like 'don't trust' and 'don't feel' just to survive. I know the overwhelming surge of emotion that comes when you try to speak up and be seen. Through talking therapy, this is a safe place to figure out what that younger part of you actually needs, without the fear of judgment.",
+                items: ["Why does my frustration sometimes feel so impossible to contain?", "That overwhelming surge of panic when you even think about being truly vulnerable.", "The physical sensation of your nervous system going into meltdown in an unfamiliar room.", "Wanting to make a beeline for the corner to hide, hoping nobody notices you're there.", "Carrying the deep, unsaid belief: 'I am never going to succeed at this.'", "The heavy guilt you place on yourself for staying silent when you really wanted to speak.", "Wondering if you even make sense to yourself, let alone to anyone else.", "Feeling like an imposter—a working-class person in a room full of 'professionals'.", "The 'Don't be close' and 'Don't trust' rules that kept you safe but left you lonely.", "The 'Something in the Water' feeling—the unconscious process flowing from childhood to now.", "The 'Don't Feel' injunction that made numbness feel like safety.", "The internal struggle of navigating spaces that weren't built for you."]
             },
             parent: {
                 bg: '#1a1a1a', text: '#e8e7e7', font: 'font-serif',
                 btnBg: '#e8e7e7', btnText: '#1a1a1a', highlight: '',
+                selBg: '#e8e7e7', selText: '#1a1a1a',
                 desc: 'Supportive, nurturing, and providing the permissions you never received.',
-                about: "You have carried a lot to get here, perhaps absorbing the chaos of others to keep them safe. Drawing from my own journey of softening the inner critic and strengthening the Nurturing Parent, I've built a practice rooted in safety and stability. You don't have to navigate life's shifts alone. Here, you will find a non-judgmental environment to anchor yourself and safely examine your patterns.",
-                items: ["You no longer have to absorb the violence or chaos of others to keep them safe.", "It is okay to lean into the difficult, terrifying feeling of vulnerability.", "You do not need to carry the 'volcano' as a superpower to protect everyone anymore.", "It is safe to let the voice of doubt fade into the darkness and step into the light.", "You are allowed to trust the process, even when the critical part demands to know 'why'.", "Your voice is valid, your experiences matter, and you deserve to be heard.", "You have permission to rewrite the unconscious life plan that was handed to you.", "The permission to stop being 'the strong one' for just a moment.", "You are allowed to outgrow the version of yourself that everyone else is comfortable with.", "Understanding your own history is the first step toward grounded clinical practice.", "Softening the boundaries that once kept the world out, but kept you in.", "\"The privilege of a lifetime is to become who you truly are.\" — Carl Jung"]
+                about: "You have carried a lot to get here, perhaps absorbing the chaos of others to keep them safe. Drawing from my own journey of softening the inner critic and strengthening the Nurturing Parent, I've built a talking therapy practice rooted in safety and stability. You don't have to navigate life's shifts alone. Here, you will find a non-judgmental environment to anchor yourself and safely examine your patterns.",
+                items: ["You no longer have to absorb the violence or chaos of others to keep them safe.", "It is okay to lean into the difficult, terrifying feeling of vulnerability.", "You do not need to carry anger as a superpower to protect everyone anymore.", "It is safe to let the voice of doubt fade into the darkness and step into the light.", "You are allowed to trust the process, even when the critical part demands to know 'why'.", "Your voice is valid, your experiences matter, and you deserve to be heard.", "You have permission to rewrite the unconscious life plan that was handed to you.", "The permission to stop being 'the strong one' for just a moment.", "You are allowed to outgrow the version of yourself that everyone else is comfortable with.", "Understanding your own history is the first step toward grounded clinical practice.", "Softening the boundaries that once kept the world out, but kept you in.", "\"The privilege of a lifetime is to become who you truly are.\" — Carl Jung"]
             }
         };
 
         function setState(state) {
             const s = data[state];
             
-            // Apply background color to the wrapper so it hides the parallax footer
             document.documentElement.style.setProperty('--bg-color', s.bg);
+            document.documentElement.style.setProperty('--sel-bg', s.selBg);
+            document.documentElement.style.setProperty('--sel-text', s.selText);
+
             document.getElementById('main-wrapper').style.backgroundColor = s.bg;
             document.getElementById('main-wrapper').style.color = s.text;
-            document.getElementById('main-wrapper').className = 'relative z-10 w-full min-h-screen transition-all duration-700 shadow-2xl mb-[35vh] lg:mb-[40vh] ' + s.font;
+            
+            const wrapperClasses = document.getElementById('main-wrapper').className;
+            document.getElementById('main-wrapper').className = wrapperClasses.replace(/font-sans|font-serif/g, '') + ' ' + s.font;
             
             document.getElementById('description').innerText = s.desc;
             document.getElementById('about-text').innerText = s.about;
             
             const brandWith = document.getElementById('brand-with');
-            if (s.highlight) {
-                brandWith.style.color = s.highlight;
-            } else {
-                brandWith.style.color = 'inherit';
-            }
+            if (s.highlight) { brandWith.style.color = s.highlight; } 
+            else { brandWith.style.color = 'inherit'; }
             
             document.getElementById('banner').style.borderColor = s.text;
             
@@ -222,43 +198,73 @@
                 if(id === state) {
                     btn.style.backgroundColor = s.btnBg;
                     btn.style.color = s.btnText;
+                    btn.setAttribute('aria-pressed', 'true');
                 } else {
                     btn.style.backgroundColor = 'transparent';
                     btn.style.color = s.text;
+                    btn.setAttribute('aria-pressed', 'false');
                 }
             });
 
-            // Create list items and duplicate them to create the seamless infinite scroll effect
-            const itemsHtml = s.items.map(item => `<div class="scroll-item visible"><h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">"${item}"</h2></div>`).join('');
+            const itemsHtmlPrimary = s.items.map(item => `<div class="scroll-item visible"><h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">"${item}"</h2></div>`).join('');
+            const itemsHtmlClone = s.items.map(item => `<div class="scroll-item visible" aria-hidden="true"><h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">"${item}"</h2></div>`).join('');
             
-            // By putting itemsHtml + itemsHtml, it perfectly loops on all screen sizes!
-            document.getElementById('experience-list').innerHTML = itemsHtml + itemsHtml;
+            document.getElementById('experience-list').innerHTML = itemsHtmlPrimary + itemsHtmlClone;
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         setState('adult');
 
-        const marqueeInner = document.getElementById('experience-list');
-        const marqueeContainer = document.getElementById('experience-container');
-
-        marqueeContainer.addEventListener('touchstart', () => {
-            marqueeInner.classList.add('is-paused');
-        }, { passive: true });
-
-        document.addEventListener('touchend', () => {
-            setTimeout(() => {
-                if (window.getSelection().toString().trim().length === 0) {
-                    marqueeInner.classList.remove('is-paused');
-                }
-            }, 150);
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - (rect.width / 2);
+                const y = e.clientY - rect.top - (rect.height / 2);
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                btn.style.transition = 'transform 0.1s ease-out, background-color 0.5s ease, color 0.5s ease';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = `translate(0px, 0px)`;
+                btn.style.transition = 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
         });
 
-        document.addEventListener('selectionchange', () => {
-            if (window.getSelection().toString().trim().length > 0) {
-                marqueeInner.classList.add('is-paused');
+        const originalTitle = document.title;
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                document.title = "Take a breath...";
             } else {
-                marqueeInner.classList.remove('is-paused');
+                document.title = originalTitle;
             }
+        });
+
+        window.addEventListener('pageshow', () => {
+            const overlay = document.getElementById('page-overlay');
+            if(overlay) overlay.style.opacity = '0';
+        });
+
+        const transitionLinks = document.querySelectorAll('.transition-link');
+        transitionLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                const overlay = document.getElementById('page-overlay');
+                if(overlay) overlay.style.opacity = '1'; 
+                setTimeout(() => {
+                    window.location.href = link.href; 
+                }, 500); 
+            });
+        });
+
+        const marqueeInner = document.getElementById('experience-list');
+        const marqueeContainer = document.getElementById('experience-container');
+        marqueeContainer.addEventListener('touchstart', () => { marqueeInner.classList.add('is-paused'); }, { passive: true });
+        document.addEventListener('touchend', () => {
+            setTimeout(() => { if (window.getSelection().toString().trim().length === 0) marqueeInner.classList.remove('is-paused'); }, 150);
+        });
+        document.addEventListener('selectionchange', () => {
+            if (window.getSelection().toString().trim().length > 0) marqueeInner.classList.add('is-paused');
+            else marqueeInner.classList.remove('is-paused');
         });
     </script>
 </body>
