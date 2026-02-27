@@ -7,47 +7,122 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #e8e7e7; transition: background-color 0.8s ease; }
+        :root {
+            --bg-color: #e8e7e7;
+        }
+        /* The body is now fixed dark to serve as the base for the parallax reveal */
+        body { background-color: #1a1a1a; }
+        
         .font-sans { font-family: 'Inter', sans-serif; }
         .font-serif { font-family: 'Fraunces', serif; }
         .transition-all { transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
         .scroll-item { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .scroll-item.visible { opacity: 1; transform: translateY(0); }
+
+        /* The Main Wrapper holds the changing background color and slides over the footer */
+        #main-wrapper {
+            background-color: var(--bg-color);
+            transition: background-color 0.8s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            /* Margin bottom equals the height of the parallax footer to reveal it */
+            margin-bottom: 40vh; 
+        }
+
+        @media (max-width: 1023px) {
+            .marquee-container {
+                height: 55vh;
+                overflow: hidden;
+                position: relative;
+                border: 1px solid currentColor;
+                border-radius: 1.5rem;
+                padding: 2rem 1.5rem;
+                margin-bottom: 2rem;
+            }
+            .marquee-container::before,
+            .marquee-container::after {
+                content: '';
+                position: absolute;
+                left: 0; right: 0;
+                height: 4rem;
+                z-index: 10;
+                pointer-events: none;
+            }
+            .marquee-container::before {
+                top: 0;
+                background: linear-gradient(to bottom, var(--bg-color) 10%, transparent);
+            }
+            .marquee-container::after {
+                bottom: 0;
+                background: linear-gradient(to top, var(--bg-color) 10%, transparent);
+            }
+            .marquee-inner {
+                display: flex;
+                flex-direction: column;
+                gap: 3rem;
+                animation: marquee 60s linear infinite; 
+            }
+            .marquee-inner.is-paused {
+                animation-play-state: paused !important;
+            }
+            #main-wrapper { margin-bottom: 35vh; } /* Slightly smaller reveal on mobile */
+        }
+        @keyframes marquee {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); } 
+        }
     </style>
 </head>
-<body class="font-sans text-[#1a1a1a]">
+<body class="font-sans antialiased text-[#1a1a1a]">
 
-    <div id="app" class="max-w-screen-2xl mx-auto px-6 md:px-12 lg:flex relative">
-        
-        <!-- LEFT: THE ANCHOR -->
-        <div class="lg:w-1/2 lg:h-screen lg:sticky lg:top-0 pt-20 pb-10 lg:py-32 flex flex-col justify-between z-10">
-            <div>
-                <div id="banner" class="inline-block mb-8 px-4 py-1.5 border border-[#1a1a1a] rounded-full text-[10px] font-bold tracking-[0.2em] uppercase opacity-60">
-                    Placement Year • Not Accepting Private Clients
+    <!-- MAIN CONTENT WRAPPER (Slides over the footer) -->
+    <div id="main-wrapper" class="relative z-10 w-full min-h-screen">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 lg:flex relative">
+            
+            <!-- LEFT: THE ANCHOR -->
+            <div class="lg:w-1/2 lg:h-screen lg:sticky lg:top-0 pt-16 pb-6 lg:py-32 flex flex-col justify-between z-10">
+                <div>
+                    <div id="banner" class="inline-block mb-8 px-4 py-1.5 border border-[#1a1a1a] rounded-full text-[10px] font-bold tracking-[0.2em] uppercase opacity-60">
+                        Placement Year • Not Accepting Private Clients
+                    </div>
+                    <h1 id="brand" class="text-[14vw] lg:text-[8rem] font-black uppercase leading-[0.85] tracking-tighter mb-8 transition-all">
+                        Talk<br><span id="brand-with" class="transition-colors duration-500">With</span><br>Liam.
+                    </h1>
+                    <p id="description" class="text-xl md:text-2xl font-medium tracking-tight opacity-80 mb-8 max-w-md transition-all">
+                        A quiet clarity and presence where there used to be noise.
+                    </p>
                 </div>
-                <h1 id="brand" class="text-[14vw] lg:text-[8rem] font-black uppercase leading-[0.85] tracking-tighter mb-8 transition-all">
-                    Talk<br><span id="brand-with" class="transition-colors duration-500">With</span><br>Liam.
-                </h1>
-                <p id="description" class="text-xl md:text-2xl font-medium tracking-tight opacity-80 mb-12 max-w-md transition-all">
-                    A quiet clarity and presence where there used to be noise.
-                </p>
+                <div id="about-container" class="max-w-md hidden lg:block">
+                    <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-4 opacity-40">About Liam</h3>
+                    <p id="about-text" class="text-xl leading-relaxed font-medium transition-all mb-6">
+                        I'm a working-class man, a former factory worker from Rotherham, who retrained because I believe in the power of choice over compulsion. My approach is safe, grounded, and non-judgmental.
+                    </p>
+                </div>
             </div>
-            <div id="about-container" class="max-w-md hidden lg:block">
-                <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-4 opacity-40">About Liam</h3>
-                <p id="about-text" class="text-xl leading-relaxed font-medium transition-all">
-                    I'm a working-class man, a former factory worker from Rotherham, who retrained because I believe in the power of choice over compulsion. My approach is safe, grounded, and non-judgmental.
-                </p>
-            </div>
-        </div>
 
-        <!-- RIGHT: THE SCROLL (Adjusted gaps for mobile vs desktop) -->
-        <div id="experience-list" class="lg:w-1/2 pt-10 pb-60 lg:py-32 lg:pl-16 flex flex-col gap-20 md:gap-32 lg:gap-48">
-            <!-- Experiences will be injected here by JS -->
+            <!-- RIGHT: THE SCROLL -->
+            <div class="lg:w-1/2 lg:pt-32 lg:pb-32 lg:pl-16">
+                <!-- Mobile Box Container -->
+                <div id="experience-container" class="marquee-container lg:mb-0 mb-12">
+                    <!-- Inner Scrolling List -->
+                    <div id="experience-list" class="marquee-inner flex flex-col gap-16 lg:gap-48">
+                        <!-- Experiences will be injected here by JS -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- PARALLAX REVEAL FOOTER -->
+    <!-- This sits underneath the main wrapper and is revealed at the bottom of the scroll -->
+    <div class="fixed bottom-0 left-0 w-full h-[35vh] lg:h-[40vh] z-0 flex flex-col items-center justify-center bg-[#1a1a1a] text-[#e8e7e7] pb-24">
+        <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-4 opacity-50">Reflective Practice</h3>
+        <a href="journal.html" class="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter hover:opacity-50 transition-opacity flex items-center gap-4">
+            The Journal <span class="text-4xl lg:text-7xl">&rarr;</span>
+        </a>
+    </div>
+
     <!-- TOGGLE BAR -->
-    <div class="fixed bottom-8 left-0 right-0 z-50 flex justify-center px-4">
+    <div class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4">
         <div id="toggle-bg" class="backdrop-blur-xl bg-white bg-opacity-20 p-2 rounded-full border border-[#1a1a1a] shadow-2xl flex gap-1 transition-all">
             <button onclick="setState('parent')" id="btn-parent" class="px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5">Parent</button>
             <button onclick="setState('adult')" id="btn-adult" class="px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all bg-[#1a1a1a] text-[#e8e7e7]">Adult</button>
@@ -82,13 +157,16 @@
 
         function setState(state) {
             const s = data[state];
-            document.body.style.backgroundColor = s.bg;
-            document.body.style.color = s.text;
-            document.body.className = s.font + ' transition-all';
+            
+            // Apply background color to the wrapper so it hides the parallax footer
+            document.documentElement.style.setProperty('--bg-color', s.bg);
+            document.getElementById('main-wrapper').style.backgroundColor = s.bg;
+            document.getElementById('main-wrapper').style.color = s.text;
+            document.getElementById('main-wrapper').className = 'relative z-10 w-full min-h-screen transition-all duration-700 shadow-2xl mb-[35vh] lg:mb-[40vh] ' + s.font;
+            
             document.getElementById('description').innerText = s.desc;
             document.getElementById('about-text').innerText = s.about;
             
-            // Update Brand "With" color
             const brandWith = document.getElementById('brand-with');
             if (s.highlight) {
                 brandWith.style.color = s.highlight;
@@ -96,10 +174,8 @@
                 brandWith.style.color = 'inherit';
             }
             
-            // Update Banner Border so it is visible on the dark Parent tab
             document.getElementById('banner').style.borderColor = s.text;
             
-            // Update Buttons
             ['parent', 'adult', 'child'].forEach(id => {
                 const btn = document.getElementById('btn-' + id);
                 if(id === state) {
@@ -111,14 +187,37 @@
                 }
             });
 
-            // Update List (Adjusted text sizes to be smaller on mobile)
-            const list = document.getElementById('experience-list');
-            list.innerHTML = s.items.map(item => `<div class="scroll-item visible"><h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">"${item}"</h2></div>`).join('');
+            const itemsHtml = s.items.map(item => `<div class="scroll-item visible"><h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">"${item}"</h2></div>`).join('');
+            const cloneHtml = s.items.map(item => `<div class="scroll-item visible lg:hidden"><h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">"${item}"</h2></div>`).join('');
+            
+            document.getElementById('experience-list').innerHTML = itemsHtml + cloneHtml;
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // Initialize
         setState('adult');
+
+        const marqueeInner = document.getElementById('experience-list');
+        const marqueeContainer = document.getElementById('experience-container');
+
+        marqueeContainer.addEventListener('touchstart', () => {
+            marqueeInner.classList.add('is-paused');
+        }, { passive: true });
+
+        document.addEventListener('touchend', () => {
+            setTimeout(() => {
+                if (window.getSelection().toString().trim().length === 0) {
+                    marqueeInner.classList.remove('is-paused');
+                }
+            }, 150);
+        });
+
+        document.addEventListener('selectionchange', () => {
+            if (window.getSelection().toString().trim().length > 0) {
+                marqueeInner.classList.add('is-paused');
+            } else {
+                marqueeInner.classList.remove('is-paused');
+            }
+        });
     </script>
 </body>
 </html>
