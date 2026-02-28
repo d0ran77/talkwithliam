@@ -21,7 +21,7 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #e8e7e7;
@@ -90,7 +90,7 @@
 
     <!-- Bulletproof App-Like Fade Overlay with Quote Container -->
     <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6">
-        <p id="transition-quote" class="text-[#e8e7e7] text-xl md:text-3xl font-serif italic text-center max-w-3xl opacity-0 transition-opacity duration-700"></p>
+        <p id="transition-quote" class="text-[#e8e7e7] text-3xl md:text-5xl font-sans font-medium tracking-tight text-center max-w-4xl opacity-0 transition-opacity duration-700 leading-[1.2]"></p>
     </div>
 
     <main id="main-wrapper" class="relative z-10 w-full min-h-screen rounded-b-[3rem] lg:rounded-b-[4rem]" role="main">
@@ -288,10 +288,10 @@
                     }, 300);
                 }
                 
-                // Increased delay to 1.5 seconds to allow time to read the quote before navigating
+                // Increased delay to 2.5 seconds to allow time to read the quote before navigating
                 setTimeout(() => {
                     window.location.href = link.href; 
-                }, 1500); 
+                }, 2500); 
             });
         });
 
