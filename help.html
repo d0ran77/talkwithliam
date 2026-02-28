@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-[#1a1a1a]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Urgent Help | Talk with Liam</title>
+    <meta name="title" content="Urgent Help | Talk with Liam">
+    <meta name="description" content="Free, confidential, 24/7 mental health support resources in the UK.">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #e8e7e7; background-color: #1a1a1a; margin: 0; padding: 0; }
+        ::selection { background-color: rgba(242, 141, 53, 0.4); color: #1a1a1a; }
+        ::-moz-selection { background-color: rgba(242, 141, 53, 0.4); color: #1a1a1a; }
+        .font-serif { font-family: 'Fraunces', serif; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Bulletproof App-Like Fade Overlay -->
+    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100"></div>
+
+    <main class="relative z-10 w-full min-h-screen flex flex-col items-center justify-center py-20 px-6" role="main">
+        
+        <div class="max-w-4xl w-full">
+            <a href="index.html" class="transition-link inline-block mb-16 text-xs font-bold tracking-[0.3em] uppercase opacity-50 hover:opacity-100 hover:text-[#f28d35] transition-all border-b border-transparent hover:border-[#f28d35] pb-1" aria-label="Return to Practice">
+                &larr; Return to Practice
+            </a>
+
+            <header class="mb-20">
+                <h1 class="text-5xl md:text-7xl lg:text-[6rem] font-black uppercase leading-[0.85] tracking-tighter mb-8">
+                    You don't have to sit with the <span class="text-[#f28d35]">noise</span> alone.
+                </h1>
+                <p class="text-xl md:text-2xl font-medium tracking-tight opacity-80 max-w-2xl">
+                    If things feel overwhelming right now, you don't need to wait for a therapy session to reach out. These services are free, confidential, and available 24/7 in the UK.
+                </p>
+            </header>
+
+            <div class="grid md:grid-cols-1 gap-6">
+                
+                <!-- Samaritans -->
+                <a href="https://www.samaritans.org/" target="_blank" rel="noopener noreferrer" class="group block border border-[#e8e7e7] border-opacity-20 rounded-[2rem] p-8 md:p-12 hover:bg-[#e8e7e7] hover:bg-opacity-5 hover:border-[#f28d35] hover:border-opacity-50 transition-all">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tight mb-2 group-hover:text-[#f28d35] transition-colors">Samaritans</h2>
+                            <p class="text-lg opacity-70">Whatever you're going through, a Samaritan will face it with you.</p>
+                        </div>
+                        <div class="shrink-0 text-right">
+                            <span class="block text-sm font-bold tracking-[0.2em] uppercase opacity-50 mb-1">Call Free 24/7</span>
+                            <span class="text-3xl md:text-4xl font-serif">116 123</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Shout -->
+                <a href="https://giveusashout.org/" target="_blank" rel="noopener noreferrer" class="group block border border-[#e8e7e7] border-opacity-20 rounded-[2rem] p-8 md:p-12 hover:bg-[#e8e7e7] hover:bg-opacity-5 hover:border-[#f28d35] hover:border-opacity-50 transition-all">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tight mb-2 group-hover:text-[#f28d35] transition-colors">Shout</h2>
+                            <p class="text-lg opacity-70">Confidential text support for anyone struggling to cope.</p>
+                        </div>
+                        <div class="shrink-0 text-right">
+                            <span class="block text-sm font-bold tracking-[0.2em] uppercase opacity-50 mb-1">Text Free 24/7</span>
+                            <span class="text-3xl md:text-4xl font-serif">SHOUT to 85258</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Childline -->
+                <a href="https://www.childline.org.uk/" target="_blank" rel="noopener noreferrer" class="group block border border-[#e8e7e7] border-opacity-20 rounded-[2rem] p-8 md:p-12 hover:bg-[#e8e7e7] hover:bg-opacity-5 hover:border-[#f28d35] hover:border-opacity-50 transition-all">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tight mb-2 group-hover:text-[#f28d35] transition-colors">Childline</h2>
+                            <p class="text-lg opacity-70">Support for anyone under 19 with any issue they're going through.</p>
+                        </div>
+                        <div class="shrink-0 text-right">
+                            <span class="block text-sm font-bold tracking-[0.2em] uppercase opacity-50 mb-1">Call Free 24/7</span>
+                            <span class="text-3xl md:text-4xl font-serif">0800 1111</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Mindful Tab
+        const originalTitle = document.title;
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                document.title = "Whenever you're ready...";
+            } else {
+                document.title = originalTitle;
+            }
+        });
+
+        // App-Like Page Transitions
+        window.addEventListener('pageshow', () => {
+            const overlay = document.getElementById('page-overlay');
+            if(overlay) overlay.style.opacity = '0';
+        });
+
+        const transitionLinks = document.querySelectorAll('.transition-link');
+        transitionLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                const overlay = document.getElementById('page-overlay');
+                if(overlay) overlay.style.opacity = '1'; 
+                setTimeout(() => {
+                    window.location.href = link.href; 
+                }, 500); 
+            });
+        });
+    </script>
+</body>
+</html>
