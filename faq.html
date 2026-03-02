@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-[#e8e7e7]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>The Framework | Talk with Liam</title>
+    <meta name="title" content="The Framework | Talk with Liam">
+    <meta name="description" content="The practicalities, boundaries, and roadmap of working together in therapy.">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #1a1a1a; background-color: #e8e7e7; margin: 0; padding: 0; }
+        ::selection { background-color: rgba(150, 150, 150, 0.3); color: #1a1a1a; }
+        ::-moz-selection { background-color: rgba(150, 150, 150, 0.3); color: #1a1a1a; }
+        .font-serif { font-family: 'Fraunces', serif; }
+        
+        .faq-content { transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease; opacity: 0; }
+        .faq-content.open { opacity: 1; }
+        .faq-icon { transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .faq-icon.open { transform: rotate(45deg); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Bulletproof App-Like Fade Overlay with Quote Container -->
+    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6">
+        <p id="transition-quote" class="text-[#e8e7e7] text-4xl md:text-6xl lg:text-7xl font-serif italic text-center max-w-5xl opacity-0 transition-opacity duration-700 leading-[1.1]"></p>
+    </div>
+
+    <main class="relative z-10 w-full min-h-screen py-28 px-6 md:py-32 md:px-12" role="main">
+        
+        <!-- URGENT HELP LINK -->
+        <div class="absolute top-8 left-6 md:top-12 md:left-12 z-50">
+            <a href="help.html" class="transition-link inline-block px-6 py-3 rounded-full bg-[#f28d35] text-[#1a1a1a] text-[10px] font-black tracking-[0.2em] uppercase shadow-lg shadow-[#f28d35]/20 transition-transform hover:scale-105 active:scale-95" aria-label="Get urgent mental health support">
+                Urgent Help
+            </a>
+        </div>
+
+        <div class="max-w-screen-xl mx-auto">
+            
+            <a href="index.html" class="transition-link inline-block mb-16 text-xs font-bold tracking-[0.3em] uppercase opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-[#1a1a1a] pb-1" aria-label="Return to Practice">
+                &larr; Return to Practice
+            </a>
+
+            <header class="mb-20">
+                <h1 class="text-5xl md:text-7xl lg:text-[6rem] font-black uppercase leading-[0.85] tracking-tighter mb-8">
+                    The <br><span class="text-gray-400 hover:text-[#f28d35] transition-colors duration-500">Framework.</span>
+                </h1>
+                <p class="text-xl md:text-2xl font-medium tracking-tight opacity-80 max-w-2xl">
+                    Therapy works best when the boundaries are clear and secure. Here are the practicalities of how we work together.
+                </p>
+            </header>
+
+            <!-- THE ROADMAP -->
+            <div class="mb-32">
+                <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-12 opacity-40">The Process</h3>
+                
+                <div class="relative border-l border-[#1a1a1a] border-opacity-20 ml-2 md:ml-4 space-y-16 pb-4">
+                    
+                    <!-- Step 1 -->
+                    <div class="relative pl-8 md:pl-12 group">
+                        <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-[#1a1a1a] group-hover:bg-[#f28d35] transition-colors duration-500"></div>
+                        <h4 class="text-2xl md:text-3xl font-serif font-bold tracking-tight mb-3">1. The Assessment</h4>
+                        <p class="text-lg opacity-80 leading-relaxed max-w-2xl">
+                            Establishing safety and connection. We meet Adult-to-Adult to discuss what brings you here, what you hope to achieve, and ensure we are a good fit for the work ahead.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative pl-8 md:pl-12 group">
+                        <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-[#1a1a1a] group-hover:bg-[#f28d35] transition-colors duration-500"></div>
+                        <h4 class="text-2xl md:text-3xl font-serif font-bold tracking-tight mb-3">2. The Contract</h4>
+                        <p class="text-lg opacity-80 leading-relaxed max-w-2xl">
+                            Therapy shouldn't be aimless. Together, we set clear, mutual goals. We define exactly what we are trying to change so we both know what we are working towards.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative pl-8 md:pl-12 group">
+                        <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-[#1a1a1a] group-hover:bg-[#f28d35] transition-colors duration-500"></div>
+                        <h4 class="text-2xl md:text-3xl font-serif font-bold tracking-tight mb-3">3. Decontamination</h4>
+                        <p class="text-lg opacity-80 leading-relaxed max-w-2xl">
+                            The messy middle. This is where we safely sort the past from the present, untangling old survival scripts and challenging the rigid rules of the Parent ego state.
+                        </p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative pl-8 md:pl-12 group">
+                        <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-[#f28d35] shadow-[0_0_15px_rgba(242,141,53,0.4)]"></div>
+                        <h4 class="text-2xl md:text-3xl font-serif font-bold tracking-tight mb-3">4. Autonomy</h4>
+                        <p class="text-lg opacity-80 leading-relaxed max-w-2xl">
+                            Moving forward. You reclaim the capacity for awareness, spontaneity, and intimacy—freed from old compulsions and fully grounded in the 'here and now'.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- FAQ SECTION -->
+            <div>
+                <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-12 opacity-40">Practical Questions</h3>
+
+                <div class="border-t border-[#1a1a1a] border-opacity-20 max-w-4xl">
+                    
+                    <!-- Question 1 -->
+                    <div class="border-b border-[#1a1a1a] border-opacity-20">
+                        <button class="faq-btn w-full text-left py-8 flex justify-between items-center group focus:outline-none" aria-expanded="false">
+                            <span class="text-xl md:text-2xl font-serif font-bold group-hover:text-[#f28d35] transition-colors pr-8">Are you currently taking private clients?</span>
+                            <span class="faq-icon text-3xl font-light opacity-50">+</span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden">
+                            <p class="pb-8 text-lg opacity-80 leading-relaxed">
+                                Not currently. I am completing my clinical placement year and acquiring my required hours in Sheffield and Rotherham. However, my practice will be opening for private clients soon.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="border-b border-[#1a1a1a] border-opacity-20">
+                        <button class="faq-btn w-full text-left py-8 flex justify-between items-center group focus:outline-none" aria-expanded="false">
+                            <span class="text-xl md:text-2xl font-serif font-bold group-hover:text-[#f28d35] transition-colors pr-8">How long is a session and how often do we meet?</span>
+                            <span class="faq-icon text-3xl font-light opacity-50">+</span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden">
+                            <p class="pb-8 text-lg opacity-80 leading-relaxed">
+                                Sessions last for 50 minutes. We will typically meet once a week at the same time and day. This consistency creates a safe, predictable container for the work we do.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="border-b border-[#1a1a1a] border-opacity-20">
+                        <button class="faq-btn w-full text-left py-8 flex justify-between items-center group focus:outline-none" aria-expanded="false">
+                            <span class="text-xl md:text-2xl font-serif font-bold group-hover:text-[#f28d35] transition-colors pr-8">Do you work online or in-person?</span>
+                            <span class="faq-icon text-3xl font-light opacity-50">+</span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden">
+                            <p class="pb-8 text-lg opacity-80 leading-relaxed">
+                                Both. I offer online sessions via secure video link for clients anywhere in the UK, as well as face-to-face sessions at my practice rooms in Hull. We can discuss which format feels safest and most effective for you during the assessment.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Question 4 -->
+                    <div class="border-b border-[#1a1a1a] border-opacity-20">
+                        <button class="faq-btn w-full text-left py-8 flex justify-between items-center group focus:outline-none" aria-expanded="false">
+                            <span class="text-xl md:text-2xl font-serif font-bold group-hover:text-[#f28d35] transition-colors pr-8">What exactly is Transactional Analysis (TA)?</span>
+                            <span class="faq-icon text-3xl font-light opacity-50">+</span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden">
+                            <p class="pb-8 text-lg opacity-80 leading-relaxed">
+                                TA is a widely recognized form of modern psychology designed to promote personal growth and change. It is built on the philosophy that "people are OK" and that everyone has the capacity to think for themselves. We look at how our past influences our present, and how our three Ego States (Parent, Adult, Child) interact with the world. <a href="approach.html" class="transition-link underline hover:text-[#f28d35]">Read more about the approach here.</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // --- FAQ Accordion Logic ---
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('.faq-icon');
+                const isOpen = content.style.maxHeight;
+
+                // Close all other accordions
+                document.querySelectorAll('.faq-content').forEach(c => {
+                    c.style.maxHeight = null;
+                    c.classList.remove('open');
+                });
+                document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('open'));
+                document.querySelectorAll('.faq-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+                // Open the clicked one if it wasn't already open
+                if (!isOpen) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    content.classList.add('open');
+                    icon.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        // --- Mindful Tab ---
+        const originalTitle = document.title;
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                document.title = "Take a breath...";
+            } else {
+                document.title = originalTitle;
+            }
+        });
+
+        // --- Inspirational Quote Transition Array ---
+        const transitionQuotes = [
+            "\"Awareness requires living in the here and now.\"<br><br>— Eric Berne",
+            "\"The privilege of a lifetime is to become who you truly are.\"<br><br>— Carl Jung",
+            "\"We are born autonomous, but we learn to adapt.\"<br><br>— Transactional Analysis",
+            "\"People are born princes and princesses, until their parents turn them into frogs.\"<br><br>— Eric Berne",
+            "\"The curious paradox is that when I accept myself just as I am, then I can change.\"<br><br>— Carl Rogers",
+            "\"I am not what happened to me, I am what I choose to become.\"<br><br>— Carl Jung",
+            "\"What you resist, persists.\"<br><br>— Carl Jung",
+            "\"Out of your vulnerabilities will come your strength.\"<br><br>— Sigmund Freud",
+            "\"Who looks outside, dreams; who looks inside, awakes.\"<br><br>— Carl Jung",
+            "\"The armor was created in early childhood as a superpower.\"<br><br>— Petruska Clarkson",
+            "\"Until you make the unconscious conscious, it will direct your life.\"<br><br>— Carl Jung",
+            "\"Unexpressed emotions will never die.\"<br><br>— Sigmund Freud",
+            "\"We cannot change until we thoroughly accept what we are.\"<br><br>— Carl Rogers"
+        ];
+
+        window.addEventListener('pageshow', () => {
+            const overlay = document.getElementById('page-overlay');
+            const quoteEl = document.getElementById('transition-quote');
+            if(overlay) overlay.style.opacity = '0';
+            if(quoteEl) quoteEl.style.opacity = '0';
+        });
+
+        const transitionLinks = document.querySelectorAll('.transition-link');
+        transitionLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                const overlay = document.getElementById('page-overlay');
+                const quoteEl = document.getElementById('transition-quote');
+                
+                // Check if the link clicked is the urgent help page
+                const isUrgent = link.getAttribute('href') === 'help.html';
+                
+                if(overlay) {
+                    overlay.style.opacity = '1'; 
+                }
+                
+                if (isUrgent) {
+                    // FAST TRANSITION FOR URGENT HELP
+                    setTimeout(() => {
+                        window.location.href = link.href; 
+                    }, 500); 
+                } else {
+                    // NORMAL TRANSITION
+                    if(quoteEl) {
+                        const randomQuote = transitionQuotes[Math.floor(Math.random() * transitionQuotes.length)];
+                        quoteEl.innerHTML = randomQuote;
+                        setTimeout(() => {
+                            quoteEl.style.opacity = '1';
+                        }, 300);
+                    }
+                    setTimeout(() => {
+                        window.location.href = link.href; 
+                    }, 2500); 
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-[#e8e7e7]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>The Approach | Talk with Liam</title>
+    <meta name="title" content="The Approach | Talk with Liam">
+    <meta name="description" content="Demystifying Transactional Analysis. Understanding the Parent, Adult, and Child within us.">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://talkwithliam.co.uk/approach.html">
+    <meta property="og:title" content="The Approach | Talk with Liam">
+    <meta property="og:description" content="Demystifying Transactional Analysis. Understanding the Parent, Adult, and Child within us.">
+    <meta property="og:image" content="https://talkwithliam.co.uk/preview-image.jpg">
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://talkwithliam.co.uk/approach.html">
+    <meta property="twitter:title" content="The Approach | Talk with Liam">
+    <meta property="twitter:description" content="Demystifying Transactional Analysis. Understanding the Parent, Adult, and Child within us.">
+    <meta property="twitter:image" content="https://talkwithliam.co.uk/preview-image.jpg">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --card-bg: #e8e7e7;
+            --card-text: #1a1a1a;
+            --sel-bg: rgba(150, 150, 150, 0.3);
+            --sel-text: #1a1a1a;
+        }
+        
+        body { font-family: 'Inter', sans-serif; color: #1a1a1a; background-color: #e8e7e7; margin: 0; padding: 0; }
+        
+        ::selection { background-color: var(--sel-bg); color: var(--sel-text); }
+        ::-moz-selection { background-color: var(--sel-bg); color: var(--sel-text); }
+        
+        .font-sans { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Fraunces', serif; }
+        
+        .transition-all-slow { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        #interactive-card {
+            background-color: var(--card-bg);
+            color: var(--card-text);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Bulletproof App-Like Fade Overlay -->
+    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6">
+        <p id="transition-quote" class="text-[#e8e7e7] text-4xl md:text-6xl lg:text-7xl font-serif italic text-center max-w-5xl opacity-0 transition-opacity duration-700 leading-[1.1]"></p>
+    </div>
+
+    <main class="relative z-10 w-full min-h-screen pt-28 pb-20 px-6 md:pt-32 md:px-12 flex flex-col items-center" role="main">
+        
+        <!-- URGENT HELP LINK (Moved inside main, aligned to the left padding) -->
+        <div class="absolute top-8 left-6 md:top-12 md:left-12 z-50">
+            <a href="help.html" class="transition-link inline-block px-6 py-3 rounded-full bg-[#f28d35] text-[#1a1a1a] text-[10px] font-black tracking-[0.2em] uppercase shadow-lg shadow-[#f28d35]/20 transition-transform hover:scale-105 active:scale-95" aria-label="Get urgent mental health support">
+                Urgent Help
+            </a>
+        </div>
+
+        <div class="max-w-screen-xl w-full">
+            <a href="index.html" class="transition-link inline-block mb-16 text-xs font-bold tracking-[0.3em] uppercase opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-[#1a1a1a] pb-1" aria-label="Return to Practice">
+                &larr; Return to Practice
+            </a>
+
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                
+                <!-- Text Content -->
+                <div>
+                    <h1 class="text-5xl md:text-7xl font-black uppercase leading-[0.85] tracking-tighter mb-8">
+                        The <br><span class="text-gray-400">Approach.</span>
+                    </h1>
+                    <div class="space-y-6 text-xl md:text-2xl font-medium tracking-tight opacity-80 leading-relaxed max-w-lg">
+                        <p>
+                            My practice is rooted in Transactional Analysis (TA). It is a highly accessible, collaborative framework that looks at how our past experiences shape our present reality.
+                        </p>
+                        <p>
+                            We often carry unconscious "scripts"—decisions we made as children to survive our early environments. Sometimes, those old survival strategies cause immense friction in our adult lives. 
+                        </p>
+                        <p>
+                            TA suggests our personality is made up of three distinct Ego States. By learning to recognize which state is driving the car, we can reclaim the autonomy to choose how we respond to the world.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Interactive Ego State Explainer -->
+                <div class="relative w-full mt-12 lg:mt-0">
+                    
+                    <!-- The Interactive Card (Made relative with dynamic height so text dictates spacing, preventing clashes) -->
+                    <div id="interactive-card" class="relative w-full min-h-[24rem] md:min-h-[30rem] rounded-[3rem] px-6 pt-12 pb-24 md:px-12 md:pt-16 md:pb-32 lg:px-16 flex flex-col items-center justify-center shadow-2xl border border-black border-opacity-5 transition-all-slow font-sans text-center">
+                        <h2 id="card-title" class="text-xs font-bold uppercase tracking-[0.4em] mb-6 md:mb-8 opacity-50 transition-all-slow">The Adult</h2>
+                        <p id="card-desc" class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight tracking-tight transition-all-slow max-w-2xl">
+                            The part of us that is present. It processes facts, assesses reality, and responds to the 'here and now' without being clouded by past emotions or borrowed rules.
+                        </p>
+                    </div>
+
+                    <!-- The Embedded Toggle -->
+                    <nav class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 z-50 flex justify-center px-4 w-full" aria-label="Ego State Selection">
+                        <div id="toggle-bg" class="backdrop-blur-xl bg-[#1a1a1a] bg-opacity-10 p-2 rounded-full border border-black border-opacity-10 shadow-xl flex gap-1 transition-all" role="group">
+                            <button onclick="setCardState('parent')" id="btn-parent" class="magnetic-btn px-6 md:px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5 text-[#1a1a1a]" aria-pressed="false">Parent</button>
+                            <button onclick="setCardState('adult')" id="btn-adult" class="magnetic-btn px-6 md:px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all bg-[#1a1a1a] text-[#e8e7e7]" aria-pressed="true">Adult</button>
+                            <button onclick="setCardState('child')" id="btn-child" class="magnetic-btn px-6 md:px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5 text-[#1a1a1a]" aria-pressed="false">Child</button>
+                        </div>
+                    </nav>
+
+                </div>
+            </div>
+
+            <!-- The Goal -->
+            <div class="mt-32 pt-16 border-t border-[#1a1a1a] border-opacity-10 text-center max-w-3xl mx-auto pb-20">
+                <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-6 opacity-40">The Goal of Therapy</h3>
+                <p class="text-3xl md:text-5xl font-serif italic opacity-90 leading-tight">
+                    "To strengthen the Adult, soothe the Child, and soften the critical Parent."
+                </p>
+                <div class="mt-16 flex justify-center gap-6">
+                    <a href="faq.html" class="transition-link px-10 py-4 rounded-full text-xs font-black tracking-[0.2em] uppercase transition-transform hover:scale-105 active:scale-95 bg-[#1a1a1a] text-[#e8e7e7] text-center shadow-xl">
+                        The Framework (FAQ)
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const cardData = {
+            adult: {
+                bg: '#e8e7e7', text: '#1a1a1a', font: 'font-sans',
+                btnBg: '#1a1a1a', btnText: '#e8e7e7', titleOpacity: '0.5',
+                selBg: 'rgba(150, 150, 150, 0.3)', selText: '#1a1a1a', toggleBg: 'rgba(26, 26, 26, 0.1)', toggleText: '#1a1a1a',
+                title: 'The Adult',
+                desc: "The part of us that is present. It processes facts, assesses reality, and responds to the 'here and now' without being clouded by past emotions or borrowed rules."
+            },
+            child: {
+                bg: '#f28d35', text: '#1a1a1a', font: 'font-sans',
+                btnBg: '#1a1a1a', btnText: '#f28d35', titleOpacity: '0.6',
+                selBg: 'rgba(26, 26, 26, 0.2)', selText: '#1a1a1a', toggleBg: 'rgba(242, 141, 53, 0.2)', toggleText: '#1a1a1a',
+                title: 'The Child',
+                desc: "The part of us that feels. It holds our purest creativity and joy, but also the ancient anxieties, adaptations, and survival strategies we learned when we were small."
+            },
+            parent: {
+                bg: '#1a1a1a', text: '#e8e7e7', font: 'font-serif',
+                btnBg: '#e8e7e7', btnText: '#1a1a1a', titleOpacity: '0.5',
+                selBg: 'rgba(232, 231, 231, 0.3)', selText: '#e8e7e7', toggleBg: 'rgba(255, 255, 255, 0.1)', toggleText: '#e8e7e7',
+                title: 'The Parent',
+                desc: "The part of us we borrowed. It contains the rules, beliefs, and behaviors we absorbed from our caregivers—both the harsh inner critic and the deeply nurturing protector."
+            }
+        };
+
+        function setCardState(state) {
+            const s = cardData[state];
+            const card = document.getElementById('interactive-card');
+            const title = document.getElementById('card-title');
+            const desc = document.getElementById('card-desc');
+            const toggleBg = document.getElementById('toggle-bg');
+            
+            // Update Root Variables for specific highlight colors on the card
+            document.documentElement.style.setProperty('--card-bg', s.bg);
+            document.documentElement.style.setProperty('--card-text', s.text);
+            document.documentElement.style.setProperty('--sel-bg', s.selBg);
+            document.documentElement.style.setProperty('--sel-text', s.selText);
+
+            // Update Fonts
+            card.className = card.className.replace(/font-sans|font-serif/g, '') + ' ' + s.font;
+            
+            // Fade text out, change, fade back in for smoothness
+            desc.style.opacity = '0';
+            title.style.opacity = '0';
+            
+            setTimeout(() => {
+                title.innerText = s.title;
+                desc.innerText = s.desc;
+                desc.style.opacity = '1';
+                title.style.opacity = s.titleOpacity;
+            }, 300);
+
+            // Update Toggle Aesthetics
+            toggleBg.style.backgroundColor = s.toggleBg;
+
+            ['parent', 'adult', 'child'].forEach(id => {
+                const btn = document.getElementById('btn-' + id);
+                if(id === state) {
+                    btn.style.backgroundColor = s.btnBg;
+                    btn.style.color = s.btnText;
+                    btn.setAttribute('aria-pressed', 'true');
+                } else {
+                    btn.style.backgroundColor = 'transparent';
+                    btn.style.color = '#1a1a1a'; // Default to black for inactive in this UI
+                    btn.setAttribute('aria-pressed', 'false');
+                }
+            });
+        }
+
+        // Magnetic Button Logic
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - (rect.width / 2);
+                const y = e.clientY - rect.top - (rect.height / 2);
+                btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+                btn.style.transition = 'transform 0.1s ease-out, background-color 0.5s ease, color 0.5s ease';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = `translate(0px, 0px)`;
+                btn.style.transition = 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+        });
+
+        // Mindful Tab
+        const originalTitle = document.title;
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                document.title = "Whenever you're ready...";
+            } else {
+                document.title = originalTitle;
+            }
+        });
+
+        // --- Inspirational Quote Transition Array ---
+        const transitionQuotes = [
+            "\"Awareness requires living in the here and now.\"<br><br>— Eric Berne",
+            "\"The privilege of a lifetime is to become who you truly are.\"<br><br>— Carl Jung",
+            "\"We are born autonomous, but we learn to adapt.\"<br><br>— Transactional Analysis",
+            "\"People are born princes and princesses, until their parents turn them into frogs.\"<br><br>— Eric Berne",
+            "\"The curious paradox is that when I accept myself just as I am, then I can change.\"<br><br>— Carl Rogers",
+            "\"I am not what happened to me, I am what I choose to become.\"<br><br>— Carl Jung",
+            "\"What you resist, persists.\"<br><br>— Carl Jung",
+            "\"Out of your vulnerabilities will come your strength.\"<br><br>— Sigmund Freud",
+            "\"Who looks outside, dreams; who looks inside, awakes.\"<br><br>— Carl Jung",
+            "\"The armor was created in early childhood as a superpower.\"<br><br>— Petruska Clarkson",
+            "\"Until you make the unconscious conscious, it will direct your life.\"<br><br>— Carl Jung",
+            "\"Unexpressed emotions will never die.\"<br><br>— Sigmund Freud",
+            "\"We cannot change until we thoroughly accept what we are.\"<br><br>— Carl Rogers"
+        ];
+
+        window.addEventListener('pageshow', () => {
+            const overlay = document.getElementById('page-overlay');
+            const quoteEl = document.getElementById('transition-quote');
+            if(overlay) overlay.style.opacity = '0';
+            if(quoteEl) quoteEl.style.opacity = '0';
+        });
+
+        const transitionLinks = document.querySelectorAll('.transition-link');
+        transitionLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                const overlay = document.getElementById('page-overlay');
+                const quoteEl = document.getElementById('transition-quote');
+                const isUrgent = link.getAttribute('href') === 'help.html';
+                
+                if(overlay) overlay.style.opacity = '1'; 
+                
+                if (isUrgent) {
+                    setTimeout(() => { window.location.href = link.href; }, 500); 
+                } else {
+                    if(quoteEl) {
+                        const randomQuote = transitionQuotes[Math.floor(Math.random() * transitionQuotes.length)];
+                        quoteEl.innerHTML = randomQuote;
+                        setTimeout(() => { quoteEl.style.opacity = '1'; }, 300);
+                    }
+                    setTimeout(() => { window.location.href = link.href; }, 2500); 
+                }
+            });
+        });
+    </script>
+</body>
+</html>
