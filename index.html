@@ -106,6 +106,7 @@
                     <div id="banner" class="inline-block mb-8 px-4 py-1.5 border border-[#1a1a1a] rounded-full text-[10px] font-bold tracking-[0.2em] uppercase opacity-60 transition-colors duration-700">
                         Placement Year • Not Accepting Private Clients
                     </div>
+                    
                     <h1 id="brand" class="text-[14vw] lg:text-[8rem] font-black uppercase leading-[0.85] tracking-tighter mb-8 transition-all-slow">
                         Talk<br><span id="brand-with" class="transition-colors duration-500">With</span><br>Liam.
                     </h1>
@@ -223,7 +224,6 @@
             
             document.getElementById('experience-list').innerHTML = itemsHtmlPrimary + itemsHtmlClone;
             
-            // On mobile, scroll back to the top of the marquee when state changes
             if (window.innerWidth < 1024) {
                 const marqueeContainer = document.querySelector('.marquee-container');
                 if (marqueeContainer) {
@@ -234,14 +234,11 @@
             }
         }
 
-        // Initialize state on load
         setState('adult');
 
-        // Keyboard Shortcuts (P, A, C) for quick Ego State switching
+        // Keyboard Shortcuts (P, A, C)
         document.addEventListener('keydown', (e) => {
-            // Prevent triggering if user is somehow typing in an input field
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-            
             const key = e.key.toLowerCase();
             if (key === 'p') setState('parent');
             if (key === 'a') setState('adult');
@@ -268,15 +265,7 @@
             "\"The privilege of a lifetime is to become who you truly are.\"<br><br>— Carl Jung",
             "\"We are born autonomous, but we learn to adapt.\"<br><br>— Transactional Analysis",
             "\"People are born princes and princesses, until their parents turn them into frogs.\"<br><br>— Eric Berne",
-            "\"The curious paradox is that when I accept myself just as I am, then I can change.\"<br><br>— Carl Rogers",
-            "\"I am not what happened to me, I am what I choose to become.\"<br><br>— Carl Jung",
-            "\"What you resist, persists.\"<br><br>— Carl Jung",
-            "\"Out of your vulnerabilities will come your strength.\"<br><br>— Sigmund Freud",
-            "\"Who looks outside, dreams; who looks inside, awakes.\"<br><br>— Carl Jung",
-            "\"The armor was created in early childhood as a superpower.\"<br><br>— Petruska Clarkson",
-            "\"Until you make the unconscious conscious, it will direct your life.\"<br><br>— Carl Jung",
-            "\"Unexpressed emotions will never die.\"<br><br>— Sigmund Freud",
-            "\"We cannot change until we thoroughly accept what we are.\"<br><br>— Carl Rogers"
+            "\"The curious paradox is that when I accept myself just as I am, then I can change.\"<br><br>— Carl Rogers"
         ];
 
         window.addEventListener('pageshow', () => {
@@ -293,7 +282,6 @@
                 const overlay = document.getElementById('page-overlay');
                 const quoteEl = document.getElementById('transition-quote');
                 
-                // Check if the link clicked is the urgent help page
                 const isUrgent = link.getAttribute('href') === 'help.html';
                 
                 if(overlay) {
@@ -301,12 +289,12 @@
                 }
                 
                 if (isUrgent) {
-                    // FAST TRANSITION FOR URGENT HELP
+                    // IMMEDIATELY HIDE QUOTE AND FAST TRANSITION
+                    if (quoteEl) quoteEl.style.display = 'none';
                     setTimeout(() => {
                         window.location.href = link.href; 
                     }, 500); 
                 } else {
-                    // NORMAL TRANSITION
                     if(quoteEl) {
                         const randomQuote = transitionQuotes[Math.floor(Math.random() * transitionQuotes.length)];
                         quoteEl.innerHTML = randomQuote;
@@ -321,7 +309,6 @@
             });
         });
 
-        // Tab Title update when user switches away
         const originalTitle = document.title;
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
