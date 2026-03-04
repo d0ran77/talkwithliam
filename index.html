@@ -8,15 +8,20 @@
     <title>Talk with Liam | Transactional Analysis & Talking Therapies</title>
     <meta name="title" content="Talk with Liam | Transactional Analysis & Talking Therapies">
     <meta name="description" content="A quiet clarity and presence where there used to be noise. Private talking therapies and Transactional Analysis psychotherapy practice based in Hull.">
-    <meta name="keywords" content="Talking Therapies, Transactional Analysis, Psychotherapy, Therapist, Hull, East Yorkshire, Mental Health, Therapy, Counselling, NHS alternative">
-    <meta name="author" content="Liam">
-
+    
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://talkwithliam.co.uk/"> 
     <meta property="og:title" content="Talk with Liam | Talking Therapies">
     <meta property="og:description" content="A quiet clarity and presence where there used to be noise. Professional psychotherapy practice based in Hull.">
     <meta property="og:image" content="https://talkwithliam.co.uk/preview-image.jpg"> 
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://talkwithliam.co.uk/">
+    <meta property="twitter:title" content="Talk with Liam | Talking Therapies">
+    <meta property="twitter:description" content="A quiet clarity and presence where there used to be noise. Professional psychotherapy practice based in Hull.">
+    <meta property="twitter:image" content="https://talkwithliam.co.uk/preview-image.jpg">
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
@@ -36,7 +41,7 @@
 
         .font-sans { font-family: 'Inter', sans-serif; }
         .font-serif { font-family: 'Fraunces', serif; }
-        .transition-all { transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+        .transition-all-slow { transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
         .scroll-item { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .scroll-item.visible { opacity: 1; transform: translateY(0); }
 
@@ -70,13 +75,6 @@
             #parallax-footer { height: 45vh; }
         }
 
-        @media (max-width: 1023px) and (orientation: landscape) {
-            #main-wrapper { margin-bottom: 85vh; } 
-            #parallax-footer { height: 85vh; }
-            .marquee-container { height: 75vh; padding: 1rem 1rem; }
-            .marquee-container::before, .marquee-container::after { height: 1.5rem; }
-        }
-
         @media (min-width: 1024px) {
             .marquee-container { height: 80vh; }
             .marquee-container::before, .marquee-container::after { height: 8rem; }
@@ -88,7 +86,7 @@
 </head>
 <body class="font-sans antialiased text-[#1a1a1a]">
 
-    <!-- Bulletproof App-Like Fade Overlay with Quote Container -->
+    <!-- Bulletproof App-Like Fade Overlay -->
     <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6">
         <p id="transition-quote" class="text-[#e8e7e7] text-4xl md:text-6xl lg:text-7xl font-serif italic text-center max-w-5xl opacity-0 transition-opacity duration-700 leading-[1.1]"></p>
     </div>
@@ -98,37 +96,42 @@
             
             <!-- URGENT HELP LINK -->
             <div class="absolute top-8 left-6 md:top-12 md:left-12 z-50">
-                <a href="help.html" class="transition-link inline-block px-6 py-3 rounded-full bg-[#f28d35] text-[#1a1a1a] text-[10px] font-black tracking-[0.2em] uppercase shadow-lg shadow-[#f28d35]/20 transition-transform hover:scale-105 active:scale-95" aria-label="Get urgent mental health support">
+                <a href="help.html" class="transition-link inline-block px-6 py-3 rounded-full bg-[#f28d35] text-[#1a1a1a] text-[10px] font-black tracking-[0.2em] uppercase shadow-lg shadow-[#f28d35]/20 transition-transform hover:scale-105 active:scale-95">
                     Urgent Help
                 </a>
             </div>
 
             <div class="lg:w-1/2 lg:h-screen lg:sticky lg:top-0 pt-24 pb-6 lg:py-32 flex flex-col justify-between z-10">
                 <header>
-                    <div id="banner" class="inline-block mb-8 px-4 py-1.5 border border-[#1a1a1a] rounded-full text-[10px] font-bold tracking-[0.2em] uppercase opacity-60" role="status">
+                    <div id="banner" class="inline-block mb-8 px-4 py-1.5 border border-[#1a1a1a] rounded-full text-[10px] font-bold tracking-[0.2em] uppercase opacity-60 transition-colors duration-700">
                         Placement Year • Not Accepting Private Clients
                     </div>
-                    <h1 id="brand" class="text-[14vw] lg:text-[8rem] font-black uppercase leading-[0.85] tracking-tighter mb-8 transition-all">
+                    <h1 id="brand" class="text-[14vw] lg:text-[8rem] font-black uppercase leading-[0.85] tracking-tighter mb-8 transition-all-slow">
                         Talk<br><span id="brand-with" class="transition-colors duration-500">With</span><br>Liam.
                     </h1>
-                    <p id="description" class="text-xl md:text-2xl font-medium tracking-tight opacity-80 mb-8 max-w-md transition-all" aria-live="polite">
+                    <p id="description" class="text-xl md:text-2xl font-medium tracking-tight opacity-80 mb-8 max-w-md transition-all-slow">
                         A quiet clarity and presence where there used to be noise.
                     </p>
                 </header>
                 
                 <div id="about-container" class="max-w-md mt-8 lg:mt-0">
                     <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-4 opacity-40">About Liam</h3>
-                    <p id="about-text" class="text-xl leading-relaxed font-medium transition-all mb-8" aria-live="polite">
+                    <p id="about-text" class="text-xl leading-relaxed font-medium transition-all-slow mb-8">
                         My journey into psychotherapy wasn't a traditional one. I spent years in heavy industry before retraining because I believe in the power of intrapsychic change. My approach is safe, grounded, and non-judgmental.
                     </p>
-                    <a href="about.html" class="transition-link inline-block text-sm font-bold tracking-[0.2em] uppercase border-b border-current pb-1 hover:opacity-50 transition-opacity" aria-label="Read Liam's full story">
-                        Read My Story
-                    </a>
+                    <div class="flex gap-6">
+                        <a href="approach.html" class="transition-link inline-block text-sm font-bold tracking-[0.2em] uppercase border-b border-current pb-1 hover:opacity-50 transition-opacity">
+                            The Approach
+                        </a>
+                        <a href="faq.html" class="transition-link inline-block text-sm font-bold tracking-[0.2em] uppercase border-b border-current pb-1 hover:opacity-50 transition-opacity">
+                            The Framework
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <div class="lg:w-1/2 lg:pt-32 pb-6 md:pb-12 lg:pb-[30vh] lg:pl-16">
-                <div id="experience-container" class="marquee-container" aria-label="Reflective clinical thoughts">
+                <div id="experience-container" class="marquee-container">
                     <div id="experience-list" class="marquee-inner">
                         <!-- Experiences injected here -->
                     </div>
@@ -137,18 +140,18 @@
         </div>
     </main>
 
-    <footer id="parallax-footer" class="fixed bottom-0 left-0 w-full z-0 flex flex-col items-center justify-center bg-[#1a1a1a] text-[#e8e7e7] pb-12" role="contentinfo">
+    <footer id="parallax-footer" class="fixed bottom-0 left-0 w-full z-0 flex flex-col items-center justify-center bg-[#1a1a1a] text-[#e8e7e7] pb-12">
         <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-6 opacity-50">Reflective Practice</h3>
-        <a href="journal.html" class="transition-link magnetic-btn inline-block text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter hover:opacity-50 transition-opacity" aria-label="Open The Journal Page">
+        <a href="journal.html" class="transition-link magnetic-btn inline-block text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter hover:opacity-50 transition-opacity">
             The Journal
         </a>
     </footer>
 
-    <nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4" aria-label="Ego State Selection">
-        <div id="toggle-bg" class="backdrop-blur-xl bg-white bg-opacity-20 p-2 rounded-full border border-[#1a1a1a] shadow-2xl flex gap-1 transition-all" role="group" aria-label="Choose perspective">
-            <button onclick="setState('parent')" id="btn-parent" class="magnetic-btn px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5" aria-pressed="false">Parent</button>
-            <button onclick="setState('adult')" id="btn-adult" class="magnetic-btn px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all bg-[#1a1a1a] text-[#e8e7e7]" aria-pressed="true">Adult</button>
-            <button onclick="setState('child')" id="btn-child" class="magnetic-btn px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5" aria-pressed="false">Child</button>
+    <nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4">
+        <div id="toggle-bg" class="backdrop-blur-xl bg-white bg-opacity-20 p-2 rounded-full border border-[#1a1a1a] shadow-2xl flex gap-1 transition-all">
+            <button onclick="setState('parent')" id="btn-parent" class="magnetic-btn px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5">Parent</button>
+            <button onclick="setState('adult')" id="btn-adult" class="magnetic-btn px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all bg-[#1a1a1a] text-[#e8e7e7]">Adult</button>
+            <button onclick="setState('child')" id="btn-child" class="magnetic-btn px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5">Child</button>
         </div>
     </nav>
 
@@ -201,52 +204,62 @@
             else { brandWith.style.color = 'inherit'; }
             
             document.getElementById('banner').style.borderColor = s.text;
+            document.getElementById('banner').style.color = s.text;
             
             ['parent', 'adult', 'child'].forEach(id => {
                 const btn = document.getElementById('btn-' + id);
                 if(id === state) {
                     btn.style.backgroundColor = s.btnBg;
                     btn.style.color = s.btnText;
-                    btn.setAttribute('aria-pressed', 'true');
                 } else {
                     btn.style.backgroundColor = 'transparent';
                     btn.style.color = s.text;
-                    btn.setAttribute('aria-pressed', 'false');
                 }
             });
 
+            // Update marquee content based on state
             const itemsHtmlPrimary = s.items.map(item => `<div class="scroll-item visible"><h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">"${item}"</h2></div>`).join('');
             const itemsHtmlClone = s.items.map(item => `<div class="scroll-item visible" aria-hidden="true"><h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">"${item}"</h2></div>`).join('');
             
             document.getElementById('experience-list').innerHTML = itemsHtmlPrimary + itemsHtmlClone;
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            
+            // On mobile, scroll back to the top of the marquee when state changes
+            if (window.innerWidth < 1024) {
+                const marqueeContainer = document.querySelector('.marquee-container');
+                if (marqueeContainer) {
+                    marqueeContainer.scrollTo({top: 0, behavior: 'smooth'});
+                }
+            } else {
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }
         }
 
+        // Initialize state on load
         setState('adult');
 
+        // Keyboard Shortcuts (P, A, C) for quick Ego State switching
+        document.addEventListener('keydown', (e) => {
+            // Prevent triggering if user is somehow typing in an input field
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            
+            const key = e.key.toLowerCase();
+            if (key === 'p') setState('parent');
+            if (key === 'a') setState('adult');
+            if (key === 'c') setState('child');
+        });
+
+        // Magnetic Button Logic
         const magneticBtns = document.querySelectorAll('.magnetic-btn');
         magneticBtns.forEach(btn => {
             btn.addEventListener('mousemove', (e) => {
                 const rect = btn.getBoundingClientRect();
                 const x = e.clientX - rect.left - (rect.width / 2);
                 const y = e.clientY - rect.top - (rect.height / 2);
-                
                 btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
-                btn.style.transition = 'transform 0.1s ease-out, background-color 0.5s ease, color 0.5s ease';
             });
             btn.addEventListener('mouseleave', () => {
                 btn.style.transform = `translate(0px, 0px)`;
-                btn.style.transition = 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
             });
-        });
-
-        const originalTitle = document.title;
-        document.addEventListener("visibilitychange", () => {
-            if (document.hidden) {
-                document.title = "Take a breath...";
-            } else {
-                document.title = originalTitle;
-            }
         });
 
         // --- Inspirational Quote Transition Array ---
@@ -288,12 +301,12 @@
                 }
                 
                 if (isUrgent) {
-                    // FAST TRANSITION FOR URGENT HELP - No quote, no long delay
+                    // FAST TRANSITION FOR URGENT HELP
                     setTimeout(() => {
                         window.location.href = link.href; 
                     }, 500); 
                 } else {
-                    // NORMAL TRANSITION - Pick a quote and wait 2.5 seconds
+                    // NORMAL TRANSITION
                     if(quoteEl) {
                         const randomQuote = transitionQuotes[Math.floor(Math.random() * transitionQuotes.length)];
                         quoteEl.innerHTML = randomQuote;
@@ -308,15 +321,14 @@
             });
         });
 
-        const marqueeInner = document.getElementById('experience-list');
-        const marqueeContainer = document.getElementById('experience-container');
-        marqueeContainer.addEventListener('touchstart', () => { marqueeInner.classList.add('is-paused'); }, { passive: true });
-        document.addEventListener('touchend', () => {
-            setTimeout(() => { if (window.getSelection().toString().trim().length === 0) marqueeInner.classList.remove('is-paused'); }, 150);
-        });
-        document.addEventListener('selectionchange', () => {
-            if (window.getSelection().toString().trim().length > 0) marqueeInner.classList.add('is-paused');
-            else marqueeInner.classList.remove('is-paused');
+        // Tab Title update when user switches away
+        const originalTitle = document.title;
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                document.title = "Take your time...";
+            } else {
+                document.title = originalTitle;
+            }
         });
     </script>
 </body>
