@@ -22,7 +22,8 @@
     <meta property="twitter:description" content="Demystifying Transactional Analysis. Understanding the Parent, Adult, and Child within us.">
     <meta property="twitter:image" content="https://talkwithliam.co.uk/preview-image.jpg">
     
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Updated Favicon Tag for Google Search -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -54,7 +55,6 @@
 
     <!-- Bulletproof App-Like Fade Overlay -->
     <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6">
-        <p id="transition-quote" class="text-[#e8e7e7] text-4xl md:text-6xl lg:text-7xl font-serif italic text-center max-w-5xl opacity-0 transition-opacity duration-700 leading-[1.1]"></p>
     </div>
 
     <main class="relative z-10 w-full min-h-screen pt-28 pb-20 px-6 md:pt-32 md:px-12 flex flex-col items-center" role="main">
@@ -228,19 +228,9 @@
             }
         });
 
-        const transitionQuotes = [
-            "\"Awareness requires living in the here and now.\"<br><br>— Eric Berne",
-            "\"The privilege of a lifetime is to become who you truly are.\"<br><br>— Carl Jung",
-            "\"We are born autonomous, but we learn to adapt.\"<br><br>— Transactional Analysis",
-            "\"People are born princes and princesses, until their parents turn them into frogs.\"<br><br>— Eric Berne",
-            "\"The curious paradox is that when I accept myself just as I am, then I can change.\"<br><br>— Carl Rogers"
-        ];
-
         window.addEventListener('pageshow', () => {
             const overlay = document.getElementById('page-overlay');
-            const quoteEl = document.getElementById('transition-quote');
             if(overlay) overlay.style.opacity = '0';
-            if(quoteEl) quoteEl.style.opacity = '0';
         });
 
         const transitionLinks = document.querySelectorAll('.transition-link');
@@ -248,23 +238,14 @@
             link.addEventListener('click', (e) => {
                 e.preventDefault(); 
                 const overlay = document.getElementById('page-overlay');
-                const quoteEl = document.getElementById('transition-quote');
-                const isUrgent = link.getAttribute('href') === 'help.html';
                 
-                if(overlay) overlay.style.opacity = '1'; 
-                
-                if (isUrgent) {
-                    // FAST TRANSITION, HIDES QUOTES IMMEDIATELY
-                    if (quoteEl) quoteEl.style.display = 'none';
-                    setTimeout(() => { window.location.href = link.href; }, 500); 
-                } else {
-                    if(quoteEl) {
-                        const randomQuote = transitionQuotes[Math.floor(Math.random() * transitionQuotes.length)];
-                        quoteEl.innerHTML = randomQuote;
-                        setTimeout(() => { quoteEl.style.opacity = '1'; }, 300);
-                    }
-                    setTimeout(() => { window.location.href = link.href; }, 2500); 
+                if(overlay) {
+                    overlay.style.opacity = '1'; 
                 }
+                
+                setTimeout(() => {
+                    window.location.href = link.href; 
+                }, 500); 
             });
         });
     </script>
