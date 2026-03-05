@@ -8,6 +8,20 @@
     <meta name="title" content="The Framework | Talk with Liam">
     <meta name="description" content="The practicalities, boundaries, and roadmap of working together in therapy.">
     
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://talkwithliam.co.uk/faq.html">
+    <meta property="og:title" content="The Framework | Talk with Liam">
+    <meta property="og:description" content="The practicalities, boundaries, and roadmap of working together in therapy.">
+    <meta property="og:image" content="https://talkwithliam.co.uk/preview-image.jpg">
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://talkwithliam.co.uk/faq.html">
+    <meta property="twitter:title" content="The Framework | Talk with Liam">
+    <meta property="twitter:description" content="The practicalities, boundaries, and roadmap of working together in therapy.">
+    <meta property="twitter:image" content="https://talkwithliam.co.uk/preview-image.jpg">
+    
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,23 +40,23 @@
 </head>
 <body class="antialiased">
 
-    <!-- Bulletproof App-Like Fade Overlay with Quote Container -->
+    <!-- Bulletproof App-Like Fade Overlay -->
     <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6">
         <p id="transition-quote" class="text-[#e8e7e7] text-4xl md:text-6xl lg:text-7xl font-serif italic text-center max-w-5xl opacity-0 transition-opacity duration-700 leading-[1.1]"></p>
     </div>
 
-    <main class="relative z-10 w-full min-h-screen py-28 px-6 md:py-32 md:px-12" role="main">
+    <main class="relative z-10 w-full min-h-screen pt-28 pb-20 px-6 md:pt-32 md:px-12 flex flex-col items-center" role="main">
         
-        <!-- URGENT HELP LINK -->
-        <div class="absolute top-8 left-6 md:top-12 md:left-12 z-50">
-            <a href="help.html" class="transition-link inline-block px-6 py-3 rounded-full bg-[#f28d35] text-[#1a1a1a] text-[10px] font-black tracking-[0.2em] uppercase shadow-lg shadow-[#f28d35]/20 transition-transform hover:scale-105 active:scale-95" aria-label="Get urgent mental health support">
-                Urgent Help
-            </a>
-        </div>
-
-        <div class="max-w-screen-xl mx-auto">
+        <div class="max-w-screen-xl w-full relative">
             
-            <a href="index.html" class="transition-link inline-block mb-16 text-xs font-bold tracking-[0.3em] uppercase opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-[#1a1a1a] pb-1" aria-label="Return to Practice">
+            <!-- URGENT HELP LINK (Aligned perfectly with text, pushed into top padding) -->
+            <div class="absolute -top-20 left-0 md:-top-24 z-50">
+                <a href="help.html" class="transition-link inline-block px-6 py-3 rounded-full bg-[#f28d35] text-[#1a1a1a] text-[10px] font-black tracking-[0.2em] uppercase shadow-lg shadow-[#f28d35]/20 transition-transform hover:scale-105 active:scale-95" aria-label="Get urgent mental health support">
+                    Urgent Help
+                </a>
+            </div>
+
+            <a href="index.html" class="transition-link inline-block mb-16 text-xs font-bold tracking-[0.3em] uppercase opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-[#1a1a1a] pb-1 mt-2" aria-label="Return to Practice">
                 &larr; Return to Practice
             </a>
 
@@ -195,7 +209,7 @@
         const originalTitle = document.title;
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
-                document.title = "Take a breath...";
+                document.title = "Take your time...";
             } else {
                 document.title = originalTitle;
             }
@@ -207,15 +221,7 @@
             "\"The privilege of a lifetime is to become who you truly are.\"<br><br>— Carl Jung",
             "\"We are born autonomous, but we learn to adapt.\"<br><br>— Transactional Analysis",
             "\"People are born princes and princesses, until their parents turn them into frogs.\"<br><br>— Eric Berne",
-            "\"The curious paradox is that when I accept myself just as I am, then I can change.\"<br><br>— Carl Rogers",
-            "\"I am not what happened to me, I am what I choose to become.\"<br><br>— Carl Jung",
-            "\"What you resist, persists.\"<br><br>— Carl Jung",
-            "\"Out of your vulnerabilities will come your strength.\"<br><br>— Sigmund Freud",
-            "\"Who looks outside, dreams; who looks inside, awakes.\"<br><br>— Carl Jung",
-            "\"The armor was created in early childhood as a superpower.\"<br><br>— Petruska Clarkson",
-            "\"Until you make the unconscious conscious, it will direct your life.\"<br><br>— Carl Jung",
-            "\"Unexpressed emotions will never die.\"<br><br>— Sigmund Freud",
-            "\"We cannot change until we thoroughly accept what we are.\"<br><br>— Carl Rogers"
+            "\"The curious paradox is that when I accept myself just as I am, then I can change.\"<br><br>— Carl Rogers"
         ];
 
         window.addEventListener('pageshow', () => {
@@ -240,7 +246,8 @@
                 }
                 
                 if (isUrgent) {
-                    // FAST TRANSITION FOR URGENT HELP
+                    // FAST TRANSITION, HIDES QUOTES IMMEDIATELY FOR URGENT HELP
+                    if (quoteEl) quoteEl.style.display = 'none';
                     setTimeout(() => {
                         window.location.href = link.href; 
                     }, 500); 
