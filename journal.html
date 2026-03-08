@@ -39,82 +39,92 @@
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased overflow-x-hidden">
 
     <!-- Bulletproof App-Like Fade Overlay -->
     <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6">
     </div>
 
-    <main class="relative z-10 w-full min-h-screen pt-28 pb-20 px-6 md:pt-32 md:px-12 flex flex-col items-center" role="main">
-        
-        <div class="max-w-screen-xl w-full relative">
-            
-            <!-- URGENT HELP LINK -->
-            <div class="absolute -top-20 left-0 md:-top-24 z-50">
-                <a href="help.html" class="transition-link inline-block px-6 py-3 rounded-full bg-[#f28d35] text-[#1a1a1a] text-[10px] font-black tracking-[0.2em] uppercase shadow-lg shadow-[#f28d35]/20 transition-transform hover:scale-105 active:scale-95" aria-label="Get urgent mental health support">
-                    Urgent Help
-                </a>
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[10000] bg-[#1a1a1a] text-[#e8e7e7] border-t border-[#e8e7e7] border-opacity-10 transform translate-y-full transition-transform duration-700 shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">
+        <div class="max-w-screen-xl mx-auto px-6 py-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-sm opacity-80 leading-relaxed max-w-2xl text-center md:text-left">
+                <span class="font-bold tracking-[0.2em] uppercase text-[10px] opacity-50 block mb-2 text-[#f28d35]">Privacy & Cookies</span>
+                We use minimal cookies to ensure this site works reliably and to understand how it's used. No invasive tracking. Read our <a href="privacy.html" class="underline hover:text-[#f28d35] transition-colors">Privacy Policy</a> for details.
             </div>
+            <div class="flex gap-4 shrink-0 justify-center">
+                <button id="btn-decline-cookies" class="px-6 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border border-[#e8e7e7] border-opacity-20 hover:bg-[#e8e7e7] hover:bg-opacity-10 transition-all">
+                    Decline
+                </button>
+                <button id="btn-accept-cookies" class="px-6 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase bg-[#e8e7e7] text-[#1a1a1a] hover:scale-105 active:scale-95 transition-all">
+                    Accept
+                </button>
+            </div>
+        </div>
+    </div>
 
-            <a href="index.html" class="transition-link inline-block mb-16 text-xs font-bold tracking-[0.3em] uppercase opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-[#1a1a1a] pb-1 mt-2" aria-label="Return to Practice">
-                &larr; Return to Practice
-            </a>
+    <main class="relative z-10 w-full min-h-screen pt-28 pb-12 px-6 md:pt-32 md:px-12 flex flex-col items-center" role="main">
+        
+        <div class="max-w-screen-xl w-full relative min-h-screen flex flex-col">
+            
+            <div class="flex-grow">
+                <!-- URGENT HELP LINK -->
+                <div class="absolute -top-20 left-0 md:-top-24 z-50">
+                    <a href="help.html" class="transition-link inline-block px-6 py-3 rounded-full bg-[#f28d35] text-[#1a1a1a] text-[10px] font-black tracking-[0.2em] uppercase shadow-lg shadow-[#f28d35]/20 transition-transform hover:scale-105 active:scale-95" aria-label="Get urgent mental health support">
+                        Urgent Help
+                    </a>
+                </div>
 
-            <header class="mb-20">
-                <h1 class="text-5xl md:text-7xl lg:text-[6rem] font-black uppercase leading-[0.85] tracking-tighter mb-8">
-                    The <br><span class="text-gray-400 transition-colors duration-500">Journal.</span>
-                </h1>
-                <p class="text-xl md:text-2xl font-medium tracking-tight opacity-80 max-w-2xl">
-                    Reflective practice, clinical thoughts, and demystifying the theory behind the therapy.
-                </p>
-            </header>
+                <a href="index.html" class="transition-link inline-block mb-16 text-xs font-bold tracking-[0.3em] uppercase opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-[#1a1a1a] pb-1 mt-2" aria-label="Return to Practice">
+                    &larr; Return to Practice
+                </a>
 
-            <!-- EDITORIAL ARTICLE LIST (Inline Expansions) -->
-            <div class="space-y-8 border-t border-[#1a1a1a] border-opacity-10 pt-16">
-                
-                <!-- Article 1: Script & Class -->
-                <article class="group border-b border-[#1a1a1a] border-opacity-10 pb-12 cursor-pointer" onclick="toggleArticle(this)">
-                    <div class="hover-target">
-                        <span class="text-xs font-bold uppercase tracking-[0.2em] opacity-40 mb-4 block">Reflection • 5 min read</span>
-                        <h2 class="text-3xl md:text-5xl font-serif font-bold tracking-tight mb-4 group-hover:text-[#f28d35] transition-colors duration-300">
-                            A Working-Class Man in a Middle-Class Industry.
-                        </h2>
-                        <p class="text-xl opacity-80 leading-relaxed max-w-3xl mb-6">
-                            Entering the TA 101 for the first time, my nervous system felt as though it was in meltdown; I was not okay. I made a beeline for the corner.
-                        </p>
-                        <span class="read-more-text inline-block text-sm font-bold tracking-[0.2em] uppercase border-b border-[#1a1a1a] pb-1 opacity-50 group-hover:opacity-100 transition-opacity duration-300">
-                            Read Entry &rarr;
-                        </span>
-                    </div>
+                <header class="mb-20">
+                    <h1 class="text-5xl md:text-7xl lg:text-[6rem] font-black uppercase leading-[0.85] tracking-tighter mb-8">
+                        The <br><span class="text-gray-400 transition-colors duration-500">Journal.</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl font-medium tracking-tight opacity-80 max-w-2xl">
+                        Reflective practice, clinical thoughts, and demystifying the theory behind the therapy.
+                    </p>
+                </header>
 
-                    <!-- Hidden Full Content -->
-                    <div class="article-content max-h-0 overflow-hidden opacity-0">
-                        <div class="pt-12 mt-8 border-t border-[#1a1a1a] border-opacity-10 space-y-8 text-lg md:text-xl leading-relaxed font-medium opacity-90 max-w-4xl">
-                            <p>
-                                Entering the TA 101 for the first time, my nervous system felt as though it was in meltdown; I was not okay. I made a beeline for the corner. Unfortunately for me, that corner was at the front where the tutors present. ‘Great,’ I thought, ‘no hiding place here.’
+                <!-- EDITORIAL ARTICLE LIST (Inline Expansions) -->
+                <div class="space-y-8 border-t border-[#1a1a1a] border-opacity-10 pt-16">
+                    
+                    <!-- Article 1: Script & Class -->
+                    <article class="group border-b border-[#1a1a1a] border-opacity-10 pb-12 cursor-pointer" onclick="toggleArticle(this)">
+                        <div class="hover-target">
+                            <span class="text-xs font-bold uppercase tracking-[0.2em] opacity-40 mb-4 block">Reflection • 5 min read</span>
+                            <h2 class="text-3xl md:text-5xl font-serif font-bold tracking-tight mb-4 group-hover:text-[#f28d35] transition-colors duration-300">
+                                A Working-Class Man in a Middle-Class Industry.
+                            </h2>
+                            <p class="text-xl opacity-80 leading-relaxed max-w-3xl mb-6">
+                                Entering the TA 101 for the first time, my nervous system felt as though it was in meltdown; I was not okay. I made a beeline for the corner.
                             </p>
-                            <p>
-                                I was not okay, but everyone else was okay. My thoughts for that morning were: there are going to be trained therapists, counsellors, healthcare professionals, etc. What am I doing here, a factory worker from Rotherham? ‘I am never going to succeed at this,’ I said to myself. A working-class man from a working-class town—what a massive discount to myself.
-                            </p>
-                            <p>
-                                Making new connections has traditionally been awkward for me, as I have a clear ‘Don’t be close’ and ‘Don’t trust’ injunction. I always have a lot to say, but I just don’t have the courage to say so. Most of the time, I have an overwhelming surge of emotions if I even think about talking during check-in/out and during process group, which makes me feel it is easier not to say anything.
-                            </p>
-                            <p>
-                                The guilt I then place on myself for not speaking up has been worse than the silence when I’ve finished the training on some weekends. There is just a sense that what I have to say is not valid or worthwhile—do I even make sense to myself or to others? So, the importance of leaning into the difficult feeling of vulnerability is something that I must carry on doing, moving forward on my journey into psychotherapy.
+                            <span class="read-more-text inline-block text-sm font-bold tracking-[0.2em] uppercase border-b border-[#1a1a1a] pb-1 opacity-50 group-hover:opacity-100 transition-opacity duration-300">
+                                Read Entry &rarr;
+                            </span>
+                        </div>
+
+                        <!-- Hidden Full Content -->
+                        <div class="article-content max-h-0 overflow-hidden opacity-0">
+                            <div class="pt-12 mt-8 border-t border-[#1a1a1a] border-opacity-10 space-y-8 text-lg md:text-xl leading-relaxed font-medium opacity-90 max-w-4xl">
+                                <p>
+                                The guilt I then place on myself for not speaking up has been worse than the silence when I have finished the training on some weekends. There is just a sense that what I have to say is not valid or worthwhile. Do I even make sense to myself or to others? So, the importance of leaning into the difficult feeling of vulnerability is something that I must carry on doing as I move forward on my journey into psychotherapy.
                             </p>
                         </div>
                     </div>
                 </article>
 
-                <!-- Article 2: Ego States & Intersectionality -->
+                <!-- Article 2: Silence of the Volcano -->
                 <article class="group border-b border-[#1a1a1a] border-opacity-10 py-12 cursor-pointer" onclick="toggleArticle(this)">
                     <div class="hover-target">
-                        <span class="text-xs font-bold uppercase tracking-[0.2em] opacity-40 mb-4 block">Theory • 4 min read</span>
+                        <span class="text-xs font-bold uppercase tracking-[0.2em] opacity-40 mb-4 block">Practice • Reflection</span>
                         <h2 class="text-3xl md:text-5xl font-serif font-bold tracking-tight mb-4 group-hover:text-[#f28d35] transition-colors duration-300">
-                            Making Sense of the Inner Dialogue.
+                            Silence of the Volcano: From Reactivity to Clarity.
                         </h2>
                         <p class="text-xl opacity-80 leading-relaxed max-w-3xl mb-6">
-                            I have always been aware of the word "ego," but the terminology of ‘ego state’ was not in my frame of reference until the last five years. Suddenly, my inner dialogue began to make much more sense.
+                            Exploring how early environments shape our defensive walls, and how therapy helps us find a quiet presence.
                         </p>
                         <span class="read-more-text inline-block text-sm font-bold tracking-[0.2em] uppercase border-b border-[#1a1a1a] pb-1 opacity-50 group-hover:opacity-100 transition-opacity duration-300">
                             Read Entry &rarr;
@@ -125,13 +135,24 @@
                     <div class="article-content max-h-0 overflow-hidden opacity-0">
                         <div class="pt-12 mt-8 border-t border-[#1a1a1a] border-opacity-10 space-y-8 text-lg md:text-xl leading-relaxed font-medium opacity-90 max-w-4xl">
                             <p>
-                                I have always been aware of the word "ego," but the terminology of ‘ego state’ was not in my frame of reference until the last five years. I was introduced to the first-order structural model (Berne, 1972), and suddenly, my inner dialogue began to make much more sense. This model, often referred to as the three ego state model or the PAC model, divides the ego into three separate states: Parent, Adult, and Child.
+                                When reflecting on my own process, I often consider the roots of impatience and frustration. For a long time, I carried a profound sense of anger. It is not healthy for an adult to walk around with that level of tension, and I can only imagine how confusing it must have been when I was younger.
                             </p>
                             <p>
-                                As I began to map out my own ego states, I realised how deeply they are shaped by the outside world—particularly the Parent state, which absorbs the rules and expectations of society. This is where intersectionality enters the frame. During my studies, it became apparent that I need to actively consider this; it is something I hadn't traditionally reflected on in my everyday life, or if I did, it remained completely in my unconscious.
+                                I frequently use the analogy of a volcano. It felt like a burning reactivity coming from deep within that would suddenly erupt. I could feel it rising through my body, culminating in what felt like a physical explosion in my mind. There was no 'flight' response back then. It was entirely 'fight', because I had made an unconscious decision to protect myself.
+                            </p>
+                            
+                            <blockquote class="border-l-4 border-[#f28d35] pl-6 my-10 italic opacity-80 text-2xl font-serif">
+                                "The volcano was created as a superpower, a way for a child to build a wall against an unpredictable world."
+                            </blockquote>
+
+                            <p>
+                                In her work on script formation, Clarkson (1991) notes that a child will often absorb the tension of a difficult environment into themselves. When an early environment feels chaotic, a child adapts to survive it. In my own experience, that adaptation looked like a rigid, protective baseline of anger.
                             </p>
                             <p>
-                                As a working-class male entering a middle-class industry dominated by females, I need to consider my own intersectional context in order to truly understand my client’s experience. I have had to think critically about gender roles and society’s expectations. I do not believe that women should be solely responsible for the caregiver roles within a family, but this is a framework I was raised around, and I must be aware that it might not be the experience or belief of the next client that walks through my door.
+                                Clarkson suggests that children internalise these volatile emotions until they become a structural part of how they navigate the world. The anger simply becomes a familiar shield.
+                            </p>
+                            <p>
+                                Recently, however, through the process of my own personal therapy, I have been experiencing a new sensation. It is hard to put into words, but it feels remarkably like freedom. Where there was once constant noise, there is now a quiet space for the present. It is a state of simply being in the moment without the overwhelming internal dialogue or the need to defend against a threat that is no longer there. It feels relaxing, exciting, and leaves me deeply curious about the therapeutic process.
                             </p>
                         </div>
                     </div>
@@ -162,7 +183,7 @@
                                 When my self-criticism appears, I am starting to notice and can name it internally, and in turn, regulate myself rather than act from it. These shifts reflect the core of IC [Intrapsychic Change]: not dramatic transformation, but subtle movements toward choice, grounding, and presence.
                             </p>
                             <p>
-                                At times, I wonder whether the intensity of my reactions comes from trauma, neurodivergence, or simply the way I am wired. But I am beginning to realise that the label does not matter; it is more the meaning I make of who I am. Quirks, sensitivities, control, rigidity, structure, triggers—and working with them—forms the basis of my development as an integrative TA practitioner.
+                                At times, I wonder whether the intensity of my reactions comes from trauma, neurodivergence, or simply the way I am wired. But I am beginning to realise that the label does not matter; it is more the meaning I make of who I am. Quirks, sensitivities, control, rigidity, structure, triggers, and working with them, forms the basis of my development as an integrative TA practitioner.
                             </p>
                         </div>
                     </div>
@@ -172,13 +193,52 @@
 
             <!-- Footer Message -->
             <div class="mt-20 pb-12 text-left opacity-40">
-                <p class="text-sm font-medium italic">More entries coming soon as clinical placement continues.</p>
+                    <p class="text-sm font-medium italic">More entries coming soon as clinical placement continues.</p>
+                </div>
             </div>
+
+            <!-- UNIFIED FOOTER -->
+            <footer class="mt-24 pt-12 pb-8 border-t border-[#1a1a1a] border-opacity-10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase opacity-60">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <a href="https://www.psychotherapy.org.uk/" target="_blank" rel="noopener noreferrer" aria-label="Verify UKCP Registration">
+                        <img src="ukcp-logo.png" alt="UKCP Registered" class="h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
+                    </a>
+                    <div class="text-center md:text-left flex flex-wrap justify-center items-center gap-4">
+                        <span>Hull, UK & Online</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+                    <a href="breathe.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Breathe</a>
+                    <a href="support.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Find Support</a>
+                    <a href="privacy.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Privacy</a>
+                </div>
+            </footer>
 
         </div>
     </main>
 
     <script>
+        // --- Cookie Banner Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('btn-accept-cookies');
+            const declineBtn = document.getElementById('btn-decline-cookies');
+
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(() => {
+                    cookieBanner.classList.remove('translate-y-full');
+                }, 1500);
+            }
+
+            const hideBanner = (consentValue) => {
+                localStorage.setItem('cookieConsent', consentValue);
+                cookieBanner.classList.add('translate-y-full');
+            };
+
+            acceptBtn.addEventListener('click', () => hideBanner('accepted'));
+            declineBtn.addEventListener('click', () => hideBanner('declined'));
+        });
+
         // --- Mindful Tab ---
         const originalTitle = document.title;
         document.addEventListener("visibilitychange", () => {
@@ -198,10 +258,13 @@
         const transitionLinks = document.querySelectorAll('.transition-link');
         transitionLinks.forEach(link => {
             link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('http') || link.getAttribute('target') === '_blank') return;
+                
                 e.preventDefault(); 
                 const overlay = document.getElementById('page-overlay');
                 if(overlay) { overlay.style.opacity = '1'; }
-                setTimeout(() => { window.location.href = link.href; }, 500); 
+                setTimeout(() => { window.location.href = href; }, 500); 
             });
         });
 
