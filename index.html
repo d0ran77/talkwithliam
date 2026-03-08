@@ -50,10 +50,10 @@
             background-color: var(--bg-color);
             transition: background-color 0.8s ease;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            margin-bottom: 40vh; 
+            margin-bottom: 50vh; 
         }
         
-        #parallax-footer { height: 40vh; }
+        #parallax-footer { height: 50vh; }
 
         .marquee-container { overflow: hidden; position: relative; }
         .marquee-container::before, .marquee-container::after {
@@ -72,8 +72,8 @@
             .marquee-container { height: 65vh; border: 1px solid currentColor; border-radius: 1.5rem; padding: 2rem 1.5rem; margin-bottom: 0; }
             .marquee-container::before, .marquee-container::after { height: 4rem; }
             .marquee-inner { gap: 4rem; animation: marquee 60s linear infinite; }
-            #main-wrapper { margin-bottom: 45vh; }
-            #parallax-footer { height: 45vh; }
+            #main-wrapper { margin-bottom: 60vh; }
+            #parallax-footer { height: 60vh; }
         }
 
         @media (min-width: 1024px) {
@@ -144,11 +144,28 @@
         </div>
     </main>
 
-    <footer id="parallax-footer" class="fixed bottom-0 left-0 w-full z-0 flex flex-col items-center justify-center bg-[#1a1a1a] text-[#e8e7e7] pb-12">
-        <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-6 opacity-50">Reflective Practice</h3>
-        <a href="journal.html" class="transition-link magnetic-btn inline-block text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter hover:opacity-50 transition-opacity">
-            The Journal
-        </a>
+    <footer id="parallax-footer" class="fixed bottom-0 left-0 w-full z-0 flex flex-col justify-between bg-[#1a1a1a] text-[#e8e7e7]">
+        <div class="flex flex-col items-center justify-center flex-grow pt-12 md:pt-0">
+            <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-6 opacity-50">Reflective Practice</h3>
+            <a href="journal.html" class="transition-link magnetic-btn inline-block text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter hover:opacity-50 transition-opacity">
+                The Journal
+            </a>
+        </div>
+
+        <div class="w-full border-t border-[#e8e7e7] border-opacity-10 px-6 pt-8 pb-28 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase opacity-60">
+            <div class="text-center md:text-left flex flex-wrap justify-center items-center gap-4">
+                <span>Hull, UK & Online</span>
+                <span class="opacity-30 hidden md:inline">|</span>
+                <a href="https://www.psychotherapy.org.uk/" target="_blank" rel="noopener noreferrer" class="hover:opacity-100 hover:text-[#f28d35] transition-colors">
+                    UKCP Registered
+                </a>
+            </div>
+            <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+                <a href="breathe.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Breathe</a>
+                <a href="contact.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Waitlist</a>
+                <a href="privacy.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Privacy</a>
+            </div>
+        </div>
     </footer>
 
     <nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4">
