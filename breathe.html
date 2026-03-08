@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-[#1a1a1a]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Take a breath | Talk with Liam</title>
+    <meta name="robots" content="noindex, nofollow"> <!-- Keeps this page hidden from Google -->
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #1a1a1a; 
+            margin: 0; 
+            padding: 0; 
+            overflow: hidden; /* Prevents scrolling so they can just focus */
+        }
+
+        /* The Breathing Circle */
+        #breathing-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #e8e7e7;
+            box-shadow: 0 0 60px rgba(232, 231, 231, 0.1);
+            /* Transitions are handled dynamically in JS for different timing */
+        }
+        
+        .fade-text {
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased text-[#e8e7e7] flex flex-col items-center justify-center min-h-screen">
+
+    <!-- App-Like Fade Overlay -->
+    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-1000 opacity-100"></div>
+
+    <!-- Subtle Return Button (Top Left) -->
+    <a href="index.html" class="absolute top-8 left-8 text-[10px] font-bold tracking-[0.3em] uppercase opacity-30 hover:opacity-100 transition-opacity border-b border-transparent hover:border-[#e8e7e7] pb-1 z-50 transition-link" aria-label="Return to Practice">
+        &larr; Return
+    </a>
+
+    <!-- Main Grounding UI -->
+    <main class="relative z-10 flex flex-col items-center justify-center w-full max-w-lg px-6" role="main">
+        
+        <!-- Instruction Text -->
+        <div class="h-12 mb-16 md:mb-24 flex items-center justify-center">
+            <h1 id="breath-instruction" class="text-2xl md:text-4xl font-serif italic tracking-wide opacity-0 fade-text">
+                Prepare to breathe...
+            </h1>
+        </div>
+
+        <!-- The Circle -->
+        <div class="relative flex items-center justify-center w-64 h-64 md:w-80 md:h-80">
+            <div id="breathing-circle"></div>
+        </div>
+
+    </main>
+
+    <!-- Context / Reassurance -->
+    <div class="absolute bottom-12 left-0 w-full text-center px-6">
+        <p class="text-xs font-bold tracking-[0.2em] uppercase opacity-20">
+            A quiet clarity and presence.
+        </p>
+    </div>
+
+    <script>
+        // App-Like Page Transitions
+        window.addEventListener('pageshow', () => {
+            const overlay = document.getElementById('page-overlay');
+            if(overlay) overlay.style.opacity = '0';
+        });
+
+        const transitionLinks = document.querySelectorAll('.transition-link');
+        transitionLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                const overlay = document.getElementById('page-overlay');
+                if(overlay) overlay.style.opacity = '1'; 
+                setTimeout(() => {
+                    window.location.href = link.href; 
+                }, 1000); 
+            });
+        });
+
+        // Breathing Logic (4-4-6 Technique)
+        const circle = document.getElementById('breathing-circle');
+        const instruction = document.getElementById('breath-instruction');
+        
+        function breathingCycle() {
+            // 1. INHALE (4 Seconds)
+            instruction.style.opacity = '0'; // Fade out previous text
+            
+            setTimeout(() => {
+                instruction.innerText = "Inhale.";
+                instruction.style.opacity = '0.8';
+                
+                // Set transition for a slow, 4-second expansion
+                circle.style.transition = "transform 4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 4s ease, background-color 4s ease";
+                circle.style.transform = "scale(1.8)";
+                circle.style.boxShadow = "0 0 100px rgba(232, 231, 231, 0.4)";
+                circle.style.backgroundColor = "#ffffff";
+            }, 1000); // 1 sec delay to start
+
+            // 2. HOLD (4 Seconds)
+            setTimeout(() => {
+                instruction.style.opacity = '0';
+                
+                setTimeout(() => {
+                    instruction.innerText = "Hold.";
+                    instruction.style.opacity = '0.5';
+                }, 500);
+                
+                // Circle stays exactly as it is for 4 seconds
+            }, 5000); // Triggered 5 seconds after cycle starts (1s delay + 4s inhale)
+
+            // 3. EXHALE (6 Seconds)
+            setTimeout(() => {
+                instruction.style.opacity = '0';
+                
+                setTimeout(() => {
+                    instruction.innerText = "Exhale.";
+                    instruction.style.opacity = '0.8';
+                }, 500);
+
+                // Set transition for a very slow, 6-second collapse
+                circle.style.transition = "transform 6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 6s ease, background-color 6s ease";
+                circle.style.transform = "scale(1)";
+                circle.style.boxShadow = "0 0 40px rgba(232, 231, 231, 0.1)";
+                circle.style.backgroundColor = "#e8e7e7";
+            }, 9000); // Triggered 9 seconds after cycle starts (1s delay + 4s inhale + 4s hold)
+        }
+
+        // Start the first cycle shortly after the page loads
+        setTimeout(() => {
+            breathingCycle();
+            // Loop the cycle every 15 seconds (4s inhale + 4s hold + 6s exhale + 1s reset buffer)
+            setInterval(breathingCycle, 15000);
+        }, 1500);
+
+        // Mindful Tab
+        const originalTitle = document.title;
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                document.title = "I'll be right here...";
+            } else {
+                document.title = originalTitle;
+            }
+        });
+    </script>
+</body>
+</html>
