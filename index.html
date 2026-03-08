@@ -91,6 +91,24 @@
     <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6">
     </div>
 
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[10000] bg-[#1a1a1a] text-[#e8e7e7] border-t border-[#e8e7e7] border-opacity-10 transform translate-y-full transition-transform duration-700 shadow-[0_-20px_40px_rgba(0,0,0,0.4)]">
+        <div class="max-w-screen-xl mx-auto px-6 py-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-sm opacity-80 leading-relaxed max-w-2xl text-center md:text-left">
+                <span class="font-bold tracking-[0.2em] uppercase text-[10px] opacity-50 block mb-2 text-[#f28d35]">Privacy & Cookies</span>
+                We use minimal cookies to ensure this site works reliably and to understand how it's used. No invasive tracking. Read our <a href="privacy.html" class="underline hover:text-[#f28d35] transition-colors">Privacy Policy</a> for details.
+            </div>
+            <div class="flex gap-4 shrink-0 justify-center">
+                <button id="btn-decline-cookies" class="px-6 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border border-[#e8e7e7] border-opacity-20 hover:bg-[#e8e7e7] hover:bg-opacity-10 transition-all">
+                    Decline
+                </button>
+                <button id="btn-accept-cookies" class="px-6 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase bg-[#e8e7e7] text-[#1a1a1a] hover:scale-105 active:scale-95 transition-all">
+                    Accept
+                </button>
+            </div>
+        </div>
+    </div>
+
     <main id="main-wrapper" class="relative z-10 w-full min-h-screen rounded-b-[3rem] lg:rounded-b-[4rem]" role="main">
         <div class="max-w-screen-2xl mx-auto px-6 md:px-12 lg:flex relative">
             
@@ -179,6 +197,28 @@
     </nav>
 
     <script>
+        // --- COOKIE BANNER LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('btn-accept-cookies');
+            const declineBtn = document.getElementById('btn-decline-cookies');
+
+            // Wait 1.5 seconds after page loads, then slide banner up if no choice was made
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(() => {
+                    cookieBanner.classList.remove('translate-y-full');
+                }, 1500);
+            }
+
+            const hideBanner = (consentValue) => {
+                localStorage.setItem('cookieConsent', consentValue);
+                cookieBanner.classList.add('translate-y-full');
+            };
+
+            acceptBtn.addEventListener('click', () => hideBanner('accepted'));
+            declineBtn.addEventListener('click', () => hideBanner('declined'));
+        });
+
         const data = {
             adult: {
                 bg: '#e8e7e7', text: '#1a1a1a', font: 'font-sans',
