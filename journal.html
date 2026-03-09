@@ -37,12 +37,41 @@
         .article-content {
             transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-in-out;
         }
+
+        /* Menu Icon Styling */
+        #menu-toggle { mix-blend-mode: difference; color: white; }
+        #menu-toggle span { background-color: currentColor; }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
 
     <!-- Bulletproof App-Like Fade Overlay -->
-    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6">
+    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6"></div>
+
+    <!-- HAMBURGER MENU BUTTON -->
+    <button id="menu-toggle" class="fixed top-6 right-6 md:top-10 md:right-12 z-[110] flex flex-col justify-center items-center w-12 h-12 rounded-full hover:scale-105 active:scale-95 transition-transform" aria-label="Toggle Menu">
+        <span class="block w-8 h-[2px] mb-2 transition-transform duration-500 origin-center" id="line1"></span>
+        <span class="block w-8 h-[2px] transition-transform duration-500 origin-center" id="line2"></span>
+    </button>
+
+    <!-- FULL-SCREEN MENU OVERLAY -->
+    <div id="menu-overlay" class="fixed inset-0 bg-[#1a1a1a] text-[#e8e7e7] z-[100] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-700">
+        <nav class="flex flex-col items-center gap-8 text-center">
+            <a href="index.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">Practice</a>
+            <a href="about.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">My Story</a>
+            <a href="approach.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">The Approach</a>
+            <a href="matrix.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">The Matrix</a>
+            <a href="journal.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter text-[#f28d35] hover:text-[#e8e7e7] transition-colors">The Journal</a>
+            <a href="library.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">The Library</a>
+            <a href="faq.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">The Framework</a>
+        </nav>
+        
+        <!-- Menu Footer Links -->
+        <div class="absolute bottom-12 flex flex-wrap justify-center gap-8 text-xs font-bold tracking-[0.2em] uppercase opacity-50 px-6">
+            <a href="support.html" class="transition-link hover:text-[#f28d35] hover:opacity-100 transition-all">Support</a>
+            <a href="breathe.html" class="transition-link hover:text-[#f28d35] hover:opacity-100 transition-all">Breathe</a>
+            <a href="privacy.html" class="transition-link hover:text-[#f28d35] hover:opacity-100 transition-all">Privacy</a>
+        </div>
     </div>
 
     <!-- COOKIE BANNER -->
@@ -227,7 +256,7 @@
     </main>
 
     <script>
-        // --- Cookie Banner Logic ---
+        // --- COOKIE BANNER LOGIC ---
         document.addEventListener('DOMContentLoaded', () => {
             const cookieBanner = document.getElementById('cookie-banner');
             const acceptBtn = document.getElementById('btn-accept-cookies');
@@ -248,7 +277,31 @@
             declineBtn.addEventListener('click', () => hideBanner('declined'));
         });
 
-        // --- Mindful Tab ---
+        // --- HAMBURGER MENU LOGIC ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        let menuOpen = false;
+
+        menuToggle.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                menuOverlay.classList.add('opacity-100', 'pointer-events-auto');
+                line1.style.transform = 'translateY(5px) rotate(45deg)';
+                line2.style.transform = 'translateY(-5px) rotate(-45deg)';
+                document.body.style.overflow = 'hidden'; // Lock background scrolling
+            } else {
+                menuOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+                menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+                line1.style.transform = 'translateY(0) rotate(0)';
+                line2.style.transform = 'translateY(0) rotate(0)';
+                document.body.style.overflow = ''; // Unlock scrolling
+            }
+        });
+
+        // --- MINDFUL TAB LOGIC ---
         const originalTitle = document.title;
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
@@ -258,10 +311,13 @@
             }
         });
 
-        // --- Clean App-Like Transitions ---
+        // --- TRANSITIONS & FAILSAFES ---
         window.addEventListener('pageshow', () => {
             const overlay = document.getElementById('page-overlay');
             if(overlay) overlay.style.opacity = '0';
+            
+            // Failsafe: Ensure menu resets if user clicks "back" browser button
+            if(menuOpen) menuToggle.click();
         });
 
         const transitionLinks = document.querySelectorAll('.transition-link');
@@ -277,7 +333,7 @@
             });
         });
 
-        // --- Inline Article Expansion Logic ---
+        // --- INLINE ARTICLE EXPANSION LOGIC ---
         function toggleArticle(element) {
             const content = element.querySelector('.article-content');
             const readMore = element.querySelector('.read-more-text');
