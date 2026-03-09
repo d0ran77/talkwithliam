@@ -149,23 +149,31 @@
                 </a>
             </div>
 
-            <div class="lg:w-1/2 lg:h-screen lg:sticky lg:top-0 pt-24 pb-6 lg:py-32 flex flex-col justify-between z-10">
+            <!-- REPLACED: Removed h-screen and justify-between, adjusted padding -->
+            <div class="lg:w-1/2 lg:sticky lg:top-0 pt-24 pb-16 lg:pt-24 lg:pb-32 flex flex-col justify-start z-10">
                 <header>
                     <div id="banner" class="inline-block mb-8 px-4 py-1.5 border border-[#1a1a1a] rounded-full text-[10px] font-bold tracking-[0.2em] uppercase opacity-60 transition-colors duration-700">
                         Placement Year • Not Accepting Private Clients
                     </div>
                     
-                    <h1 id="brand" class="text-[14vw] lg:text-[8rem] font-black uppercase leading-[0.85] tracking-tighter mb-8 transition-all-slow">
+                    <!-- REPLACED: Made text slightly more adaptable on standard laptops (text-[7rem] for lg, [8rem] for xl) -->
+                    <h1 id="brand" class="text-[14vw] lg:text-[7rem] xl:text-[8rem] font-black uppercase leading-[0.85] tracking-tighter mb-8 transition-all-slow">
                         Talk<br><span id="brand-with" class="transition-colors duration-500">With</span><br>Liam.
                     </h1>
-                    <p id="description" class="text-xl md:text-2xl font-medium tracking-tight opacity-80 mb-8 max-w-md transition-all-slow">
+                    <p id="description" class="text-xl md:text-2xl font-medium tracking-tight opacity-80 mb-10 max-w-md transition-all-slow">
                         A quiet clarity and presence where there used to be noise.
                     </p>
                 </header>
                 
-                <div id="about-container" class="max-w-md mt-8 lg:mt-0">
+                <div class="mb-10">
+                    <a href="booking.html" class="transition-link inline-block px-8 py-4 rounded-full text-xs font-black tracking-[0.2em] uppercase transition-transform hover:scale-105 active:scale-95 bg-[#f28d35] text-[#1a1a1a] shadow-lg shadow-[#f28d35]/20">
+                        Work With Me
+                    </a>
+                </div>
+                
+                <div id="about-container" class="max-w-md">
                     <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-4 opacity-40">About Liam</h3>
-                    <p id="about-text" class="text-xl leading-relaxed font-medium transition-all-slow mb-8">
+                    <p id="about-text" class="text-xl leading-relaxed font-medium transition-all-slow mb-6">
                         My journey into psychotherapy wasn't a traditional one. I spent years in heavy industry before retraining because I believe in the power of intrapsychic change. My approach is safe, grounded, and non-judgmental.
                     </p>
                 </div>
@@ -207,6 +215,7 @@
         </div>
     </footer>
 
+    <!-- YOUR EGO STATE TOGGLE IS RIGHT HERE -->
     <nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4">
         <div id="toggle-bg" class="backdrop-blur-xl bg-white bg-opacity-20 p-2 rounded-full border border-[#1a1a1a] shadow-2xl flex gap-1 transition-all">
             <button onclick="setState('parent')" id="btn-parent" class="magnetic-btn px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5">Parent</button>
@@ -245,7 +254,7 @@
                 selBg: 'rgba(150, 150, 150, 0.3)', selText: '#1a1a1a',
                 desc: 'Clear, objective, and grounded. Moving from internal noise to presence.',
                 about: "My journey into psychotherapy wasn't a traditional one. I spent years working in heavy industry before retraining because I believe deeply in the power of intrapsychic change and accessible talking therapies. My approach is safe, grounded, and non-judgmental. I’m here to offer a space where we can look at your life honestly, Adult-to-Adult, and find clarity where there used to be noise.",
-                items: ["The realization that your background shapes you, but it doesn't have to write your script.", "Noticing the resonance of old patterns playing out in your present relationships.", "Finding a quiet clarity and presence where there used to be just internal noise.", "Catching yourself in the act of 'discounting' your own worth based on where you came from.", "Understanding that the intense frustration you feel might actually be years of suppressed anger.", "Moving from a place of 'reacting' out of survival, to 'responding' from the here and now.", "Realising that the labels we carry matter less than the meaning we make of who we are.", "Developing the patience to hold your story without needing to fix it immediately.", "Learning to trust the '360 degree' view of your own journey into self-awareness.", "Holding your intersectional identity—class, gender, and history—with empathy.", "Accepting the 'quirks, sensitivities, and triggers' as part of your unique structure.", "Choosing choice over compulsion."]
+                items: ["The realization that your background shapes you, but it doesn't have to write your script.", "Noticing the resonance of old patterns playing out in your present relationships.", "Finding a quiet clarity and presence where there used to be just internal noise.", "Catching yourself in the act of 'discounting' your own worth based on where you came from.", "Understanding that the intense frustration you feel might actually be years of suppressed anger.", "Moving from a place of 'reacting' out of survival, to 'responding' from the here and now.", "Realising that the labels we carry matter less than the meaning we make of who we are.", "Developing the patience to hold your story without needing to fix it immediately.", "Learning to trust the '360 degree' view of your own journey into self-awareness.", "Holding your intersectional identity, class, gender, and history with empathy.", "Accepting the 'quirks, sensitivities, and triggers' as part of your unique structure.", "Choosing choice over compulsion."]
             },
             child: {
                 bg: '#e8e7e7', text: '#1a1a1a', font: 'font-sans',
@@ -253,7 +262,7 @@
                 selBg: 'rgba(242, 141, 53, 0.4)', selText: '#1a1a1a',
                 desc: 'Curious, vulnerable, and focusing on the raw feelings of the script.',
                 about: "Sometimes we just need a place to drop the armor. Growing up in a demanding environment, I developed protective walls and carried heavy injunctions like 'don't trust' and 'don't feel' just to survive. I know the overwhelming surge of emotion that comes when you try to speak up and be seen. Through talking therapy, this is a safe place to figure out what that younger part of you actually needs, without the fear of judgment.",
-                items: ["Why does my frustration sometimes feel so impossible to contain?", "That overwhelming surge of panic when you even think about being truly vulnerable.", "The physical sensation of your nervous system going into meltdown in an unfamiliar room.", "Wanting to make a beeline for the corner to hide, hoping nobody notices you're there.", "Carrying the deep, unsaid belief: 'I am never going to succeed at this.'", "The heavy guilt you place on yourself for staying silent when you really wanted to speak.", "Wondering if you even make sense to yourself, let alone to anyone else.", "Feeling like an imposter—a working-class person in a room full of 'professionals'.", "The 'Don't be close' and 'Don't trust' rules that kept you safe but left you lonely.", "The 'Something in the Water' feeling—the unconscious process flowing from childhood to now.", "The 'Don't Feel' injunction that made numbness feel like safety.", "The internal struggle of navigating spaces that weren't built for you."]
+                items: ["Why does my frustration sometimes feel so impossible to contain?", "That overwhelming surge of panic when you even think about being truly vulnerable.", "The physical sensation of your nervous system going into meltdown in an unfamiliar room.", "Wanting to make a beeline for the corner to hide, hoping nobody notices you're there.", "Carrying the deep, unsaid belief: 'I am never going to succeed at this.'", "The heavy guilt you place on yourself for staying silent when you really wanted to speak.", "Wondering if you even make sense to yourself, let alone to anyone else.", "Feeling like an imposter, a working-class person in a room full of 'professionals'.", "The 'Don't be close' and 'Don't trust' rules that kept you safe but left you lonely.", "The 'Something in the Water' feeling, the unconscious process flowing from childhood to now.", "The 'Don't Feel' injunction that made numbness feel like safety.", "The internal struggle of navigating spaces that weren't built for you."]
             },
             parent: {
                 bg: '#1a1a1a', text: '#e8e7e7', font: 'font-serif',
@@ -261,7 +270,7 @@
                 selBg: '#e8e7e7', selText: '#1a1a1a',
                 desc: 'Supportive, nurturing, and providing the permissions you never received.',
                 about: "You have carried a lot to get here, perhaps absorbing the chaos of others to keep them safe. Drawing from my own journey of softening the inner critic and strengthening the Nurturing Parent, I've built a talking therapy practice rooted in safety and stability. You don't have to navigate life's shifts alone. Here, you will find a non-judgmental environment to anchor yourself and safely examine your patterns.",
-                items: ["You no longer have to absorb the violence or chaos of others to keep them safe.", "It is okay to lean into the difficult, terrifying feeling of vulnerability.", "You do not need to carry anger as a superpower to protect everyone anymore.", "It is safe to let the voice of doubt fade into the darkness and step into the light.", "You are allowed to trust the process, even when the critical part demands to know 'why'.", "Your voice is valid, your experiences matter, and you deserve to be heard.", "You have permission to rewrite the unconscious life plan that was handed to you.", "The permission to stop being 'the strong one' for just a moment.", "You are allowed to outgrow the version of yourself that everyone else is comfortable with.", "Understanding your own history is the first step toward grounded clinical practice.", "Softening the boundaries that once kept the world out, but kept you in.", "\"The privilege of a lifetime is to become who you truly are.\" — Carl Jung"]
+                items: ["You no longer have to absorb the violence or chaos of others to keep them safe.", "It is okay to lean into the difficult, terrifying feeling of vulnerability.", "You do not need to carry anger as a superpower to protect everyone anymore.", "It is safe to let the voice of doubt fade into the darkness and step into the light.", "You are allowed to trust the process, even when the critical part demands to know 'why'.", "Your voice is valid, your experiences matter, and you deserve to be heard.", "You have permission to rewrite the unconscious life plan that was handed to you.", "The permission to stop being 'the strong one' for just a moment.", "You are allowed to outgrow the version of yourself that everyone else is comfortable with.", "Understanding your own history is the first step toward grounded clinical practice.", "Softening the boundaries that once kept the world out, but kept you in.", "\"The privilege of a lifetime is to become who you truly are.\" - Carl Jung"]
             }
         };
 
