@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-[#e8e7e7]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>The Translation Matrix | Talk with Liam</title>
+    <meta name="title" content="The Translation Matrix | Talk with Liam">
+    <meta name="description" content="Demystifying Transactional Analysis. Translating clinical jargon into human experience.">
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #e8e7e7;
+            --text-color: #1a1a1a;
+            --accent-color: #f28d35;
+        }
+        
+        body { font-family: 'Inter', sans-serif; color: var(--text-color); background-color: var(--bg-color); margin: 0; padding: 0; transition: background-color 0.8s ease, color 0.8s ease; }
+        ::selection { background-color: rgba(242, 141, 53, 0.3); color: var(--text-color); }
+        ::-moz-selection { background-color: rgba(242, 141, 53, 0.3); color: var(--text-color); }
+        
+        .font-serif { font-family: 'Fraunces', serif; }
+        
+        .term-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .definition-text {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+        }
+        
+        .fade-out {
+            opacity: 0;
+            transform: translateY(5px);
+        }
+        
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Bulletproof App-Like Fade Overlay -->
+    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6">
+    </div>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[10000] bg-[#1a1a1a] text-[#e8e7e7] border-t border-[#e8e7e7] border-opacity-10 transform translate-y-full transition-transform duration-700 shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">
+        <div class="max-w-screen-xl mx-auto px-6 py-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-sm opacity-80 leading-relaxed max-w-2xl text-center md:text-left">
+                <span class="font-bold tracking-[0.2em] uppercase text-[10px] opacity-50 block mb-2 text-[#f28d35]">Privacy & Cookies</span>
+                We use minimal cookies to ensure this site works reliably and to understand how it's used. No invasive tracking. Read our <a href="privacy.html" class="underline hover:text-[#f28d35] transition-colors">Privacy Policy</a> for details.
+            </div>
+            <div class="flex gap-4 shrink-0 justify-center">
+                <button id="btn-decline-cookies" class="px-6 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border border-[#e8e7e7] border-opacity-20 hover:bg-[#e8e7e7] hover:bg-opacity-10 transition-all">
+                    Decline
+                </button>
+                <button id="btn-accept-cookies" class="px-6 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase bg-[#e8e7e7] text-[#1a1a1a] hover:scale-105 active:scale-95 transition-all">
+                    Accept
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main class="relative z-10 w-full min-h-screen pt-28 pb-12 px-6 md:pt-32 md:px-12 flex flex-col items-center" role="main">
+        
+        <div class="max-w-screen-xl w-full relative min-h-screen flex flex-col">
+            
+            <div class="flex-grow">
+                <!-- URGENT HELP LINK -->
+                <div class="absolute -top-20 left-0 md:-top-24 z-50">
+                    <a href="help.html" class="transition-link inline-block px-6 py-3 rounded-full bg-[#f28d35] text-[#1a1a1a] text-[10px] font-black tracking-[0.2em] uppercase shadow-lg shadow-[#f28d35]/20 transition-transform hover:scale-105 active:scale-95" aria-label="Get urgent mental health support">
+                        Urgent Help
+                    </a>
+                </div>
+
+                <a href="index.html" class="transition-link inline-block mb-16 text-xs font-bold tracking-[0.3em] uppercase opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-current pb-1 mt-2" aria-label="Return to Practice">
+                    &larr; Return to Practice
+                </a>
+
+                <header class="mb-16">
+                    <h1 class="text-5xl md:text-7xl lg:text-[6rem] font-black uppercase leading-[0.85] tracking-tighter mb-8">
+                        The <br><span id="header-accent" class="text-gray-400 transition-colors duration-500">Matrix.</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl font-medium tracking-tight opacity-80 max-w-2xl">
+                        Transactional Analysis can feel intimidating and full of jargon. Use the toggle below to translate the clinical theory into the reality of what it looks like in the room.
+                    </p>
+                </header>
+
+                <!-- THE INTERACTIVE TOGGLE -->
+                <div class="sticky top-6 z-40 flex justify-start mb-16">
+                    <div id="toggle-bg" class="backdrop-blur-xl bg-[#1a1a1a] bg-opacity-5 p-2 rounded-full border border-current shadow-lg flex gap-1 transition-all duration-700">
+                        <button onclick="setPerspective('textbook')" id="btn-textbook" class="magnetic-btn px-6 md:px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all duration-500 hover:bg-current hover:bg-opacity-10">The Textbook</button>
+                        <button onclick="setPerspective('room')" id="btn-room" class="magnetic-btn px-6 md:px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all duration-500 bg-[#1a1a1a] text-[#e8e7e7]">In The Room</button>
+                    </div>
+                </div>
+
+                <!-- JARGON GRID -->
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12 border-t border-current border-opacity-10 pt-12 pb-20">
+                    
+                    <!-- Term 0: Ego States -->
+                    <div class="term-card border border-current border-opacity-20 rounded-[2rem] p-8 md:p-10 hover:border-opacity-50">
+                        <h2 class="text-3xl font-serif font-bold tracking-tight mb-2">Ego States</h2>
+                        <span class="inline-block text-[10px] font-bold tracking-[0.2em] uppercase opacity-40 mb-6">Noun / Core Concept</span>
+                        <div class="min-h-[8rem]">
+                            <p id="def-ego-states" class="definition-text text-lg opacity-80 leading-relaxed font-medium">
+                                <!-- Content injected via JS -->
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 1: Script -->
+                    <div class="term-card border border-current border-opacity-20 rounded-[2rem] p-8 md:p-10 hover:border-opacity-50">
+                        <h2 class="text-3xl font-serif font-bold tracking-tight mb-2">Script</h2>
+                        <span class="inline-block text-[10px] font-bold tracking-[0.2em] uppercase opacity-40 mb-6">Noun / Concept</span>
+                        <div class="min-h-[8rem]">
+                            <p id="def-script" class="definition-text text-lg opacity-80 leading-relaxed font-medium">
+                                <!-- Content injected via JS -->
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 2: Injunction -->
+                    <div class="term-card border border-current border-opacity-20 rounded-[2rem] p-8 md:p-10 hover:border-opacity-50">
+                        <h2 class="text-3xl font-serif font-bold tracking-tight mb-2">Injunction</h2>
+                        <span class="inline-block text-[10px] font-bold tracking-[0.2em] uppercase opacity-40 mb-6">Noun / Concept</span>
+                        <div class="min-h-[8rem]">
+                            <p id="def-injunction" class="definition-text text-lg opacity-80 leading-relaxed font-medium">
+                                <!-- Content injected via JS -->
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 3: Game -->
+                    <div class="term-card border border-current border-opacity-20 rounded-[2rem] p-8 md:p-10 hover:border-opacity-50">
+                        <h2 class="text-3xl font-serif font-bold tracking-tight mb-2">Game</h2>
+                        <span class="inline-block text-[10px] font-bold tracking-[0.2em] uppercase opacity-40 mb-6">Noun / Concept</span>
+                        <div class="min-h-[8rem]">
+                            <p id="def-game" class="definition-text text-lg opacity-80 leading-relaxed font-medium">
+                                <!-- Content injected via JS -->
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 4: Stroke -->
+                    <div class="term-card border border-current border-opacity-20 rounded-[2rem] p-8 md:p-10 hover:border-opacity-50">
+                        <h2 class="text-3xl font-serif font-bold tracking-tight mb-2">Stroke</h2>
+                        <span class="inline-block text-[10px] font-bold tracking-[0.2em] uppercase opacity-40 mb-6">Noun / Concept</span>
+                        <div class="min-h-[8rem]">
+                            <p id="def-stroke" class="definition-text text-lg opacity-80 leading-relaxed font-medium">
+                                <!-- Content injected via JS -->
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 5: Discounting -->
+                    <div class="term-card border border-current border-opacity-20 rounded-[2rem] p-8 md:p-10 hover:border-opacity-50">
+                        <h2 class="text-3xl font-serif font-bold tracking-tight mb-2">Discounting</h2>
+                        <span class="inline-block text-[10px] font-bold tracking-[0.2em] uppercase opacity-40 mb-6">Verb / Defense Mechanism</span>
+                        <div class="min-h-[8rem] md:min-h-[6rem]">
+                            <p id="def-discounting" class="definition-text text-lg opacity-80 leading-relaxed font-medium max-w-4xl">
+                                <!-- Content injected via JS -->
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- UNIFIED FOOTER -->
+            <footer class="mt-12 pt-12 pb-8 border-t border-current border-opacity-10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase opacity-60">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <a href="https://www.psychotherapy.org.uk/" target="_blank" rel="noopener noreferrer" aria-label="Verify UKCP Registration">
+                        <img src="ukcp-logo.png" alt="UKCP Registered" class="h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
+                    </a>
+                    <div class="text-center md:text-left flex flex-wrap justify-center items-center gap-4">
+                        <span>Hull, UK & Online</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+                    <a href="breathe.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Breathe</a>
+                    <a href="support.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Find Support</a>
+                    <a href="privacy.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Privacy</a>
+                </div>
+            </footer>
+
+        </div>
+    </main>
+
+    <script>
+        // --- TRANSLATION DATA ---
+        const glossaryData = {
+            textbook: {
+                theme: { bg: '#e8e7e7', text: '#1a1a1a', accent: 'text-gray-400', btnActive: '#1a1a1a', btnText: '#e8e7e7' },
+                egoStates: '"A consistent pattern of feeling and experience directly related to a corresponding consistent pattern of behavior. The structure of personality divided into Parent, Adult, and Child." (Berne, 1966)',
+                script: '"An unconscious life plan made in childhood, reinforced by the parents, justified by subsequent events, and culminating in a chosen alternative." (Berne, 1972)',
+                injunction: '"A prohibitive message delivered from the Child ego state of the parent, out of the parent\'s own pains, fears, or unfulfilled desires, which limits the child\'s autonomy."',
+                game: '"An ongoing series of complementary ulterior transactions progressing to a well-defined, predictable outcome, usually yielding a negative payoff or racket feeling."',
+                stroke: '"A unit of human recognition. It can be physical, verbal, or non-verbal, and can be conditional or unconditional, positive or negative."',
+                discounting: '"An internal mechanism which involves people ignoring or distorting some aspect of themselves, others, or the reality of the situation in order to maintain their frame of reference."'
+            },
+            room: {
+                theme: { bg: '#1a1a1a', text: '#e8e7e7', accent: 'text-[#f28d35]', btnActive: '#f28d35', btnText: '#1a1a1a' },
+                egoStates: "The different 'modes' or versions of yourself you switch between depending on who you're talking to and how you feel. We all have a Parent, Adult, and Child part inside us.",
+                script: "The invisible rulebook you wrote when you were little to survive your environment. We work to help you read it, so you can finally write a new one.",
+                injunction: "The unspoken 'Don'ts' you absorbed growing up—like 'Don't feel', 'Don't trust', or 'Don't be important'. They feel like absolute laws, but they are just old echoes.",
+                game: "The repetitive, frustrating loops we get stuck in with other people. It's when we unconsciously set up familiar arguments because, strangely, the negative feeling at the end feels safe.",
+                stroke: "Attention and connection. We all need it to survive. Sometimes, if we can't get positive attention (love, praise), we'll settle for negative attention (arguments, criticism) just to avoid feeling invisible.",
+                discounting: "Minimizing your own worth, your feelings, or the reality of a problem. It's that voice that says 'It wasn't that bad' or 'I shouldn't be upset about this' when you absolutely have the right to be."
+            }
+        };
+
+        function setPerspective(state) {
+            const data = glossaryData[state];
+            const definitions = document.querySelectorAll('.definition-text');
+            const headerAccent = document.getElementById('header-accent');
+            
+            // Update Theme Colors smoothly
+            document.documentElement.style.setProperty('--bg-color', data.theme.bg);
+            document.documentElement.style.setProperty('--text-color', data.theme.text);
+            headerAccent.className = `transition-colors duration-500 ${data.theme.accent}`;
+            
+            // Fade out current text
+            definitions.forEach(el => {
+                el.classList.remove('fade-in');
+                el.classList.add('fade-out');
+            });
+            
+            // Update content and fade back in
+            setTimeout(() => {
+                document.getElementById('def-ego-states').innerText = data.egoStates;
+                document.getElementById('def-script').innerText = data.script;
+                document.getElementById('def-injunction').innerText = data.injunction;
+                document.getElementById('def-game').innerText = data.game;
+                document.getElementById('def-stroke').innerText = data.stroke;
+                document.getElementById('def-discounting').innerText = data.discounting;
+                
+                definitions.forEach(el => {
+                    el.classList.remove('fade-out');
+                    el.classList.add('fade-in');
+                });
+            }, 500); // Wait for fade out to complete
+
+            // Update Toggle Button Styles
+            ['textbook', 'room'].forEach(id => {
+                const btn = document.getElementById('btn-' + id);
+                if(id === state) {
+                    btn.style.backgroundColor = data.theme.btnActive;
+                    btn.style.color = data.theme.btnText;
+                } else {
+                    btn.style.backgroundColor = 'transparent';
+                    btn.style.color = 'inherit'; 
+                }
+            });
+            
+            // Toggle Background subtly adjusts to theme
+            const toggleBg = document.getElementById('toggle-bg');
+            if(state === 'room') {
+                toggleBg.classList.replace('bg-[#1a1a1a]', 'bg-white');
+            } else {
+                toggleBg.classList.replace('bg-white', 'bg-[#1a1a1a]');
+            }
+        }
+
+        // Initialize state on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setPerspective('room'); // Start with the human perspective!
+        });
+
+        // --- COOKIE BANNER LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('btn-accept-cookies');
+            const declineBtn = document.getElementById('btn-decline-cookies');
+
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(() => {
+                    cookieBanner.classList.remove('translate-y-full');
+                }, 1500);
+            }
+
+            const hideBanner = (consentValue) => {
+                localStorage.setItem('cookieConsent', consentValue);
+                cookieBanner.classList.add('translate-y-full');
+            };
+
+            acceptBtn.addEventListener('click', () => hideBanner('accepted'));
+            declineBtn.addEventListener('click', () => hideBanner('declined'));
+        });
+
+        // --- MINDFUL TAB & PAGE TRANSITIONS ---
+        const originalTitle = document.title;
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                document.title = "Take your time...";
+            } else {
+                document.title = originalTitle;
+            }
+        });
+
+        window.addEventListener('pageshow', () => {
+            const overlay = document.getElementById('page-overlay');
+            if(overlay) overlay.style.opacity = '0';
+        });
+
+        const transitionLinks = document.querySelectorAll('.transition-link');
+        transitionLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('http') || link.getAttribute('target') === '_blank') return;
+                
+                e.preventDefault(); 
+                const overlay = document.getElementById('page-overlay');
+                if(overlay) { overlay.style.opacity = '1'; }
+                setTimeout(() => { window.location.href = href; }, 500); 
+            });
+        });
+
+        // Magnetic Button Logic for the toggle
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - (rect.width / 2);
+                const y = e.clientY - rect.top - (rect.height / 2);
+                btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = `translate(0px, 0px)`;
+            });
+        });
+    </script>
+</body>
+</html>
