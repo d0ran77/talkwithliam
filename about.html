@@ -8,7 +8,7 @@
     <meta name="title" content="About Liam | Transactional Analysis & Talking Therapies">
     <meta name="description" content="The story behind the practice. Providing grounded, accessible talking therapies in Hull.">
     
-<!-- INVISIBLE LOCAL BUSINESS SCHEMA FOR GOOGLE SEO -->
+    <!-- INVISIBLE LOCAL BUSINESS SCHEMA FOR GOOGLE SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -44,29 +44,78 @@
             height: 100%;
             filter: grayscale(100%) contrast(1.1);
         }
+
+        /* Menu Icon Styling */
+        #menu-toggle { mix-blend-mode: difference; color: white; }
+        #menu-toggle span { background-color: currentColor; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased overflow-x-hidden">
 
+    <!-- Bulletproof App-Like Fade Overlay -->
     <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100"></div>
+
+    <!-- HAMBURGER MENU BUTTON -->
+    <button id="menu-toggle" class="fixed top-6 right-6 md:top-10 md:right-12 z-[110] flex flex-col justify-center items-center w-12 h-12 rounded-full hover:scale-105 active:scale-95 transition-transform" aria-label="Toggle Menu">
+        <span class="block w-8 h-[2px] mb-2 transition-transform duration-500 origin-center" id="line1"></span>
+        <span class="block w-8 h-[2px] transition-transform duration-500 origin-center" id="line2"></span>
+    </button>
+
+    <!-- FULL-SCREEN MENU OVERLAY -->
+    <div id="menu-overlay" class="fixed inset-0 bg-[#1a1a1a] text-[#e8e7e7] z-[100] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-700">
+        <nav class="flex flex-col items-center gap-8 text-center">
+            <a href="index.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">Practice</a>
+            <a href="about.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter text-[#f28d35] hover:text-[#e8e7e7] transition-colors">My Story</a>
+            <a href="approach.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">The Approach</a>
+            <a href="matrix.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">The Matrix</a>
+            <a href="journal.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">The Journal</a>
+            <a href="library.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">The Library</a>
+            <a href="faq.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">The Framework</a>
+        </nav>
+        
+        <!-- Menu Footer Links -->
+        <div class="absolute bottom-12 flex flex-wrap justify-center gap-8 text-xs font-bold tracking-[0.2em] uppercase opacity-50 px-6">
+            <a href="support.html" class="transition-link hover:text-[#f28d35] hover:opacity-100 transition-all">Support</a>
+            <a href="breathe.html" class="transition-link hover:text-[#f28d35] hover:opacity-100 transition-all">Breathe</a>
+            <a href="privacy.html" class="transition-link hover:text-[#f28d35] hover:opacity-100 transition-all">Privacy</a>
+        </div>
+    </div>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[10000] bg-[#1a1a1a] text-[#e8e7e7] border-t border-[#e8e7e7] border-opacity-10 transform translate-y-full transition-transform duration-700 shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">
+        <div class="max-w-screen-xl mx-auto px-6 py-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-sm opacity-80 leading-relaxed max-w-2xl text-center md:text-left">
+                <span class="font-bold tracking-[0.2em] uppercase text-[10px] opacity-50 block mb-2 text-[#f28d35]">Privacy & Cookies</span>
+                We use minimal cookies to ensure this site works reliably and to understand how it's used. No invasive tracking. Read our <a href="privacy.html" class="underline hover:text-[#f28d35] transition-colors">Privacy Policy</a> for details.
+            </div>
+            <div class="flex gap-4 shrink-0 justify-center">
+                <button id="btn-decline-cookies" class="px-6 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border border-[#e8e7e7] border-opacity-20 hover:bg-[#e8e7e7] hover:bg-opacity-10 transition-all">
+                    Decline
+                </button>
+                <button id="btn-accept-cookies" class="px-6 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase bg-[#e8e7e7] text-[#1a1a1a] hover:scale-105 active:scale-95 transition-all">
+                    Accept
+                </button>
+            </div>
+        </div>
+    </div>
 
     <main class="relative z-10 w-full min-h-screen pt-28 pb-20 px-6 md:pt-32 md:px-12 flex justify-center" role="main">
         <div class="max-w-screen-2xl w-full relative lg:flex gap-12 lg:gap-24">
             
-            <!-- URGENT HELP LINK (Now perfectly aligned left) -->
+            <!-- URGENT HELP LINK -->
             <div class="absolute -top-20 left-0 md:-top-24 z-50">
                 <a href="help.html" class="transition-link inline-block px-6 py-3 rounded-full bg-[#f28d35] text-[#1a1a1a] text-[10px] font-black tracking-[0.2em] uppercase shadow-lg shadow-[#f28d35]/20 transition-transform hover:scale-105 active:scale-95" aria-label="Get urgent mental health support">
                     Urgent Help
                 </a>
             </div>
 
+            <!-- LEFT COLUMN (Sticky Portrait) -->
             <div class="lg:w-1/2 lg:h-screen lg:sticky lg:top-0 pb-6 lg:py-16 flex flex-col justify-center z-10">
                 <a href="index.html" class="transition-link inline-block mb-8 text-xs font-bold tracking-[0.3em] uppercase opacity-60 hover:opacity-100 transition-opacity border-b border-transparent hover:border-[#1a1a1a] pb-1 w-max" aria-label="Return to Practice">
                     &larr; Return to Practice
                 </a>
 
                 <div class="portrait-container w-full aspect-[3/4] md:aspect-square lg:aspect-[4/5] rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl bg-gray-300 relative">
-                    <!-- Added scale-110 and origin-top-left to safely crop out the bottom-right watermark -->
                     <img src="portrait.jpg" alt="Black and white portrait of Liam" class="scale-110 origin-top-left" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     
                     <div class="absolute inset-0 flex items-center justify-center text-xs font-bold uppercase tracking-widest opacity-30 text-center px-6 hidden">
@@ -75,7 +124,8 @@
                 </div>
             </div>
 
-            <div class="lg:w-1/2 pt-10 pb-32 lg:py-32 flex flex-col justify-center">
+            <!-- RIGHT COLUMN (Scrolling Content) -->
+            <div class="lg:w-1/2 pt-10 pb-16 lg:py-32 flex flex-col justify-center">
                 <div class="mb-16">
                     <h1 class="text-5xl md:text-7xl lg:text-[6rem] font-black uppercase leading-[0.85] tracking-tighter mb-8">
                         Choice<br>Over<br><span class="text-gray-400 transition-colors duration-500 hover:text-[#f28d35]">Compulsion.</span>
@@ -104,14 +154,14 @@
                 <div class="mt-16">
                     <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-6 opacity-40">Professional Standards</h3>
                     <div class="flex flex-wrap items-center gap-8">
-                        <!-- Wrapped the logo in a link to the UKCP directory for maximum SEO & Trust -->
                         <a href="https://www.psychotherapy.org.uk/" target="_blank" rel="noopener noreferrer" aria-label="Verify UKCP Registration">
                             <img src="ukcp-logo.png" alt="UKCP Registered Psychotherapist" class="h-12 w-auto object-contain opacity-50 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
                         </a>
                     </div>
                 </div>
 
-                <div class="mt-20 pt-12 border-t border-black border-opacity-10 flex flex-col sm:flex-row gap-6">
+                <!-- CALL TO ACTION BUTTONS -->
+                <div class="mt-20 pt-12 border-t border-[#1a1a1a] border-opacity-10 flex flex-col sm:flex-row gap-6">
                     <a href="index.html" class="transition-link px-10 py-4 rounded-full text-xs font-black tracking-[0.2em] uppercase transition-transform hover:scale-105 active:scale-95 bg-[#1a1a1a] text-[#e8e7e7] text-center shadow-xl">
                         The Practice
                     </a>
@@ -119,11 +169,70 @@
                         Read the Journal
                     </a>
                 </div>
+
+                <!-- UNIFIED FOOTER (Placed securely inside scrolling column) -->
+                <footer class="mt-24 pt-8 border-t border-[#1a1a1a] border-opacity-10 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase opacity-60">
+                    <div class="flex flex-wrap gap-6">
+                        <span>Hull, UK & Online</span>
+                    </div>
+                    <div class="flex flex-wrap gap-6">
+                        <a href="breathe.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Breathe</a>
+                        <a href="support.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Support</a>
+                        <a href="privacy.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Privacy</a>
+                    </div>
+                </footer>
+
             </div>
         </div>
     </main>
 
     <script>
+        // --- COOKIE BANNER LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('btn-accept-cookies');
+            const declineBtn = document.getElementById('btn-decline-cookies');
+
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(() => {
+                    cookieBanner.classList.remove('translate-y-full');
+                }, 1500);
+            }
+
+            const hideBanner = (consentValue) => {
+                localStorage.setItem('cookieConsent', consentValue);
+                cookieBanner.classList.add('translate-y-full');
+            };
+
+            acceptBtn.addEventListener('click', () => hideBanner('accepted'));
+            declineBtn.addEventListener('click', () => hideBanner('declined'));
+        });
+
+        // --- HAMBURGER MENU LOGIC ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        let menuOpen = false;
+
+        menuToggle.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                menuOverlay.classList.add('opacity-100', 'pointer-events-auto');
+                line1.style.transform = 'translateY(5px) rotate(45deg)';
+                line2.style.transform = 'translateY(-5px) rotate(-45deg)';
+                document.body.style.overflow = 'hidden'; 
+            } else {
+                menuOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+                menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+                line1.style.transform = 'translateY(0) rotate(0)';
+                line2.style.transform = 'translateY(0) rotate(0)';
+                document.body.style.overflow = ''; 
+            }
+        });
+
+        // --- MINDFUL TAB LOGIC ---
         const originalTitle = document.title;
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
@@ -136,11 +245,17 @@
         window.addEventListener('pageshow', () => {
             const overlay = document.getElementById('page-overlay');
             if(overlay) overlay.style.opacity = '0';
+            
+            // Failsafe: Ensure menu resets if user clicks "back" browser button
+            if(menuOpen) menuToggle.click();
         });
 
         const transitionLinks = document.querySelectorAll('.transition-link');
         transitionLinks.forEach(link => {
             link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('http') || link.getAttribute('target') === '_blank') return;
+                
                 e.preventDefault(); 
                 const overlay = document.getElementById('page-overlay');
                 if(overlay) overlay.style.opacity = '1'; 
