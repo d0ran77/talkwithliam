@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO: Talk with Liam | Transactional Analysis -->
+    <title>Structural Analysis of Ego States | Interactive Map</title>
+    <meta name="description" content="An interactive exploration of the Parent, Adult, and Child ego states. Clinical psychotherapy insights grounded in Transactional Analysis.">
+    <meta name="keywords" content="Transactional Analysis, Psychotherapy, Ego States, Structural Analysis, Child Adult Parent Model, Epigenetics, Hull Psychotherapist">
+    <link rel="canonical" href="https://talkwithliam.co.uk/structural-analysis">
+
+    <!-- JSON-LD ProfessionalService Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Talk with Liam",
+      "url": "https://talkwithliam.co.uk",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hull",
+        "addressRegion": "East Yorkshire",
+        "addressCountry": "UK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "53.7443", 
+        "longitude": "-0.3325"
+      },
+      "priceRange": "££",
+      "description": "Clinical psychotherapy practice specialising in Transactional Analysis in Hull and East Yorkshire."
+    }
+    </script>
+
+    <!-- JSON-LD Person Schema (E-E-A-T) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Liam",
+      "jobTitle": ["Digital Architect", "Psychotherapist"],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Talk with Liam"
+      },
+      "sameAs": [
+        "https://talkwithliam.co.uk",
+        "https://builtbyliam.co.uk"
+      ]
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,600;0,900;1,400&family=Fraunces:ital,opsz,wght@1,9..144,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --monolith: #f28d35;
+            --void: #121212;
+            --ash: #e8e7e7;
+        }
+
+        body {
+            background-color: var(--void);
+            color: var(--ash);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; 
+            height: 100vh;
+        }
+
+        .serif-display {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            letter-spacing: -0.05em;
+            line-height: 0.82;
+        }
+
+        .meta-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            font-weight: 500;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.12;
+            mix-blend-mode: soft-light;
+        }
+
+        .ego-circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(232, 231, 231, 0.1);
+            background: transparent;
+            position: relative;
+        }
+
+        .ego-circle:hover {
+            border-color: var(--monolith);
+            background: rgba(232, 231, 231, 0.03);
+            transform: scale(1.02);
+        }
+
+        .adult-node {
+            font-weight: 900;
+            border-width: 2px;
+            border-color: rgba(232, 231, 231, 0.3);
+        }
+
+        #immersive-layer {
+            position: fixed;
+            inset: 0;
+            background: rgba(18, 18, 18, 0.75);
+            backdrop-filter: blur(60px);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto;
+            padding: 12rem 2rem 8rem 2rem;
+        }
+
+        #immersive-layer.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .inner-node-container {
+            transform: translateY(30px);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+            max-width: 64rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #immersive-layer.active .inner-node-container {
+            transform: translateY(0);
+        }
+
+        .inner-node {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 1px solid rgba(232, 231, 231, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+            background: rgba(18, 18, 18, 0.5);
+        }
+
+        .inner-node:hover {
+            border-color: var(--monolith);
+            color: var(--monolith);
+            background: rgba(242, 141, 53, 0.05);
+            transform: scale(1.05);
+        }
+
+        .structural-line {
+            width: 1px;
+            height: 40px;
+            background: rgba(232, 231, 231, 0.1);
+            flex-shrink: 0;
+        }
+
+        .electrode {
+            border-style: dashed;
+            animation: pulse-op 3s infinite;
+        }
+
+        @keyframes pulse-op {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; border-color: var(--monolith); }
+        }
+
+        .content-blur-target {
+            transition: filter 0.8s ease, opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        body.panel-active .content-blur-target {
+            filter: blur(25px);
+            opacity: 0.1;
+            transform: scale(0.9);
+        }
+
+        .view-toggle {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            border-top: 2px solid rgba(232, 231, 231, 0.05);
+            background: var(--void);
+            z-index: 50;
+            padding: 0 12px;
+        }
+
+        .toggle-btn {
+            padding: 24px 40px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s;
+            opacity: 0.2;
+            color: var(--ash);
+        }
+
+        .toggle-btn:hover { opacity: 0.5; }
+        .toggle-btn.active { opacity: 1; }
+
+        .toggle-btn.active::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: var(--monolith);
+        }
+
+        #detail-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(18, 18, 18, 0.97);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            padding: 4rem;
+        }
+
+        #detail-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .detail-scroll {
+            max-height: 85vh;
+            overflow-y: auto;
+            width: 100%;
+            max-width: 60rem;
+            padding-right: 2rem;
+        }
+
+        body.detail-active #immersive-layer {
+            filter: blur(30px);
+        }
+
+        #immersive-layer::-webkit-scrollbar, .detail-scroll::-webkit-scrollbar { width: 2px; }
+        #immersive-layer::-webkit-scrollbar-thumb, .detail-scroll::-webkit-scrollbar-thumb { background: rgba(242, 141, 53, 0.2); }
+    </style>
+</head>
+<body id="body-root">
+
+    <svg class="noise-overlay" aria-hidden="true">
+        <filter id="noiseFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+    </svg>
+
+    <div class="content-blur-target min-h-screen flex flex-col">
+        <header class="pt-24 pb-8 px-12 max-w-4xl mx-auto text-center" role="banner">
+            <nav class="mb-12" aria-label="Main Navigation">
+                <a href="/" class="meta-label opacity-40 hover:opacity-100 transition-opacity">← Back to Home</a>
+            </nav>
+            <h1 id="view-title" class="meta-label text-white/20 tracking-[0.6em]">Structural Depth Analysis</h1>
+        </header>
+
+        <main id="main-ego-stack" class="flex-grow flex flex-col items-center justify-center -mb-24" role="main"></main>
+
+        <footer class="py-32 px-12 text-center" role="contentinfo">
+            <div class="meta-label opacity-10 tracking-[0.8em]">Awareness — Spontaneity — Intimacy</div>
+        </footer>
+    </div>
+
+    <!-- View Toggles -->
+    <nav class="view-toggle content-blur-target" aria-label="Analysis Perspective Toggle">
+        <button id="btn-structural" class="toggle-btn meta-label active" onclick="setView('structural')">Structural</button>
+        <button id="btn-functional" class="toggle-btn meta-label" onclick="setView('functional')">Functional</button>
+    </nav>
+
+    <!-- Map Layer -->
+    <section id="immersive-layer">
+        <button onclick="closeImmersive()" class="fixed top-12 left-12 meta-label hover:text-white transition-colors flex items-center opacity-40 hover:opacity-100 z-[110]" aria-label="Close Map">
+            <span class="mr-3 text-lg">←</span> Close Map
+        </button>
+
+        <div class="inner-node-container">
+            <header id="immersive-header" class="mb-24 w-full"></header>
+            <div id="immersive-content" class="flex flex-col items-start w-full"></div>
+        </div>
+    </section>
+
+    <!-- Deep Perspective Overlay -->
+    <div id="detail-overlay" onclick="closeDetail()" role="dialog" aria-modal="true">
+        <div class="detail-scroll" onclick="event.stopPropagation()">
+            <div id="detail-meta" class="meta-label text-monolith mb-4"></div>
+            <h3 id="detail-title" class="serif-display text-5xl text-white mb-8"></h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <section>
+                    <div class="meta-label text-white/20 mb-4 tracking-[0.4em]">Theoretical Function</div>
+                    <p id="detail-body" class="text-ash/70 text-[15px] leading-relaxed font-light"></p>
+                </section>
+                <section>
+                    <div class="meta-label text-white/20 mb-4 tracking-[0.4em]">Relational & Biological Perspective</div>
+                    <p id="detail-relational" class="text-ash/50 text-[14px] leading-relaxed font-light italic mb-6"></p>
+                    
+                    <div class="border-t border-white/10 pt-6">
+                        <div class="meta-label text-white/20 mb-4 tracking-[0.4em]">Phenomenological Reality</div>
+                        <p id="detail-example" class="text-ash/40 text-[13px] font-light leading-relaxed"></p>
+                    </div>
+
+                    <div id="detail-action-container" class="mt-8 pt-6 border-t border-white/5 hidden">
+                        <button id="detail-action-btn" class="meta-label text-monolith hover:text-white transition-colors">
+                            Drill Down to Foundation →
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <div class="mt-16 border-t border-white/5 pt-8">
+                <span class="meta-label text-[8px] opacity-20">Click outside to return to map</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentView = 'structural';
+
+        const structuralData = {
+            parent: {
+                label: 'P2 / Introjected Caregivers',
+                nodes: [
+                    { 
+                        id: 'p3', code: 'P₃', name: 'The Parent\'s Parent', 
+                        desc: 'The transgenerational archive replaying the caregiver\'s Parent state, tracing back to the grandmother.',
+                        thirdTitle: 'Transgenerational Archive',
+                        thirdBody: 'P₃ stores directives passed down from grandparents and authority figures. Berne noted the "script scene" began generations ago, transmitted chemically and psychologically.',
+                        relational: 'To make a lady, you start with the grandmother. P₃ represents the grandmother\'s profound influence. A grandmother carries the cellular precursor (the egg) of her grandchild within her own fetal womb.',
+                        example: 'Phenomenological: Rigidly enforcing an etiquette standard ("elbows off the table") as a direct replay of the maternal grandmother\'s authoritative voice.',
+                        actionLabel: 'Trace to Biological Precursor (P₀)',
+                        actionTarget: 'noughts'
+                    },
+                    { 
+                        id: 'a3', code: 'A₃', name: 'The Parent\'s Adult', 
+                        desc: 'Copied statements about reality from parental figures, registered by the infant as absolute facts.',
+                        thirdTitle: 'Copied Logic',
+                        thirdBody: 'A₃ contains claims about reality heard and subsequently copied. These internalised statements are often treated as absolute facts without the capacity for objective testing.',
+                        relational: 'These introjects form the basis of a person\'s initial worldview. They are the "taught" version of facts registered before motility and independent data-gathering (A₂).',
+                        example: 'Phenomenological: Confidently passing on superstitions as objective facts because they were stated as such by an authority figure.'
+                    },
+                    { 
+                        id: 'c3', code: 'C₃', name: 'The Parent\'s Child', 
+                        desc: 'The internalised emotional reactions and archaic distress of the parent replayed in the here-and-now.',
+                        thirdTitle: 'Emotional Echoes',
+                        thirdBody: 'Records the emotional reactions, frustrations, and childlike behaviours of caregivers. It contains the parent\'s own archaic distress and unresolved needs.',
+                        relational: 'In daily life, we may grumble with the specific affect of our parent. Even if it looks "bossy," it is a direct recording of the father\'s or mother\'s internalised Child state.',
+                        example: 'Phenomenological: A manager snapping at staff with the exact tone his father used when frustrated, replaying an archaic father-child dynamic.'
+                    }
+                ]
+            },
+            adult: {
+                label: 'A2 / Reality Testing',
+                nodes: [
+                    { 
+                        id: 'a2', code: 'Now', name: 'The Adult', 
+                        desc: 'Autonomous explorer separating reality from taught or felt concepts through motility and independent exploration.',
+                        thirdTitle: 'The Motile Self',
+                        thirdBody: 'Emerging at ten months as the child gains motility. It gathers and processes data to separate current reality from external "taught concepts" and internal "felt concepts".',
+                        relational: 'The Adult is the neo-psychic state—the only state focused on the intersubjective field of the present moment, free from historical tape-recordings.',
+                        example: 'Functions as the anchor for structural diagnosis, assessing whether a reaction is a historical playback or a response to current data.'
+                    }
+                ]
+            },
+            child: {
+                label: 'C2 / Relics of Childhood',
+                nodes: [
+                    { 
+                        id: 'p1', code: 'P₁', name: 'The Magical Parent', 
+                        desc: 'Early messages coloured by magical thinking and frightening fantasies. Acts as an internal regulator.',
+                        special: 'electrode',
+                        thirdTitle: 'Spooky / Internal Object',
+                        thirdBody: 'P₁ holds early directives coloured by the infant\'s magical thinking. Believing "If I do not finish my plate, Mummy will never come back" remains as a script constraint.',
+                        relational: 'Known as the "Electrode" or "Pig Parent," it holds the reins of spontaneous impulses to keep the person safe from perceived parental anger through shame and fear.',
+                        example: 'Phenomenological: Internal pressure enforcing "Not OK" feelings based on primitive magical distortions of caregiver messages.'
+                    },
+                    { 
+                        id: 'a1', code: 'A₁', name: 'The Little Professor', 
+                        desc: 'Adult within the Child. The "Scientist in the Crib" using intuition to solve interpersonal problems.',
+                        thirdTitle: 'Spunky / Intersubjective Self',
+                        thirdBody: 'The infant\'s capacity for problem-solving. A₁ builds hypotheses and tests them—like a toddler watching a parent\'s reaction when reaching for a socket.',
+                        relational: 'The center of human intuition. A₁ is split into A₁+ (the adapted false self) and A₁- (the shame-filled self carrying the sense of "falling from grace").',
+                        example: 'Phenomenological: An infant intuitively "reading" a caregiver\'s mind to sense if they are angry or truthfully present before language exists.'
+                    },
+                    { 
+                        id: 'c1', code: 'C₁', name: 'The Somatic Child', 
+                        desc: 'Core biological self containing physiological survival responses and intrauterine patterning.',
+                        thirdTitle: 'Sleepy / The Core Self',
+                        thirdBody: 'Present from birth. It holds the "emergent self" (C₀). A baby is already nine months old at birth, having undergone significant intrauterine patterning.',
+                        relational: 'Houses earliest bodily-affective states and yearnings for mirroring. Raw somatic distress here triggers coping strategies in the higher levels.',
+                        example: 'Phenomenological: A visceral reaction to a lack of attunement. This raw distress is what forces A₁ to develop survival strategies.',
+                        actionLabel: 'Drill to Foundation (Level 0) →',
+                        actionTarget: 'noughts'
+                    }
+                ]
+            },
+            noughts: {
+                label: 'Level 0 / The Foundations',
+                nodes: [
+                    { 
+                        id: 'p0', code: 'P₀', name: 'Earliest Other', 
+                        desc: 'Somatic sense of being contacted by the environment or mother. The biological legacy of the grandmother.',
+                        thirdTitle: 'The Pre-Verbal Other',
+                        thirdBody: 'P₀ represents the earliest sensed contact. It overlaps with C₀. Healthy attunement here builds the foundation of a cohesive self.',
+                        relational: 'Transgenerational biology: a grandmother carries the egg of her grandchild. Psychological destiny is tied to the ancestral environment.',
+                        example: 'Phenomenological: Pre-cognitive memories of being held, soothed, or neglected as an infant.'
+                    },
+                    { 
+                        id: 'a0', code: 'A₀', name: 'Emergent Adult', 
+                        desc: 'Primitive sensory data processing and conversion of stimuli into survival action.',
+                        thirdTitle: 'The Sensory Processor',
+                        thirdBody: 'A₀ represents the earliest capacity to process data, such as a newborn turning its head toward the smell of milk.',
+                        relational: 'The very first "Adult" function: translating somatic needs into environmental interactions.',
+                        example: 'Phenomenological: The pre-verbal "scientist" testing the temperature of the world.'
+                    },
+                    { 
+                        id: 'c0', code: 'C₀', name: 'Emergent Self', 
+                        desc: 'The somatic core self. The earliest phase of life where there is no clear boundary between "me" and "you".',
+                        thirdTitle: 'The Somatic Womb',
+                        thirdBody: 'The emergent self houses bodily-affective states. It is built through intrauterine patterning and the mother\'s biological/emotional state.',
+                        relational: 'If the infant experiences good-enough attunement, C₀ forms a healthy, cohesive core. Neglect leads to undigested trauma.',
+                        example: 'Phenomenological: The nine-month-old "pre-birth" state of being.'
+                    }
+                ]
+            }
+        };
+
+        const functionalData = {
+            parent: { label: 'Functional Parent', nodes: [{ id: 'sp', code: 'SP', name: 'Structuring', desc: 'Positive: instructive, firm. Negative: Critical, bossy, or punitive.' }, { id: 'np', code: 'NP', name: 'Nurturing', desc: 'Positive: supportive and caring. Negative: Smothering or "marshmallowing".' }]},
+            adult: { label: 'Functional Adult', nodes: [{ id: 'a_func', code: 'A', name: 'Adult', desc: 'Logical fact-gathering and reality assessment. Negative: Aloof or mechanical.' }]},
+            child: { label: 'Functional Child', nodes: [{ id: 'ac', code: 'AC', name: 'Adapted', desc: 'Moulding to demands. Positive: Healthy cooperation. Negative: Over-adaptation.' }, { id: 'nc', code: 'NC', name: 'Natural', desc: 'Spontaneity, authenticity, and joy. Negative: Reckless or egocentric.' }]}
+        };
+
+        function setView(view) {
+            currentView = view;
+            document.getElementById('btn-structural').classList.toggle('active', view === 'structural');
+            document.getElementById('btn-functional').classList.toggle('active', view === 'functional');
+            document.getElementById('view-title').innerText = view === 'structural' ? 'Structural Depth Analysis' : 'Functional Behavioural Model';
+            renderMainStack();
+        }
+
+        function renderMainStack() {
+            const stack = document.getElementById('main-ego-stack');
+            const labels = currentView === 'structural' ? { p: 'Introjected', a: 'Logical', c: 'Archaic' } : { p: 'Parental', a: 'Rational', c: 'Authentic' };
+            stack.innerHTML = `
+                <article class="ego-circle group" onclick="openImmersive('parent')">
+                    <div class="flex flex-col items-center">
+                        <span class="meta-label text-[8px] opacity-40 group-hover:opacity-100 mb-1 text-center">${labels.p}</span>
+                        <span class="text-4xl font-light">P<sub>2</sub></span>
+                    </div>
+                </article>
+                <div class="structural-line"></div>
+                <article class="ego-circle adult-node group" onclick="openImmersive('adult')">
+                    <div class="flex flex-col items-center">
+                        <span class="meta-label text-[8px] opacity-40 group-hover:opacity-100 mb-1 text-center">${labels.a}</span>
+                        <span class="text-4xl">A<sub>2</sub></span>
+                    </div>
+                </article>
+                <div class="structural-line"></div>
+                <article class="ego-circle group" onclick="openImmersive('child')">
+                    <div class="flex flex-col items-center">
+                        <span class="meta-label text-[8px] opacity-40 group-hover:opacity-100 mb-1 text-center">${labels.c}</span>
+                        <span class="text-4xl font-light">C<sub>2</sub></span>
+                    </div>
+                </article>
+            `;
+        }
+
+        function openImmersive(type) {
+            const data = currentView === 'structural' ? (structuralData[type] || structuralData.noughts) : functionalData[type];
+            document.getElementById('body-root').classList.add('panel-active');
+            document.getElementById('immersive-layer').classList.add('active');
+
+            document.getElementById('immersive-header').innerHTML = `
+                <div class="meta-label text-monolith/60 mb-2 uppercase tracking-[0.5em] text-left">${data.label}</div>
+                <h2 id="immersive-header-title" class="serif-display text-4xl text-white text-left">The Inner Structure.</h2>
+            `;
+
+            let html = ``;
+            data.nodes.forEach((node, index) => {
+                const isInteractive = currentView === 'structural';
+                html += `
+                    <div class="flex flex-col w-full mb-8 last:mb-0">
+                        <button class="flex items-center group w-full text-left ${isInteractive ? 'cursor-pointer' : ''}" onclick="${isInteractive ? `event.stopPropagation(); showDetail('${type}', '${index}')` : ''}">
+                            <div class="inner-node text-2xl font-light transition-all mr-12 ${node.special || ''}">
+                                ${node.code}
+                            </div>
+                            <div class="flex flex-col items-start">
+                                <div class="meta-label text-[11px] text-white/40 mb-2 tracking-[0.3em] group-hover:text-monolith transition-colors">${node.name}</div>
+                                <p class="text-ash/60 text-[15px] leading-relaxed font-light max-w-[550px]">
+                                    ${node.desc}
+                                </p>
+                            </div>
+                        </button>
+                        ${index < data.nodes.length - 1 ? '<div class="structural-line ml-[70px] my-4"></div>' : ''}
+                    </div>
+                `;
+            });
+
+            document.getElementById('immersive-content').innerHTML = html;
+            document.getElementById('immersive-layer').scrollTop = 0;
+        }
+
+        function showDetail(type, index) {
+            const dataSet = structuralData[type] || structuralData.noughts;
+            const node = dataSet.nodes[index];
+            document.getElementById('detail-meta').innerText = `Analysis / ${node.code}`;
+            document.getElementById('detail-title').innerText = node.thirdTitle;
+            document.getElementById('detail-body').innerText = node.thirdBody;
+            document.getElementById('detail-relational').innerText = node.relational;
+            document.getElementById('detail-example').innerText = node.example;
+
+            const actionContainer = document.getElementById('detail-action-container');
+            if (node.actionTarget) {
+                actionContainer.classList.remove('hidden');
+                document.getElementById('detail-action-btn').innerText = node.actionLabel;
+                document.getElementById('detail-action-btn').onclick = () => {
+                    closeDetail();
+                    openImmersive(node.actionTarget);
+                };
+            } else {
+                actionContainer.classList.add('hidden');
+            }
+
+            document.getElementById('detail-overlay').classList.add('active');
+            document.getElementById('body-root').classList.add('detail-active');
+        }
+
+        function closeDetail() {
+            document.getElementById('detail-overlay').classList.remove('active');
+            document.getElementById('body-root').classList.remove('detail-active');
+        }
+
+        function closeImmersive() {
+            document.getElementById('body-root').classList.remove('panel-active');
+            document.getElementById('immersive-layer').classList.remove('active');
+        }
+
+        window.onload = renderMainStack;
+        document.addEventListener('keydown', (e) => { 
+            if (e.key === 'Escape') {
+                if (document.getElementById('detail-overlay').classList.contains('active')) closeDetail();
+                else closeImmersive();
+            }
+        });
+    </script>
+</body>
+</html>
