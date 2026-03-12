@@ -393,50 +393,54 @@
     </nav>
 
     <!-- Map Layer -->
-    <section id="immersive-layer">
+    <section id="immersive-layer" onclick="closeImmersive()">
         <button onclick="closeImmersive()" class="fixed top-8 md:top-12 left-6 md:left-12 meta-label hover:text-white transition-colors flex items-center opacity-40 hover:opacity-100 z-[110]" aria-label="Close Map">
             <span class="mr-3 text-lg">←</span> Close Map
         </button>
 
         <div class="inner-node-container">
-            <header id="immersive-header" class="mb-16 md:mb-24 w-full"></header>
+            <header id="immersive-header" class="mb-16 md:mb-24 w-full" onclick="event.stopPropagation()"></header>
             <div id="immersive-content" class="flex flex-col items-start w-full"></div>
         </div>
     </section>
 
     <!-- Deep Perspective Overlay -->
     <div id="detail-overlay" onclick="closeDetail()" role="dialog" aria-modal="true">
-        <div class="detail-scroll" onclick="event.stopPropagation()">
-            <div id="detail-meta" class="meta-label text-monolith mb-4"></div>
-            <h3 id="detail-title" class="serif-display text-4xl md:text-5xl text-white mb-8"></h3>
+        <div class="detail-scroll">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                <section>
-                    <div class="meta-label text-white/40 mb-4 tracking-[0.4em]">Theoretical Function</div>
-                    <p id="detail-body" class="text-ash/90 text-[14px] md:text-[15px] leading-relaxed font-light"></p>
-                </section>
-                <section>
-                    <!-- Dynamically updated heading based on view -->
-                    <div id="heading-relational" class="meta-label text-white/40 mb-4 tracking-[0.4em]">Relational & Biological Perspective</div>
-                    <p id="detail-relational" class="text-ash/70 text-[13px] md:text-[14px] leading-relaxed font-light italic mb-6"></p>
-                    
-                    <div class="border-t border-white/10 pt-6">
+            <div onclick="event.stopPropagation()">
+                <div id="detail-meta" class="meta-label text-monolith mb-4"></div>
+                <h3 id="detail-title" class="serif-display text-4xl md:text-5xl text-white mb-8"></h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    <section>
+                        <div class="meta-label text-white/40 mb-4 tracking-[0.4em]">Theoretical Function</div>
+                        <p id="detail-body" class="text-ash/90 text-[14px] md:text-[15px] leading-relaxed font-light"></p>
+                    </section>
+                    <section>
                         <!-- Dynamically updated heading based on view -->
-                        <div id="heading-example" class="meta-label text-white/40 mb-4 tracking-[0.4em]">Phenomenological Reality</div>
-                        <p id="detail-example" class="text-ash/60 text-[12px] md:text-[13px] font-light leading-relaxed"></p>
-                    </div>
+                        <div id="heading-relational" class="meta-label text-white/40 mb-4 tracking-[0.4em]">Relational & Biological Perspective</div>
+                        <p id="detail-relational" class="text-ash/70 text-[13px] md:text-[14px] leading-relaxed font-light italic mb-6"></p>
+                        
+                        <div class="border-t border-white/10 pt-6">
+                            <!-- Dynamically updated heading based on view -->
+                            <div id="heading-example" class="meta-label text-white/40 mb-4 tracking-[0.4em]">Phenomenological Reality</div>
+                            <p id="detail-example" class="text-ash/60 text-[12px] md:text-[13px] font-light leading-relaxed"></p>
+                        </div>
 
-                    <div id="detail-action-container" class="mt-8 pt-6 border-t border-white/5 hidden">
-                        <button id="detail-action-btn" class="meta-label pulse-white transition-colors">
-                            Drill Down to Foundation →
-                        </button>
-                    </div>
-                </section>
+                        <div id="detail-action-container" class="mt-8 pt-6 border-t border-white/5 hidden">
+                            <button id="detail-action-btn" class="meta-label pulse-white transition-colors">
+                                Drill Down to Foundation →
+                            </button>
+                        </div>
+                    </section>
+                </div>
             </div>
 
-            <div class="mt-12 md:mt-16 border-t border-white/5 pt-8 pb-12 md:pb-0">
-                <span class="meta-label text-[10px] pulse-hint-text">Click outside to return to map</span>
+            <div class="mt-12 md:mt-16 border-t border-white/5 pt-8 pb-12 md:pb-0 cursor-pointer text-center" onclick="closeDetail()">
+                <span class="meta-label text-[10px] pulse-hint-text">Tap outside to return to map</span>
             </div>
+
         </div>
     </div>
 
