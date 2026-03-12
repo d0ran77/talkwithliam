@@ -65,7 +65,6 @@
             color: var(--ash);
             font-family: 'Inter', sans-serif;
             overflow: hidden; 
-            height: 100vh;
         }
 
         .serif-display {
@@ -94,30 +93,38 @@
             mix-blend-mode: soft-light;
         }
 
+        /* Scaled Ego Circles for Mobile */
         .ego-circle {
-            width: 160px;
-            height: 160px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid rgba(232, 231, 231, 0.1);
+            border: 1px solid rgba(232, 231, 231, 0.25);
             background: transparent;
             position: relative;
         }
 
+        @media (min-width: 768px) {
+            .ego-circle {
+                width: 160px;
+                height: 160px;
+            }
+        }
+
         .ego-circle:hover {
             border-color: var(--monolith);
-            background: rgba(232, 231, 231, 0.03);
+            background: rgba(232, 231, 231, 0.05);
             transform: scale(1.02);
         }
 
         .adult-node {
             font-weight: 900;
             border-width: 2px;
-            border-color: rgba(232, 231, 231, 0.3);
+            border-color: rgba(232, 231, 231, 0.4);
         }
 
         #immersive-layer {
@@ -134,7 +141,13 @@
             pointer-events: none;
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             overflow-y: auto;
-            padding: 12rem 2rem 8rem 2rem;
+            padding: 8rem 2rem 8rem 2rem;
+        }
+
+        @media (min-width: 768px) {
+            #immersive-layer {
+                padding: 12rem 2rem 8rem 2rem;
+            }
         }
 
         #immersive-layer.active {
@@ -157,10 +170,10 @@
         }
 
         .inner-node {
-            width: 140px;
-            height: 140px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            border: 1px solid rgba(232, 231, 231, 0.15);
+            border: 1px solid rgba(232, 231, 231, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -170,6 +183,13 @@
             background: rgba(18, 18, 18, 0.5);
         }
 
+        @media (min-width: 768px) {
+            .inner-node {
+                width: 140px;
+                height: 140px;
+            }
+        }
+
         .inner-node:hover {
             border-color: var(--monolith);
             color: var(--monolith);
@@ -177,11 +197,18 @@
             transform: scale(1.05);
         }
 
+        /* Scaled Structural Line for Mobile */
         .structural-line {
             width: 1px;
-            height: 40px;
-            background: rgba(232, 231, 231, 0.1);
+            height: 25px;
+            background: rgba(232, 231, 231, 0.25);
             flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .structural-line {
+                height: 40px;
+            }
         }
 
         .electrode {
@@ -215,15 +242,22 @@
             background: var(--void);
             z-index: 50;
             padding: 0 12px;
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
         .toggle-btn {
-            padding: 24px 40px;
+            padding: 24px 30px;
             position: relative;
             cursor: pointer;
             transition: all 0.4s;
             opacity: 0.2;
             color: var(--ash);
+        }
+
+        @media (min-width: 768px) {
+            .toggle-btn {
+                padding: 24px 40px;
+            }
         }
 
         .toggle-btn:hover { opacity: 0.5; }
@@ -250,7 +284,13 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.6s ease;
-            padding: 4rem;
+            padding: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            #detail-overlay {
+                padding: 4rem;
+            }
         }
 
         #detail-overlay.active {
@@ -263,7 +303,13 @@
             overflow-y: auto;
             width: 100%;
             max-width: 60rem;
-            padding-right: 2rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .detail-scroll {
+                padding-right: 2rem;
+            }
         }
 
         body.detail-active #immersive-layer {
@@ -283,18 +329,22 @@
         <rect width="100%" height="100%" filter="url(#noiseFilter)" />
     </svg>
 
-    <div class="content-blur-target min-h-screen flex flex-col">
-        <header class="pt-24 pb-8 px-12 max-w-4xl mx-auto text-center" role="banner">
-            <nav class="mb-12" aria-label="Main Navigation">
-                <a href="/" class="meta-label opacity-40 hover:opacity-100 transition-opacity">← Back to Home</a>
+    <!-- h-[100dvh] ensures it scales perfectly to mobile screens avoiding URL bar issues -->
+    <div class="content-blur-target h-[100dvh] flex flex-col justify-between">
+        
+        <!-- Header pulled up slightly on mobile -->
+        <header class="pt-12 md:pt-24 pb-4 md:pb-8 px-6 md:px-12 max-w-4xl mx-auto text-center shrink-0" role="banner">
+            <nav class="mb-6 md:mb-12" aria-label="Main Navigation">
+                <a href="index.html" class="meta-label opacity-40 hover:opacity-100 transition-opacity">← Back to Home</a>
             </nav>
-            <h1 id="view-title" class="meta-label text-white/20 tracking-[0.6em]">Structural Depth Analysis</h1>
+            <h1 id="view-title" class="meta-label text-white/20 tracking-[0.4em] md:tracking-[0.6em]">Structural Depth Analysis</h1>
         </header>
 
-        <main id="main-ego-stack" class="flex-grow flex flex-col items-center justify-center -mb-24" role="main"></main>
+        <main id="main-ego-stack" class="flex-grow flex flex-col items-center justify-center shrink-0" role="main"></main>
 
-        <footer class="py-32 px-12 text-center" role="contentinfo">
-            <div class="meta-label opacity-10 tracking-[0.8em]">Awareness — Spontaneity — Intimacy</div>
+        <!-- Footer pushed safely above the toggle bar -->
+        <footer class="py-6 md:py-20 px-6 md:px-12 text-center pb-28 md:pb-32 shrink-0" role="contentinfo">
+            <div class="meta-label opacity-10 tracking-[0.3em] md:tracking-[0.8em]">Awareness — Spontaneity — Intimacy</div>
         </footer>
     </div>
 
@@ -306,12 +356,12 @@
 
     <!-- Map Layer -->
     <section id="immersive-layer">
-        <button onclick="closeImmersive()" class="fixed top-12 left-12 meta-label hover:text-white transition-colors flex items-center opacity-40 hover:opacity-100 z-[110]" aria-label="Close Map">
+        <button onclick="closeImmersive()" class="fixed top-8 md:top-12 left-6 md:left-12 meta-label hover:text-white transition-colors flex items-center opacity-40 hover:opacity-100 z-[110]" aria-label="Close Map">
             <span class="mr-3 text-lg">←</span> Close Map
         </button>
 
         <div class="inner-node-container">
-            <header id="immersive-header" class="mb-24 w-full"></header>
+            <header id="immersive-header" class="mb-16 md:mb-24 w-full"></header>
             <div id="immersive-content" class="flex flex-col items-start w-full"></div>
         </div>
     </section>
@@ -320,20 +370,20 @@
     <div id="detail-overlay" onclick="closeDetail()" role="dialog" aria-modal="true">
         <div class="detail-scroll" onclick="event.stopPropagation()">
             <div id="detail-meta" class="meta-label text-monolith mb-4"></div>
-            <h3 id="detail-title" class="serif-display text-5xl text-white mb-8"></h3>
+            <h3 id="detail-title" class="serif-display text-4xl md:text-5xl text-white mb-8"></h3>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                 <section>
-                    <div class="meta-label text-white/20 mb-4 tracking-[0.4em]">Theoretical Function</div>
-                    <p id="detail-body" class="text-ash/70 text-[15px] leading-relaxed font-light"></p>
+                    <div class="meta-label text-white/40 mb-4 tracking-[0.4em]">Theoretical Function</div>
+                    <p id="detail-body" class="text-ash/90 text-[14px] md:text-[15px] leading-relaxed font-light"></p>
                 </section>
                 <section>
-                    <div class="meta-label text-white/20 mb-4 tracking-[0.4em]">Relational & Biological Perspective</div>
-                    <p id="detail-relational" class="text-ash/50 text-[14px] leading-relaxed font-light italic mb-6"></p>
+                    <div class="meta-label text-white/40 mb-4 tracking-[0.4em]">Relational & Biological Perspective</div>
+                    <p id="detail-relational" class="text-ash/70 text-[13px] md:text-[14px] leading-relaxed font-light italic mb-6"></p>
                     
                     <div class="border-t border-white/10 pt-6">
-                        <div class="meta-label text-white/20 mb-4 tracking-[0.4em]">Phenomenological Reality</div>
-                        <p id="detail-example" class="text-ash/40 text-[13px] font-light leading-relaxed"></p>
+                        <div class="meta-label text-white/40 mb-4 tracking-[0.4em]">Phenomenological Reality</div>
+                        <p id="detail-example" class="text-ash/60 text-[12px] md:text-[13px] font-light leading-relaxed"></p>
                     </div>
 
                     <div id="detail-action-container" class="mt-8 pt-6 border-t border-white/5 hidden">
@@ -344,7 +394,7 @@
                 </section>
             </div>
 
-            <div class="mt-16 border-t border-white/5 pt-8">
+            <div class="mt-12 md:mt-16 border-t border-white/5 pt-8 pb-12 md:pb-0">
                 <span class="meta-label text-[8px] opacity-20">Click outside to return to map</span>
             </div>
         </div>
@@ -481,22 +531,22 @@
             stack.innerHTML = `
                 <article class="ego-circle group" onclick="openImmersive('parent')">
                     <div class="flex flex-col items-center">
-                        <span class="meta-label text-[8px] opacity-40 group-hover:opacity-100 mb-1 text-center">${labels.p}</span>
-                        <span class="text-4xl font-light">P<sub>2</sub></span>
+                        <span class="meta-label text-[8px] opacity-60 group-hover:opacity-100 mb-1 text-center">${labels.p}</span>
+                        <span class="text-3xl md:text-4xl text-white">P<sub>2</sub></span>
                     </div>
                 </article>
                 <div class="structural-line"></div>
                 <article class="ego-circle adult-node group" onclick="openImmersive('adult')">
                     <div class="flex flex-col items-center">
-                        <span class="meta-label text-[8px] opacity-40 group-hover:opacity-100 mb-1 text-center">${labels.a}</span>
-                        <span class="text-4xl">A<sub>2</sub></span>
+                        <span class="meta-label text-[8px] opacity-60 group-hover:opacity-100 mb-1 text-center">${labels.a}</span>
+                        <span class="text-3xl md:text-4xl text-white">A<sub>2</sub></span>
                     </div>
                 </article>
                 <div class="structural-line"></div>
                 <article class="ego-circle group" onclick="openImmersive('child')">
                     <div class="flex flex-col items-center">
-                        <span class="meta-label text-[8px] opacity-40 group-hover:opacity-100 mb-1 text-center">${labels.c}</span>
-                        <span class="text-4xl font-light">C<sub>2</sub></span>
+                        <span class="meta-label text-[8px] opacity-60 group-hover:opacity-100 mb-1 text-center">${labels.c}</span>
+                        <span class="text-3xl md:text-4xl text-white">C<sub>2</sub></span>
                     </div>
                 </article>
             `;
@@ -508,27 +558,27 @@
             document.getElementById('immersive-layer').classList.add('active');
 
             document.getElementById('immersive-header').innerHTML = `
-                <div class="meta-label text-monolith/60 mb-2 uppercase tracking-[0.5em] text-left">${data.label}</div>
-                <h2 id="immersive-header-title" class="serif-display text-4xl text-white text-left">The Inner Structure.</h2>
+                <div class="meta-label text-monolith/80 mb-2 uppercase tracking-[0.5em] text-left">${data.label}</div>
+                <h2 id="immersive-header-title" class="serif-display text-3xl md:text-4xl text-white text-left">Structural Analysis.</h2>
             `;
 
             let html = ``;
             data.nodes.forEach((node, index) => {
                 const isInteractive = currentView === 'structural';
                 html += `
-                    <div class="flex flex-col w-full mb-8 last:mb-0">
+                    <div class="flex flex-col w-full mb-6 md:mb-8 last:mb-0">
                         <button class="flex items-center group w-full text-left ${isInteractive ? 'cursor-pointer' : ''}" onclick="${isInteractive ? `event.stopPropagation(); showDetail('${type}', '${index}')` : ''}">
-                            <div class="inner-node text-2xl font-light transition-all mr-12 ${node.special || ''}">
+                            <div class="inner-node text-xl md:text-2xl text-white transition-all mr-6 md:mr-12 ${node.special || ''}">
                                 ${node.code}
                             </div>
-                            <div class="flex flex-col items-start">
-                                <div class="meta-label text-[11px] text-white/40 mb-2 tracking-[0.3em] group-hover:text-monolith transition-colors">${node.name}</div>
-                                <p class="text-ash/60 text-[15px] leading-relaxed font-light max-w-[550px]">
+                            <div class="flex flex-col items-start pr-4">
+                                <div class="meta-label text-[9px] md:text-[11px] text-white/60 mb-2 tracking-[0.3em] group-hover:text-monolith transition-colors">${node.name}</div>
+                                <p class="text-ash/80 text-[13px] md:text-[15px] leading-relaxed font-light max-w-[550px]">
                                     ${node.desc}
                                 </p>
                             </div>
                         </button>
-                        ${index < data.nodes.length - 1 ? '<div class="structural-line ml-[70px] my-4"></div>' : ''}
+                        ${index < data.nodes.length - 1 ? '<div class="structural-line ml-[55px] md:ml-[70px] my-3 md:my-4"></div>' : ''}
                     </div>
                 `;
             });
