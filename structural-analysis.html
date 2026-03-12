@@ -93,38 +93,56 @@
             mix-blend-mode: soft-light;
         }
 
-        /* Scaled Ego Circles for Mobile */
-        .ego-circle {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
+        /* Magnetic Wrapper for Interactions */
+        .ego-magnetic-wrapper {
+            width: 145px;
+            height: 145px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid rgba(232, 231, 231, 0.25);
-            background: transparent;
             position: relative;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @media (min-width: 768px) {
-            .ego-circle {
+            .ego-magnetic-wrapper {
                 width: 160px;
                 height: 160px;
             }
         }
 
-        .ego-circle:hover {
-            border-color: var(--monolith);
-            background: rgba(232, 231, 231, 0.05);
-            transform: scale(1.02);
+        /* The Visible Glass Circle */
+        .ego-glass {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Glassmorphism Effect */
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
 
-        .adult-node {
+        .ego-magnetic-wrapper:hover .ego-glass {
+            border-color: rgba(242, 141, 53, 0.5);
+            background: rgba(242, 141, 53, 0.05);
+            transform: scale(1.05) !important;
+            box-shadow: 0 8px 32px 0 rgba(242, 141, 53, 0.15);
+            animation-play-state: paused;
+        }
+
+        .adult-node .ego-glass {
             font-weight: 900;
-            border-width: 2px;
-            border-color: rgba(232, 231, 231, 0.4);
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.06);
         }
 
         #immersive-layer {
@@ -177,10 +195,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
             flex-shrink: 0;
             background: rgba(18, 18, 18, 0.5);
+            position: relative;
         }
 
         @media (min-width: 768px) {
@@ -194,31 +213,53 @@
             border-color: var(--monolith);
             color: var(--monolith);
             background: rgba(242, 141, 53, 0.05);
-            transform: scale(1.05);
+            transform: scale(1.05) !important;
+            animation-play-state: paused;
         }
 
-        /* Scaled Structural Line for Mobile */
+        /* Scaled Structural Line for Mobile Main Stack */
         .structural-line {
             width: 1px;
-            height: 25px;
+            height: 20px;
             background: rgba(232, 231, 231, 0.25);
             flex-shrink: 0;
         }
 
         @media (min-width: 768px) {
             .structural-line {
-                height: 40px;
+                height: 35px;
             }
         }
 
         .electrode {
             border-style: dashed;
-            animation: pulse-op 3s infinite;
         }
 
-        @keyframes pulse-op {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; border-color: var(--monolith); }
+        /* Subtle Breathing Scale for Circles */
+        @keyframes breathe-scale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        
+        .breathe-1 { animation: breathe-scale 5s ease-in-out infinite; }
+        .breathe-2 { animation: breathe-scale 5s ease-in-out infinite -1.6s; }
+        .breathe-3 { animation: breathe-scale 5s ease-in-out infinite -3.2s; }
+
+        /* Pulsing White Effects for Links & Hints */
+        @keyframes pulse-text-white {
+            0%, 100% { color: var(--monolith); text-shadow: none; opacity: 0.8; }
+            50% { color: #ffffff; text-shadow: 0 0 12px rgba(255,255,255,0.6); opacity: 1; }
+        }
+        .pulse-white {
+            animation: pulse-text-white 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse-hint {
+            0%, 100% { opacity: 0.3; color: var(--ash); }
+            50% { opacity: 0.8; color: #ffffff; }
+        }
+        .pulse-hint-text {
+            animation: pulse-hint 4s infinite ease-in-out;
         }
 
         .content-blur-target {
@@ -329,22 +370,19 @@
         <rect width="100%" height="100%" filter="url(#noiseFilter)" />
     </svg>
 
-    <!-- h-[100dvh] ensures it scales perfectly to mobile screens avoiding URL bar issues -->
     <div class="content-blur-target h-[100dvh] flex flex-col justify-between">
         
-        <!-- Header pulled up slightly on mobile -->
         <header class="pt-12 md:pt-24 pb-4 md:pb-8 px-6 md:px-12 max-w-4xl mx-auto text-center shrink-0" role="banner">
             <nav class="mb-6 md:mb-12" aria-label="Main Navigation">
                 <a href="index.html" class="meta-label opacity-40 hover:opacity-100 transition-opacity">← Back to Home</a>
             </nav>
-            <h1 id="view-title" class="meta-label text-white/20 tracking-[0.4em] md:tracking-[0.6em]">Structural Depth Analysis</h1>
+            <h1 id="view-title" class="meta-label text-white/20 tracking-[0.4em] md:tracking-[0.6em]">Structural Analysis</h1>
         </header>
 
         <main id="main-ego-stack" class="flex-grow flex flex-col items-center justify-center shrink-0" role="main"></main>
 
-        <!-- Footer pushed safely above the toggle bar -->
         <footer class="py-6 md:py-20 px-6 md:px-12 text-center pb-28 md:pb-32 shrink-0" role="contentinfo">
-            <div class="meta-label opacity-10 tracking-[0.3em] md:tracking-[0.8em]">Awareness — Spontaneity — Intimacy</div>
+            <div class="meta-label opacity-40 text-white tracking-[0.3em] md:tracking-[0.8em]">Awareness — Spontaneity — Intimacy</div>
         </footer>
     </div>
 
@@ -378,16 +416,18 @@
                     <p id="detail-body" class="text-ash/90 text-[14px] md:text-[15px] leading-relaxed font-light"></p>
                 </section>
                 <section>
-                    <div class="meta-label text-white/40 mb-4 tracking-[0.4em]">Relational & Biological Perspective</div>
+                    <!-- Dynamically updated heading based on view -->
+                    <div id="heading-relational" class="meta-label text-white/40 mb-4 tracking-[0.4em]">Relational & Biological Perspective</div>
                     <p id="detail-relational" class="text-ash/70 text-[13px] md:text-[14px] leading-relaxed font-light italic mb-6"></p>
                     
                     <div class="border-t border-white/10 pt-6">
-                        <div class="meta-label text-white/40 mb-4 tracking-[0.4em]">Phenomenological Reality</div>
+                        <!-- Dynamically updated heading based on view -->
+                        <div id="heading-example" class="meta-label text-white/40 mb-4 tracking-[0.4em]">Phenomenological Reality</div>
                         <p id="detail-example" class="text-ash/60 text-[12px] md:text-[13px] font-light leading-relaxed"></p>
                     </div>
 
                     <div id="detail-action-container" class="mt-8 pt-6 border-t border-white/5 hidden">
-                        <button id="detail-action-btn" class="meta-label text-monolith hover:text-white transition-colors">
+                        <button id="detail-action-btn" class="meta-label pulse-white transition-colors">
                             Drill Down to Foundation →
                         </button>
                     </div>
@@ -395,7 +435,7 @@
             </div>
 
             <div class="mt-12 md:mt-16 border-t border-white/5 pt-8 pb-12 md:pb-0">
-                <span class="meta-label text-[8px] opacity-20">Click outside to return to map</span>
+                <span class="meta-label text-[10px] pulse-hint-text">Click outside to return to map</span>
             </div>
         </div>
     </div>
@@ -413,7 +453,7 @@
                         thirdTitle: 'Transgenerational Archive',
                         thirdBody: 'P₃ stores directives passed down from grandparents and authority figures. Berne noted the "script scene" began generations ago, transmitted chemically and psychologically.',
                         relational: 'To make a lady, you start with the grandmother. P₃ represents the grandmother\'s profound influence. A grandmother carries the cellular precursor (the egg) of her grandchild within her own fetal womb.',
-                        example: 'Phenomenological: Rigidly enforcing an etiquette standard ("elbows off the table") as a direct replay of the maternal grandmother\'s authoritative voice.',
+                        example: 'Rigidly enforcing an etiquette standard ("elbows off the table") as a direct replay of the maternal grandmother\'s authoritative voice.',
                         actionLabel: 'Trace to Biological Precursor (P₀)',
                         actionTarget: 'noughts'
                     },
@@ -423,7 +463,7 @@
                         thirdTitle: 'Copied Logic',
                         thirdBody: 'A₃ contains claims about reality heard and subsequently copied. These internalised statements are often treated as absolute facts without the capacity for objective testing.',
                         relational: 'These introjects form the basis of a person\'s initial worldview. They are the "taught" version of facts registered before motility and independent data-gathering (A₂).',
-                        example: 'Phenomenological: Confidently passing on superstitions as objective facts because they were stated as such by an authority figure.'
+                        example: 'Confidently passing on superstitions as objective facts because they were stated as such by an authority figure.'
                     },
                     { 
                         id: 'c3', code: 'C₃', name: 'The Parent\'s Child', 
@@ -431,7 +471,7 @@
                         thirdTitle: 'Emotional Echoes',
                         thirdBody: 'Records the emotional reactions, frustrations, and childlike behaviours of caregivers. It contains the parent\'s own archaic distress and unresolved needs.',
                         relational: 'In daily life, we may grumble with the specific affect of our parent. Even if it looks "bossy," it is a direct recording of the father\'s or mother\'s internalised Child state.',
-                        example: 'Phenomenological: A manager snapping at staff with the exact tone his father used when frustrated, replaying an archaic father-child dynamic.'
+                        example: 'A manager snapping at staff with the exact tone his father used when frustrated, replaying an archaic father-child dynamic.'
                     }
                 ]
             },
@@ -458,7 +498,7 @@
                         thirdTitle: 'Spooky / Internal Object',
                         thirdBody: 'P₁ holds early directives coloured by the infant\'s magical thinking. Believing "If I do not finish my plate, Mummy will never come back" remains as a script constraint.',
                         relational: 'Known as the "Electrode" or "Pig Parent," it holds the reins of spontaneous impulses to keep the person safe from perceived parental anger through shame and fear.',
-                        example: 'Phenomenological: Internal pressure enforcing "Not OK" feelings based on primitive magical distortions of caregiver messages.'
+                        example: 'Internal pressure enforcing "Not OK" feelings based on primitive magical distortions of caregiver messages.'
                     },
                     { 
                         id: 'a1', code: 'A₁', name: 'The Little Professor', 
@@ -466,7 +506,7 @@
                         thirdTitle: 'Spunky / Intersubjective Self',
                         thirdBody: 'The infant\'s capacity for problem-solving. A₁ builds hypotheses and tests them—like a toddler watching a parent\'s reaction when reaching for a socket.',
                         relational: 'The center of human intuition. A₁ is split into A₁+ (the adapted false self) and A₁- (the shame-filled self carrying the sense of "falling from grace").',
-                        example: 'Phenomenological: An infant intuitively "reading" a caregiver\'s mind to sense if they are angry or truthfully present before language exists.'
+                        example: 'An infant intuitively "reading" a caregiver\'s mind to sense if they are angry or truthfully present before language exists.'
                     },
                     { 
                         id: 'c1', code: 'C₁', name: 'The Somatic Child', 
@@ -474,7 +514,7 @@
                         thirdTitle: 'Sleepy / The Core Self',
                         thirdBody: 'Present from birth. It holds the "emergent self" (C₀). A baby is already nine months old at birth, having undergone significant intrauterine patterning.',
                         relational: 'Houses earliest bodily-affective states and yearnings for mirroring. Raw somatic distress here triggers coping strategies in the higher levels.',
-                        example: 'Phenomenological: A visceral reaction to a lack of attunement. This raw distress is what forces A₁ to develop survival strategies.',
+                        example: 'A visceral reaction to a lack of attunement. This raw distress is what forces A₁ to develop survival strategies.',
                         actionLabel: 'Drill to Foundation (Level 0) →',
                         actionTarget: 'noughts'
                     }
@@ -489,7 +529,7 @@
                         thirdTitle: 'The Pre-Verbal Other',
                         thirdBody: 'P₀ represents the earliest sensed contact. It overlaps with C₀. Healthy attunement builds the foundation of a cohesive self.',
                         relational: 'Transgenerational biology: a grandmother carries the egg of her grandchild. Psychological destiny is tied to the ancestral environment.',
-                        example: 'Phenomenological: Pre-cognitive memories of being held, soothed, or neglected as an infant.'
+                        example: 'Pre-cognitive memories of being held, soothed, or neglected as an infant.'
                     },
                     { 
                         id: 'a0', code: 'A₀', name: 'Emergent Adult', 
@@ -497,7 +537,7 @@
                         thirdTitle: 'The Sensory Processor',
                         thirdBody: 'A₀ represents the earliest capacity to process data, such as a newborn turning its head toward the smell of milk.',
                         relational: 'The very first "Adult" function: translating somatic needs into environmental interactions.',
-                        example: 'Phenomenological: The pre-verbal "scientist" testing the temperature of the world.'
+                        example: 'The pre-verbal "scientist" testing the temperature of the world.'
                     },
                     { 
                         id: 'c0', code: 'C₀', name: 'Emergent Self', 
@@ -505,23 +545,75 @@
                         thirdTitle: 'The Somatic Womb',
                         thirdBody: 'The emergent self houses bodily-affective states. It is built through intrauterine patterning and the mother\'s biological/emotional state.',
                         relational: 'If the infant experiences good-enough attunement, C₀ forms a healthy, cohesive core. Neglect leads to undigested trauma.',
-                        example: 'Phenomenological: The nine-month-old "pre-birth" state of being.'
+                        example: 'The nine-month-old "pre-birth" state of being.'
                     }
                 ]
             }
         };
 
         const functionalData = {
-            parent: { label: 'Functional Parent', nodes: [{ id: 'sp', code: 'SP', name: 'Structuring', desc: 'Positive: instructive, firm. Negative: Critical, bossy, or punitive.' }, { id: 'np', code: 'NP', name: 'Nurturing', desc: 'Positive: supportive and caring. Negative: Smothering or "marshmallowing".' }]},
-            adult: { label: 'Functional Adult', nodes: [{ id: 'a_func', code: 'A', name: 'Adult', desc: 'Logical fact-gathering and reality assessment. Negative: Aloof or mechanical.' }]},
-            child: { label: 'Functional Child', nodes: [{ id: 'ac', code: 'AC', name: 'Adapted', desc: 'Moulding to demands. Positive: Healthy cooperation. Negative: Over-adaptation.' }, { id: 'nc', code: 'NC', name: 'Natural', desc: 'Spontaneity, authenticity, and joy. Negative: Reckless or egocentric.' }]}
+            parent: { 
+                label: 'Functional Parent Modes', 
+                nodes: [
+                    { 
+                        id: 'cp', code: 'CP', name: 'Controlling Parent', 
+                        desc: 'Focuses on boundary-setting and rules. Can manifest as constructive advice (positive) or punitive bossiness (negative).',
+                        thirdTitle: 'The Rule Maker',
+                        thirdBody: 'The Controlling (or Structuring) Parent encompasses behaviors related to guiding and enforcing rules. In its positive "Good-enough" form, it provides safe, constructive boundaries. In its negative "Inadequate" form, it becomes excessively bossy, critical, or punitive.',
+                        relational: 'Application: The X-Ray View (Intrapsychic Dialogue). The functional model maps out a person\'s internal conversations. Identifying an Inadequate Parent mode allows the individual to consciously replace the critical internal voice with a supportive, Good-enough Parent mode.',
+                        example: 'Firmly but calmly setting a boundary (Positive) vs. using a condescending tone and pointing a finger (Negative).'
+                    }, 
+                    { 
+                        id: 'np', code: 'NP', name: 'Nurturing Parent', 
+                        desc: 'Focuses on care and protection. Can manifest as genuine comforting (positive) or patronizing smothering (negative).',
+                        thirdTitle: 'The Caregiver',
+                        thirdBody: 'The Nurturing Parent provides support. Positively, it cares for someone when genuinely needed. Negatively, it can be smothering, patronizing, or doing things for others that they do not need, undermining their autonomy.',
+                        relational: 'Application: The Microscopic View (Interpersonal Transactions). By analyzing moment-to-moment transactions, individuals can see exactly which functional modes they are using, allowing them to experiment with alternative responses to break out of entrenched or disastrous communication loops.',
+                        example: 'Offering a warm hug when requested (Positive) vs. taking over a task someone is completely capable of doing themselves (Negative).'
+                    }
+                ]
+            },
+            adult: { 
+                label: 'Functional Adult Mode', 
+                nodes: [
+                    { 
+                        id: 'a_func', code: 'A', name: 'Adult Mode', 
+                        desc: 'Objective, rational, data-processing, and problem-solving behaviors of the here-and-now.',
+                        thirdTitle: 'The Processor',
+                        thirdBody: 'Often left undivided, this mode represents behavior that is an objective, problem-solving response to the present moment. It utilizes all of a person\'s grown-up resources, frequently likened to a "computer".',
+                        relational: 'Application: The Microscopic View. Highly effective for couples and relationship therapy. It allows clients to break out of tedious communication loops by consciously choosing a neutral, fact-based response.',
+                        example: 'Maintaining an even, steady tone of voice and open posture while asking clarifying questions during a conflict.'
+                    }
+                ]
+            },
+            child: { 
+                label: 'Functional Child Modes', 
+                nodes: [
+                    { 
+                        id: 'ac', code: 'AC', name: 'Adapted Child', 
+                        desc: 'Behaviors influenced by parental figures, ranging from polite compliance to rebellion and withdrawal.',
+                        thirdTitle: 'The Responder',
+                        thirdBody: 'The Adapted Child manifests behaviors influenced by parental figures. This includes not only polite compliance and obedience (positive), but also rebellion, defiance, sulking, and withdrawal (negative).',
+                        relational: 'Application: The Macroscopic View (Egograms). Developed by Jack Dusay, an Egogram visually represents the relative amount of time and psychic energy a person spends in each of the five functional modes.',
+                        example: 'Waiting your turn to speak (Positive) vs. crossing arms, pouting, or aggressively defying a simple instruction (Negative).'
+                    }, 
+                    { 
+                        id: 'nc', code: 'NC', name: 'Natural Child', 
+                        desc: 'The source of spontaneous expression, creativity, and playfulness. Can be positive or negatively egocentric.',
+                        thirdTitle: 'The Spontaneous Self',
+                        thirdBody: 'The Natural (or Free) Child is the source of autonomous, spontaneous expression, creativity, and energetic playfulness. In its negative form, it can also manifest as immature, ruthless, or self-indulgent egocentrism.',
+                        relational: 'Application: Energy Shifts (Constancy Hypothesis). To decrease a dysfunctional behavior, you intentionally invest energy into increasing a positive mode (like the Free Child). As the new mode grows, energy automatically drains from the unwanted one.',
+                        example: 'Laughing unselfconsciously at a joke (Positive) vs. reckless behavior with no regard for others\' boundaries or safety (Negative).'
+                    }
+                ]
+            }
         };
 
         function setView(view) {
             currentView = view;
             document.getElementById('btn-structural').classList.toggle('active', view === 'structural');
             document.getElementById('btn-functional').classList.toggle('active', view === 'functional');
-            document.getElementById('view-title').innerText = view === 'structural' ? 'Structural Depth Analysis' : 'Functional Behavioural Model';
+            document.getElementById('view-title').innerText = view === 'structural' ? 'Structural Analysis' : 'Functional Behavioural Model';
             renderMainStack();
         }
 
@@ -529,27 +621,41 @@
             const stack = document.getElementById('main-ego-stack');
             const labels = currentView === 'structural' ? { p: 'Introjected', a: 'Logical', c: 'Archaic' } : { p: 'Parental', a: 'Rational', c: 'Authentic' };
             stack.innerHTML = `
-                <article class="ego-circle group" onclick="openImmersive('parent')">
-                    <div class="flex flex-col items-center">
+                <article class="ego-magnetic-wrapper group" onclick="openImmersive('parent')">
+                    <div class="ego-glass breathe-1">
                         <span class="meta-label text-[8px] opacity-60 group-hover:opacity-100 mb-1 text-center">${labels.p}</span>
-                        <span class="text-3xl md:text-4xl text-white">P<sub>2</sub></span>
+                        <span class="text-4xl md:text-5xl text-white">P<sub class="text-xl md:text-2xl">2</sub></span>
                     </div>
                 </article>
-                <div class="structural-line"></div>
-                <article class="ego-circle adult-node group" onclick="openImmersive('adult')">
-                    <div class="flex flex-col items-center">
+                <div class="structural-line my-3 md:my-5"></div>
+                <article class="ego-magnetic-wrapper adult-node group" onclick="openImmersive('adult')">
+                    <div class="ego-glass breathe-2">
                         <span class="meta-label text-[8px] opacity-60 group-hover:opacity-100 mb-1 text-center">${labels.a}</span>
-                        <span class="text-3xl md:text-4xl text-white">A<sub>2</sub></span>
+                        <span class="text-4xl md:text-5xl text-white">A<sub class="text-xl md:text-2xl">2</sub></span>
                     </div>
                 </article>
-                <div class="structural-line"></div>
-                <article class="ego-circle group" onclick="openImmersive('child')">
-                    <div class="flex flex-col items-center">
+                <div class="structural-line my-3 md:my-5"></div>
+                <article class="ego-magnetic-wrapper group" onclick="openImmersive('child')">
+                    <div class="ego-glass breathe-3">
                         <span class="meta-label text-[8px] opacity-60 group-hover:opacity-100 mb-1 text-center">${labels.c}</span>
-                        <span class="text-3xl md:text-4xl text-white">C<sub>2</sub></span>
+                        <span class="text-4xl md:text-5xl text-white">C<sub class="text-xl md:text-2xl">2</sub></span>
                     </div>
                 </article>
             `;
+
+            // Initialize Magnetic Interaction
+            const magnetics = document.querySelectorAll('.ego-magnetic-wrapper');
+            magnetics.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width / 2);
+                    const y = e.clientY - rect.top - (rect.height / 2);
+                    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = `translate(0px, 0px)`;
+                });
+            });
         }
 
         function openImmersive(type) {
@@ -559,45 +665,58 @@
 
             document.getElementById('immersive-header').innerHTML = `
                 <div class="meta-label text-monolith/80 mb-2 uppercase tracking-[0.5em] text-left">${data.label}</div>
-                <h2 id="immersive-header-title" class="serif-display text-3xl md:text-4xl text-white text-left">Structural Analysis.</h2>
+                <h2 id="immersive-header-title" class="serif-display text-3xl md:text-4xl text-white text-left mb-6">${currentView === 'structural' ? 'Structural Analysis.' : 'Functional Modes.'}</h2>
             `;
 
-            let html = ``;
+            let html = `<div class="flex flex-col w-full pb-12 pt-6">`;
             data.nodes.forEach((node, index) => {
-                const isInteractive = currentView === 'structural';
+                const delayClass = `breathe-${(index % 3) + 1}`;
+                const hasLine = index < data.nodes.length - 1;
+                
                 html += `
-                    <div class="flex flex-col w-full mb-6 md:mb-8 last:mb-0">
-                        <button class="flex items-center group w-full text-left ${isInteractive ? 'cursor-pointer' : ''}" onclick="${isInteractive ? `event.stopPropagation(); showDetail('${type}', '${index}')` : ''}">
-                            <div class="inner-node text-xl md:text-2xl text-white transition-all mr-6 md:mr-12 ${node.special || ''}">
+                    <div class="flex w-full group cursor-pointer" onclick="event.stopPropagation(); showDetail('${type}', '${index}')">
+                        
+                        <!-- Left Column: Circle & Line -->
+                        <div class="flex flex-col items-center mr-6 md:mr-12 shrink-0">
+                            <div class="inner-node text-xl md:text-2xl text-white transition-all ${node.special || ''} ${delayClass}">
                                 ${node.code}
                             </div>
-                            <div class="flex flex-col items-start pr-4">
-                                <div class="meta-label text-[9px] md:text-[11px] text-white/60 mb-2 tracking-[0.3em] group-hover:text-monolith transition-colors">${node.name}</div>
-                                <p class="text-ash/80 text-[13px] md:text-[15px] leading-relaxed font-light max-w-[550px]">
-                                    ${node.desc}
-                                </p>
-                            </div>
-                        </button>
-                        ${index < data.nodes.length - 1 ? '<div class="structural-line ml-[55px] md:ml-[70px] my-3 md:my-4"></div>' : ''}
+                            ${hasLine ? `<div class="w-[1px] flex-grow bg-[rgba(232,231,231,0.25)] my-2 md:my-4 min-h-[20px]"></div>` : ''}
+                        </div>
+                        
+                        <!-- Right Column: Text -->
+                        <div class="flex flex-col items-start pr-4 pt-2 md:pt-4 ${hasLine ? 'pb-8 md:pb-12' : ''}">
+                            <div class="meta-label text-[9px] md:text-[11px] text-white/60 mb-2 tracking-[0.3em] group-hover:text-monolith transition-colors">${node.name}</div>
+                            <p class="text-ash/80 text-[13px] md:text-[15px] leading-relaxed font-light max-w-[550px]">
+                                ${node.desc}
+                            </p>
+                        </div>
+
                     </div>
                 `;
             });
+            html += `</div>`;
 
             document.getElementById('immersive-content').innerHTML = html;
             document.getElementById('immersive-layer').scrollTop = 0;
         }
 
         function showDetail(type, index) {
-            const dataSet = structuralData[type] || structuralData.noughts;
+            const isStructural = currentView === 'structural';
+            const dataSet = isStructural ? (structuralData[type] || structuralData.noughts) : functionalData[type];
             const node = dataSet.nodes[index];
-            document.getElementById('detail-meta').innerText = `Analysis / ${node.code}`;
+            
+            document.getElementById('detail-meta').innerText = `${isStructural ? 'Structural' : 'Functional'} Analysis / ${node.code}`;
             document.getElementById('detail-title').innerText = node.thirdTitle;
             document.getElementById('detail-body').innerText = node.thirdBody;
             document.getElementById('detail-relational').innerText = node.relational;
             document.getElementById('detail-example').innerText = node.example;
 
+            document.getElementById('heading-relational').innerText = isStructural ? 'Relational & Biological Perspective' : 'Clinical Application';
+            document.getElementById('heading-example').innerText = isStructural ? 'Phenomenological Reality' : 'Observable Behavior';
+
             const actionContainer = document.getElementById('detail-action-container');
-            if (node.actionTarget) {
+            if (node.actionTarget && isStructural) {
                 actionContainer.classList.remove('hidden');
                 document.getElementById('detail-action-btn').innerText = node.actionLabel;
                 document.getElementById('detail-action-btn').onclick = () => {
