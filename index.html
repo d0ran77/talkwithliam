@@ -23,7 +23,6 @@
     <meta property="twitter:description" content="A quiet clarity and presence where there used to be noise. Professional psychotherapy practice based in Hull.">
     <meta property="twitter:image" content="https://talkwithliam.co.uk/preview-image.jpg">
 
-    <!-- Updated Favicon Tag for Google Search -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -36,7 +35,6 @@
         }
         body { background-color: #1a1a1a; }
         
-        /* Dynamic Ego-State Text Highlighting */
         ::selection { background-color: var(--sel-bg); color: var(--sel-text); }
         ::-moz-selection { background-color: var(--sel-bg); color: var(--sel-text); }
 
@@ -84,24 +82,20 @@
 
         @keyframes marquee { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
 
-        /* Menu Icon Styling */
         #menu-toggle { mix-blend-mode: difference; color: white; }
         #menu-toggle span { background-color: currentColor; }
     </style>
 </head>
 <body class="font-sans antialiased text-[#1a1a1a]">
 
-    <!-- Bulletproof App-Like Fade Overlay -->
-    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6">
-    </div>
+    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6"></div>
 
-    <!-- HAMBURGER MENU BUTTON -->
+    <!-- HAMBURGER MENU -->
     <button id="menu-toggle" class="fixed top-6 right-6 md:top-10 md:right-12 z-[110] flex flex-col justify-center items-center w-12 h-12 rounded-full hover:scale-105 active:scale-95 transition-transform" aria-label="Toggle Menu">
         <span class="block w-8 h-[2px] mb-2 transition-transform duration-500 origin-center" id="line1"></span>
         <span class="block w-8 h-[2px] transition-transform duration-500 origin-center" id="line2"></span>
     </button>
 
-    <!-- FULL-SCREEN MENU OVERLAY -->
     <div id="menu-overlay" class="fixed inset-0 bg-[#1a1a1a] text-[#e8e7e7] z-[100] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-700">
         <nav class="flex flex-col items-center gap-8 text-center">
             <a href="index.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter text-[#f28d35] hover:text-[#e8e7e7] transition-colors">Practice</a>
@@ -113,7 +107,6 @@
             <a href="faq.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">The Framework</a>
         </nav>
         
-        <!-- Menu Footer Links -->
         <div class="absolute bottom-12 flex flex-wrap justify-center gap-8 text-xs font-bold tracking-[0.2em] uppercase opacity-50 px-6">
             <a href="structural-analysis.html" class="transition-link hover:text-[#f28d35] hover:opacity-100 transition-all">Structural Analysis</a>
             <a href="support.html" class="transition-link hover:text-[#f28d35] hover:opacity-100 transition-all">Support</a>
@@ -130,12 +123,8 @@
                 We use minimal cookies to ensure this site works reliably and to understand how it's used. No invasive tracking. Read our <a href="privacy.html" class="underline hover:text-[#f28d35] transition-colors">Privacy Policy</a> for details.
             </div>
             <div class="flex gap-4 shrink-0 justify-center">
-                <button id="btn-decline-cookies" class="px-6 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border border-[#e8e7e7] border-opacity-20 hover:bg-[#e8e7e7] hover:bg-opacity-10 transition-all">
-                    Decline
-                </button>
-                <button id="btn-accept-cookies" class="px-6 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase bg-[#e8e7e7] text-[#1a1a1a] hover:scale-105 active:scale-95 transition-all">
-                    Accept
-                </button>
+                <button id="btn-decline-cookies" class="px-6 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border border-[#e8e7e7] border-opacity-20 hover:bg-[#e8e7e7] hover:bg-opacity-10 transition-all">Decline</button>
+                <button id="btn-accept-cookies" class="px-6 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase bg-[#e8e7e7] text-[#1a1a1a] hover:scale-105 active:scale-95 transition-all">Accept</button>
             </div>
         </div>
     </div>
@@ -143,21 +132,18 @@
     <main id="main-wrapper" class="relative z-10 w-full min-h-screen rounded-b-[3rem] lg:rounded-b-[4rem]" role="main">
         <div class="max-w-screen-2xl mx-auto px-6 md:px-12 lg:flex relative">
             
-            <!-- URGENT HELP LINK -->
             <div class="absolute top-8 left-6 md:top-12 md:left-12 z-50">
                 <a href="help.html" class="transition-link inline-block px-6 py-3 rounded-full bg-[#f28d35] text-[#1a1a1a] text-[10px] font-black tracking-[0.2em] uppercase shadow-lg shadow-[#f28d35]/20 transition-transform hover:scale-105 active:scale-95">
                     Urgent Help
                 </a>
             </div>
 
-            <!-- REPLACED: Removed h-screen and justify-between, adjusted padding -->
             <div class="lg:w-1/2 lg:sticky lg:top-0 pt-24 pb-16 lg:pt-24 lg:pb-32 flex flex-col justify-start z-10">
                 <header>
                     <div id="banner" class="inline-block mb-8 px-4 py-1.5 border border-[#1a1a1a] rounded-full text-[10px] font-bold tracking-[0.2em] uppercase opacity-60 transition-colors duration-700">
                         Placement Year • Not Accepting Private Clients
                     </div>
                     
-                    <!-- REPLACED: Made text slightly more adaptable on standard laptops (text-[7rem] for lg, [8rem] for xl) -->
                     <h1 id="brand" class="text-[14vw] lg:text-[7rem] xl:text-[8rem] font-black uppercase leading-[0.85] tracking-tighter mb-8 transition-all-slow">
                         Talk<br><span id="brand-with" class="transition-colors duration-500">With</span><br>Liam.
                     </h1>
@@ -200,12 +186,15 @@
 
         <div class="w-full border-t border-[#e8e7e7] border-opacity-10 px-6 pt-8 pb-28 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase opacity-60">
             <div class="flex flex-col md:flex-row items-center gap-6">
-                <!-- If the logo is dark text and disappears against the dark footer background, add the class "invert" next to "grayscale" below to make it white! -->
                 <a href="https://www.psychotherapy.org.uk/" target="_blank" rel="noopener noreferrer" aria-label="Verify UKCP Registration">
                     <img src="ukcp-logo.png" alt="UKCP Registered" class="h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
                 </a>
-                <div class="text-center md:text-left flex flex-wrap justify-center items-center gap-4">
+                <div class="text-center md:text-left flex flex-wrap justify-center items-center gap-4 md:gap-6">
                     <span>Hull, UK & Online</span>
+                    <span class="hidden md:block w-1 h-1 rounded-full bg-current opacity-30"></span>
+                    <a href="https://builtbyliam.uk" target="_blank" rel="noopener noreferrer" class="text-[#f28d35] hover:opacity-80 transition-opacity tracking-[0.4em] uppercase text-[10px] font-black">
+                        BUILT BY LIAM
+                    </a>
                 </div>
             </div>
             <div class="flex flex-wrap justify-center gap-6 md:gap-8">
@@ -217,7 +206,7 @@
         </div>
     </footer>
 
-    <!-- YOUR EGO STATE TOGGLE IS RIGHT HERE -->
+    <!-- EGO STATE TOGGLE -->
     <nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4">
         <div id="toggle-bg" class="backdrop-blur-xl bg-white bg-opacity-20 p-2 rounded-full border border-[#1a1a1a] shadow-2xl flex gap-1 transition-all">
             <button onclick="setState('parent')" id="btn-parent" class="magnetic-btn px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5">Parent</button>
@@ -227,17 +216,13 @@
     </nav>
 
     <script>
-        // --- COOKIE BANNER LOGIC ---
         document.addEventListener('DOMContentLoaded', () => {
             const cookieBanner = document.getElementById('cookie-banner');
             const acceptBtn = document.getElementById('btn-accept-cookies');
             const declineBtn = document.getElementById('btn-decline-cookies');
 
-            // Wait 1.5 seconds after page loads, then slide banner up if no choice was made
             if (!localStorage.getItem('cookieConsent')) {
-                setTimeout(() => {
-                    cookieBanner.classList.remove('translate-y-full');
-                }, 1500);
+                setTimeout(() => { cookieBanner.classList.remove('translate-y-full'); }, 1500);
             }
 
             const hideBanner = (consentValue) => {
@@ -310,7 +295,6 @@
                 }
             });
 
-            // Update marquee content based on state
             const itemsHtmlPrimary = s.items.map(item => `<div class="scroll-item visible"><h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">"${item}"</h2></div>`).join('');
             const itemsHtmlClone = s.items.map(item => `<div class="scroll-item visible" aria-hidden="true"><h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">"${item}"</h2></div>`).join('');
             
@@ -328,7 +312,6 @@
 
         setState('adult');
 
-        // Keyboard Shortcuts (P, A, C)
         document.addEventListener('keydown', (e) => {
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
             const key = e.key.toLowerCase();
@@ -337,7 +320,7 @@
             if (key === 'c') setState('child');
         });
 
-        // --- HAMBURGER MENU LOGIC ---
+        // Hamburger Menu
         const menuToggle = document.getElementById('menu-toggle');
         const menuOverlay = document.getElementById('menu-overlay');
         const line1 = document.getElementById('line1');
@@ -351,17 +334,17 @@
                 menuOverlay.classList.add('opacity-100', 'pointer-events-auto');
                 line1.style.transform = 'translateY(5px) rotate(45deg)';
                 line2.style.transform = 'translateY(-5px) rotate(-45deg)';
-                document.body.style.overflow = 'hidden'; // Lock background scrolling
+                document.body.style.overflow = 'hidden';
             } else {
                 menuOverlay.classList.remove('opacity-100', 'pointer-events-auto');
                 menuOverlay.classList.add('opacity-0', 'pointer-events-none');
                 line1.style.transform = 'translateY(0) rotate(0)';
                 line2.style.transform = 'translateY(0) rotate(0)';
-                document.body.style.overflow = ''; // Unlock scrolling
+                document.body.style.overflow = '';
             }
         });
 
-        // Magnetic Button Logic
+        // Magnetic Buttons
         const magneticBtns = document.querySelectorAll('.magnetic-btn');
         magneticBtns.forEach(btn => {
             btn.addEventListener('mousemove', (e) => {
@@ -378,8 +361,6 @@
         window.addEventListener('pageshow', () => {
             const overlay = document.getElementById('page-overlay');
             if(overlay) overlay.style.opacity = '0';
-            
-            // Failsafe: Ensure menu resets if user clicks "back" browser button
             if(menuOpen) menuToggle.click();
         });
 
@@ -388,24 +369,14 @@
             link.addEventListener('click', (e) => {
                 e.preventDefault(); 
                 const overlay = document.getElementById('page-overlay');
-                
-                if(overlay) {
-                    overlay.style.opacity = '1'; 
-                }
-                
-                setTimeout(() => {
-                    window.location.href = link.href; 
-                }, 500); 
+                if(overlay) overlay.style.opacity = '1'; 
+                setTimeout(() => { window.location.href = link.href; }, 500); 
             });
         });
 
         const originalTitle = document.title;
         document.addEventListener("visibilitychange", () => {
-            if (document.hidden) {
-                document.title = "Take your time...";
-            } else {
-                document.title = originalTitle;
-            }
+            document.title = document.hidden ? "Take your time..." : originalTitle;
         });
     </script>
 </body>

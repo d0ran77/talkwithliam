@@ -8,21 +8,6 @@
     <meta name="title" content="The Approach | Talk with Liam">
     <meta name="description" content="Demystifying Transactional Analysis. Understanding the Parent, Adult, and Child within us.">
     
-    <!-- Open Graph / Facebook / WhatsApp -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://talkwithliam.co.uk/approach.html">
-    <meta property="og:title" content="The Approach | Talk with Liam">
-    <meta property="og:description" content="Demystifying Transactional Analysis. Understanding the Parent, Adult, and Child within us.">
-    <meta property="og:image" content="https://talkwithliam.co.uk/preview-image.jpg">
-
-    <!-- Twitter / X -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://talkwithliam.co.uk/approach.html">
-    <meta property="twitter:title" content="The Approach | Talk with Liam">
-    <meta property="twitter:description" content="Demystifying Transactional Analysis. Understanding the Parent, Adult, and Child within us.">
-    <meta property="twitter:image" content="https://talkwithliam.co.uk/preview-image.jpg">
-    
-    <!-- Updated Favicon Tag for Google Search -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,40 +19,30 @@
             --sel-bg: rgba(150, 150, 150, 0.3);
             --sel-text: #1a1a1a;
         }
-        
         body { font-family: 'Inter', sans-serif; color: #1a1a1a; background-color: #e8e7e7; margin: 0; padding: 0; }
-        
         ::selection { background-color: var(--sel-bg); color: var(--sel-text); }
         ::-moz-selection { background-color: var(--sel-bg); color: var(--sel-text); }
-        
         .font-sans { font-family: 'Inter', sans-serif; }
         .font-serif { font-family: 'Fraunces', serif; }
-        
         .transition-all-slow { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
         
         #interactive-card {
             background-color: var(--card-bg);
             color: var(--card-text);
         }
-
-        /* Menu Icon Styling */
         #menu-toggle { mix-blend-mode: difference; color: white; }
         #menu-toggle span { background-color: currentColor; }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Bulletproof App-Like Fade Overlay -->
-    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6">
-    </div>
+    <div id="page-overlay" class="fixed inset-0 bg-[#1a1a1a] z-[9999] pointer-events-none transition-opacity duration-700 opacity-100 flex flex-col items-center justify-center px-6"></div>
 
-    <!-- HAMBURGER MENU BUTTON -->
     <button id="menu-toggle" class="fixed top-6 right-6 md:top-10 md:right-12 z-[110] flex flex-col justify-center items-center w-12 h-12 rounded-full hover:scale-105 active:scale-95 transition-transform" aria-label="Toggle Menu">
         <span class="block w-8 h-[2px] mb-2 transition-transform duration-500 origin-center" id="line1"></span>
         <span class="block w-8 h-[2px] transition-transform duration-500 origin-center" id="line2"></span>
     </button>
 
-    <!-- FULL-SCREEN MENU OVERLAY -->
     <div id="menu-overlay" class="fixed inset-0 bg-[#1a1a1a] text-[#e8e7e7] z-[100] flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-700">
         <nav class="flex flex-col items-center gap-8 text-center">
             <a href="index.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">Practice</a>
@@ -78,9 +53,8 @@
             <a href="library.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">The Library</a>
             <a href="faq.html" class="transition-link text-3xl md:text-5xl font-serif font-black uppercase tracking-tighter hover:text-[#f28d35] transition-colors">The Framework</a>
         </nav>
-        
-        <!-- Menu Footer Links -->
         <div class="absolute bottom-12 flex flex-wrap justify-center gap-8 text-xs font-bold tracking-[0.2em] uppercase opacity-50 px-6">
+            <a href="structural-analysis.html" class="transition-link hover:text-[#f28d35] hover:opacity-100 transition-all">Structural Analysis</a>
             <a href="support.html" class="transition-link hover:text-[#f28d35] hover:opacity-100 transition-all">Support</a>
             <a href="breathe.html" class="transition-link hover:text-[#f28d35] hover:opacity-100 transition-all">Breathe</a>
             <a href="privacy.html" class="transition-link hover:text-[#f28d35] hover:opacity-100 transition-all">Privacy</a>
@@ -88,44 +62,31 @@
     </div>
 
     <main class="relative z-10 w-full min-h-screen pt-28 pb-20 px-6 md:pt-32 md:px-12 flex flex-col items-center" role="main">
-        
         <div class="max-w-screen-xl w-full relative">
             
-            <!-- URGENT HELP LINK (Aligned perfectly with text, pushed into top padding) -->
             <div class="absolute -top-20 left-0 md:-top-24 z-50">
                 <a href="help.html" class="transition-link inline-block px-6 py-3 rounded-full bg-[#f28d35] text-[#1a1a1a] text-[10px] font-black tracking-[0.2em] uppercase shadow-lg shadow-[#f28d35]/20 transition-transform hover:scale-105 active:scale-95" aria-label="Get urgent mental health support">
                     Urgent Help
                 </a>
             </div>
 
-            <a href="index.html" class="transition-link inline-block mb-16 text-xs font-bold tracking-[0.3em] uppercase opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-[#1a1a1a] pb-1 mt-2" aria-label="Return to Practice">
+            <a href="index.html" class="transition-link inline-block mb-16 text-xs font-bold tracking-[0.3em] uppercase opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-[#1a1a1a] pb-1 mt-2">
                 &larr; Return to Practice
             </a>
 
             <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                
-                <!-- Text Content -->
                 <div>
                     <h1 class="text-5xl md:text-7xl font-black uppercase leading-[0.85] tracking-tighter mb-8">
                         The <br><span class="text-gray-400">Approach.</span>
                     </h1>
                     <div class="space-y-6 text-xl md:text-2xl font-medium tracking-tight opacity-80 leading-relaxed max-w-lg">
-                        <p>
-                            My practice is rooted in Transactional Analysis (TA). It is a highly accessible, collaborative framework that looks at how our past experiences shape our present reality.
-                        </p>
-                        <p>
-                            We often carry unconscious "scripts"—decisions we made as children to survive our early environments. Sometimes, those old survival strategies cause immense friction in our adult lives. 
-                        </p>
-                        <p>
-                            TA suggests our personality is made up of three distinct Ego States. By learning to recognize which state is driving the car, we can reclaim the autonomy to choose how we respond to the world.
-                        </p>
+                        <p>My practice is rooted in Transactional Analysis (TA). It is a highly accessible, collaborative framework that looks at how our past experiences shape our present reality.</p>
+                        <p>We often carry unconscious "scripts"—decisions we made as children to survive our early environments. Sometimes, those old survival strategies cause immense friction in our adult lives.</p>
+                        <p>TA suggests our personality is made up of three distinct Ego States. By learning to recognize which state is driving the car, we can reclaim the autonomy to choose how we respond to the world.</p>
                     </div>
                 </div>
 
-                <!-- Interactive Ego State Explainer -->
                 <div class="relative w-full mt-12 lg:mt-0">
-                    
-                    <!-- The Interactive Card -->
                     <div id="interactive-card" class="relative w-full min-h-[24rem] md:min-h-[30rem] rounded-[3rem] px-6 pt-12 pb-24 md:px-12 md:pt-16 md:pb-32 lg:px-16 flex flex-col items-center justify-center shadow-2xl border border-black border-opacity-5 transition-all-slow font-sans text-center">
                         <h2 id="card-title" class="text-xs font-bold uppercase tracking-[0.4em] mb-6 md:mb-8 opacity-50 transition-all-slow">The Adult</h2>
                         <p id="card-desc" class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight tracking-tight transition-all-slow max-w-2xl">
@@ -133,33 +94,52 @@
                         </p>
                     </div>
 
-                    <!-- The Embedded Toggle -->
-                    <nav class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 z-50 flex justify-center px-4 w-full" aria-label="Ego State Selection">
-                        <div id="toggle-bg" class="backdrop-blur-xl bg-[#1a1a1a] bg-opacity-10 p-2 rounded-full border border-black border-opacity-10 shadow-xl flex gap-1 transition-all" role="group">
-                            <button onclick="setCardState('parent')" id="btn-parent" class="magnetic-btn px-6 md:px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5 text-[#1a1a1a]" aria-pressed="false">Parent</button>
-                            <button onclick="setCardState('adult')" id="btn-adult" class="magnetic-btn px-6 md:px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all bg-[#1a1a1a] text-[#e8e7e7]" aria-pressed="true">Adult</button>
-                            <button onclick="setCardState('child')" id="btn-child" class="magnetic-btn px-6 md:px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5 text-[#1a1a1a]" aria-pressed="false">Child</button>
+                    <nav class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 z-50 flex justify-center px-4 w-full">
+                        <div id="toggle-bg" class="backdrop-blur-xl bg-[#1a1a1a] bg-opacity-10 p-2 rounded-full border border-black border-opacity-10 shadow-xl flex gap-1 transition-all">
+                            <button onclick="setCardState('parent')" id="btn-parent" class="magnetic-btn px-6 md:px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5 text-[#1a1a1a]">Parent</button>
+                            <button onclick="setCardState('adult')" id="btn-adult" class="magnetic-btn px-6 md:px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all bg-[#1a1a1a] text-[#e8e7e7]">Adult</button>
+                            <button onclick="setCardState('child')" id="btn-child" class="magnetic-btn px-6 md:px-8 py-3 rounded-full text-[10px] font-black tracking-[0.2em] uppercase transition-all hover:bg-black hover:bg-opacity-5 text-[#1a1a1a]">Child</button>
                         </div>
                     </nav>
-
                 </div>
             </div>
 
-            <!-- The Goal -->
             <div class="mt-32 pt-16 border-t border-[#1a1a1a] border-opacity-10 text-center max-w-3xl mx-auto pb-20">
                 <h3 class="text-xs font-bold uppercase tracking-[0.3em] mb-6 opacity-40">The Goal of Therapy</h3>
                 <p class="text-3xl md:text-5xl font-serif italic opacity-90 leading-tight">
                     "To strengthen the Adult, soothe the Child, and soften the critical Parent."
                 </p>
                 <div class="mt-16 flex flex-col sm:flex-row justify-center gap-6 px-4">
-                    <a href="matrix.html" class="transition-link px-10 py-4 rounded-full text-xs font-black tracking-[0.2em] uppercase transition-transform hover:scale-105 active:scale-95 bg-[#f28d35] text-[#1a1a1a] text-center shadow-lg shadow-[#f28d35]/20">
-                        Translate the Theory
+                    <a href="structural-analysis.html" class="transition-link px-10 py-4 rounded-full text-xs font-black tracking-[0.2em] uppercase transition-transform hover:scale-105 active:scale-95 bg-[#f28d35] text-[#1a1a1a] text-center shadow-lg shadow-[#f28d35]/20">
+                        Explore the Structure
                     </a>
                     <a href="faq.html" class="transition-link px-10 py-4 rounded-full text-xs font-black tracking-[0.2em] uppercase transition-transform hover:scale-105 active:scale-95 bg-[#1a1a1a] text-[#e8e7e7] text-center shadow-xl">
                         The Framework (FAQ)
                     </a>
                 </div>
             </div>
+
+            <!-- UNIFIED FOOTER WITH SIGNATURE -->
+            <footer class="mt-12 pt-12 pb-8 border-t border-[#1a1a1a] border-opacity-10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase opacity-60">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <a href="https://www.psychotherapy.org.uk/" target="_blank" rel="noopener noreferrer">
+                        <img src="ukcp-logo.png" alt="UKCP Registered" class="h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
+                    </a>
+                    <div class="text-center md:text-left flex flex-col md:flex-row justify-center items-center gap-2 md:gap-6">
+                        <span>Hull, UK & Online</span>
+                        <span class="hidden md:block w-1 h-1 rounded-full bg-current opacity-30"></span>
+                        <a href="https://builtbyliam.uk" target="_blank" rel="noopener noreferrer" class="text-[#f28d35] hover:opacity-80 transition-opacity tracking-[0.4em] uppercase text-[10px] font-black">
+                            BUILT BY LIAM
+                        </a>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+                    <a href="structural-analysis.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Structural Analysis</a>
+                    <a href="breathe.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Breathe</a>
+                    <a href="support.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Find Support</a>
+                    <a href="privacy.html" class="transition-link hover:opacity-100 hover:text-[#f28d35] transition-colors">Privacy</a>
+                </div>
+            </footer>
 
         </div>
     </main>
@@ -202,7 +182,6 @@
             document.documentElement.style.setProperty('--sel-text', s.selText);
 
             card.className = card.className.replace(/font-sans|font-serif/g, '') + ' ' + s.font;
-            
             desc.style.opacity = '0';
             title.style.opacity = '0';
             
@@ -220,24 +199,13 @@
                 if(id === state) {
                     btn.style.backgroundColor = s.btnBg;
                     btn.style.color = s.btnText;
-                    btn.setAttribute('aria-pressed', 'true');
                 } else {
                     btn.style.backgroundColor = 'transparent';
                     btn.style.color = '#1a1a1a'; 
-                    btn.setAttribute('aria-pressed', 'false');
                 }
             });
         }
 
-        document.addEventListener('keydown', (e) => {
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-            const key = e.key.toLowerCase();
-            if (key === 'p') setCardState('parent');
-            if (key === 'a') setCardState('adult');
-            if (key === 'c') setCardState('child');
-        });
-
-        // --- HAMBURGER MENU LOGIC ---
         const menuToggle = document.getElementById('menu-toggle');
         const menuOverlay = document.getElementById('menu-overlay');
         const line1 = document.getElementById('line1');
@@ -251,13 +219,13 @@
                 menuOverlay.classList.add('opacity-100', 'pointer-events-auto');
                 line1.style.transform = 'translateY(5px) rotate(45deg)';
                 line2.style.transform = 'translateY(-5px) rotate(-45deg)';
-                document.body.style.overflow = 'hidden'; // Lock background scrolling
+                document.body.style.overflow = 'hidden'; 
             } else {
                 menuOverlay.classList.remove('opacity-100', 'pointer-events-auto');
                 menuOverlay.classList.add('opacity-0', 'pointer-events-none');
                 line1.style.transform = 'translateY(0) rotate(0)';
                 line2.style.transform = 'translateY(0) rotate(0)';
-                document.body.style.overflow = ''; // Unlock scrolling
+                document.body.style.overflow = ''; 
             }
         });
 
@@ -268,44 +236,32 @@
                 const x = e.clientX - rect.left - (rect.width / 2);
                 const y = e.clientY - rect.top - (rect.height / 2);
                 btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
-                btn.style.transition = 'transform 0.1s ease-out, background-color 0.5s ease, color 0.5s ease';
             });
             btn.addEventListener('mouseleave', () => {
                 btn.style.transform = `translate(0px, 0px)`;
-                btn.style.transition = 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
             });
         });
 
         const originalTitle = document.title;
         document.addEventListener("visibilitychange", () => {
-            if (document.hidden) {
-                document.title = "Whenever you're ready...";
-            } else {
-                document.title = originalTitle;
-            }
+            document.title = document.hidden ? "Whenever you're ready..." : originalTitle;
         });
 
         window.addEventListener('pageshow', () => {
             const overlay = document.getElementById('page-overlay');
             if(overlay) overlay.style.opacity = '0';
-            
-            // Failsafe: Ensure menu resets if user clicks "back" browser button
             if(menuOpen) menuToggle.click();
         });
 
         const transitionLinks = document.querySelectorAll('.transition-link');
         transitionLinks.forEach(link => {
             link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href && (href.startsWith('http') || link.getAttribute('target') === '_blank')) return;
                 e.preventDefault(); 
                 const overlay = document.getElementById('page-overlay');
-                
-                if(overlay) {
-                    overlay.style.opacity = '1'; 
-                }
-                
-                setTimeout(() => {
-                    window.location.href = link.href; 
-                }, 500); 
+                if(overlay) overlay.style.opacity = '1'; 
+                setTimeout(() => { window.location.href = link.href; }, 500); 
             });
         });
     </script>
